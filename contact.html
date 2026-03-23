@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | David Colombo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container py-100">
+        <header class="section-header">
+            <h1 class="section-title">Ouvrir la<br><span>Transmission</span></h1>
+            <p class="section-subtitle">Disponible pour vos projets visionnaires</p>
+        </header>
+
+        <div class="contact-grid">
+            <section class="contact-form-container">
+                <form id="contact-form" class="cyber-form">
+                    <div class="form-group">
+                        <label class="form-label">Nom</label>
+                        <input type="text" id="nom" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message (<span id="restant">500</span> restants)</label>    
+                        <textarea id="message" class="form-textarea" rows="5" maxlength="500" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-neon">Envoyer la transmission</button>
+                </form>
+            </section>
+
+            <aside class="contact-info">
+                <div class="cyber-card qr-card">
+                    <span class="tag-badge">BNB Chain / BEP-20</span>
+                    <h3 class="project-title">Soutenir mes Projets</h3>
+                    <p class="project-desc">Flashez pour envoyer des BNB (Donation ou Paiement)</p>
+                    
+                    <div class="qr-container">
+                        <img src="assets/WhatsApp Image 2026-03-17 at 16.31.03.jpeg" alt="QR Code BNB David Colombo" class="qr-image">
+                    </div>
+
+                    <div class="wallet-address-box">
+                        <p class="label-wallet">ADRESSE OFFICIELLE</p>
+                        <code class="wallet-code">0x493FEf1Dbd3989A5bb8b467Ef0a787669053F0B5</code>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="projets.html" class="nav-link">Projets</a>
+        <a href="about.html" class="nav-link">Ã€ Propos</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+    </nav>
+    <script src="js/main.js"></script>
+</body>
+</html>
