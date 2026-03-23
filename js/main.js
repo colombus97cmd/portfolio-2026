@@ -144,7 +144,7 @@ function renderProjects(filter = 'Tous') {
         if (p.model3d) {
             mediaHtml = `<model-viewer src="${p.model3d}" auto-rotate camera-controls style="width:100%; height:100%; background:#050505; border-radius:20px;"></model-viewer>`;
         } else if (p.video) {
-            mediaHtml = `<video src="${p.video}" class="project-media" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+            mediaHtml = `<video src="${p.video}" class="project-media" muted loop preload="none" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
         } else {
             mediaHtml = `<img src="${p.img || 'assets/Logo.png'}" alt="${p.titre}" class="project-media" loading="lazy" />`;
         }
