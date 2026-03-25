@@ -1,1 +1,2 @@
-# No LFS tracking for now to ensure Vercel compatibility
+# Only use LFS for the over-sized video (>100MB)
+assets/ours.mp4 filter=lfs diff=lfs merge=lfs -text
