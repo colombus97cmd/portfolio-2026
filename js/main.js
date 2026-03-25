@@ -27,7 +27,7 @@ const projectsData = [
         tag: "3D", 
         desc: "Modèle 3D Hard Surface. Optimisation GLB pour visualisation interactive temps réel.", 
         model3d: "assets/over_bike.glb",
-        img: "assets/baylonburn.png"
+        img: "assets/Baylonburn.png"
     },
     { 
         titre: "Escape Game: Expérience MMI", 
@@ -95,7 +95,7 @@ const projectsData = [
         titre: "Concept Art: Babylonburn", 
         tag: "Design", 
         desc: "Illustration numérique sur Clip Studio Paint. Recherche de style néon-futuriste.", 
-        img: "assets/baylonburn.png" 
+        img: "assets/Baylonburn.png" 
     },
     { 
         titre: "Logo Officiel: Colombo 2026", 
@@ -107,7 +107,7 @@ const projectsData = [
         titre: "QR Gateway: Web3 Donation", 
         tag: "Design", 
         desc: "Design de passerelle de paiement crypto. Intégration QR Code personnalisée.", 
-        img: "assets/votre-qr-code-eth.png" 
+        img: "assets/WhatsApp Image 2026-03-17 at 16.31.03.jpeg" 
     }
 ];
 
@@ -144,7 +144,7 @@ function renderProjects(filter = 'Tous') {
         if (p.model3d) {
             mediaHtml = `<model-viewer src="${p.model3d}" auto-rotate camera-controls style="width:100%; height:100%; background:#050505; border-radius:20px;"></model-viewer>`;
         } else if (p.video) {
-            mediaHtml = `<video src="${p.video}" class="project-media" muted loop preload="none" poster="assets/Logo.png" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+            mediaHtml = `<video src="${p.video}" class="project-media" muted loop preload="metadata" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
         } else {
             mediaHtml = `<img src="${p.img || 'assets/Logo.png'}" alt="${p.titre}" class="project-media" loading="lazy" />`;
         }
