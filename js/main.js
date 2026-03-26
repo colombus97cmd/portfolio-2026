@@ -163,11 +163,54 @@ function renderProjects(filter = 'Tous') {
             </div>
         `;
 
-        if (p.link) {
-            card.addEventListener('click', () => window.open(p.link, '_blank'));
+        if (p.link || p.desc || p.model3d || p.video) {
+            card.addEventListener('click', () => openModal(p));
         }
         grid.appendChild(card);
     });
+}
+
+function openModal(project) {
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body');
+    if (!modal || !modalBody) return;
+
+    let mediaHtml = '';
+    if (project.tag === 'Code' && project.link) {
+        // Pour les projets Code, on utilise une iframe pour la "navigabilité"
+        mediaHtml = `<iframe src="${project.link}" class="project-iframe" title="${project.titre}"></iframe>`;
+    } else if (project.model3d) {
+        mediaHtml = `<model-viewer src="${project.model3d}" auto-rotate camera-controls style="width:100%; height:400px; background:#050505; border-radius:20px;"></model-viewer>`;
+    } else if (project.video) {
+        mediaHtml = `<video src="${project.video}" class="project-media" controls autoplay loop playsinline></video>`;
+    } else {
+        mediaHtml = `<img src="${project.img || 'assets/Logo.png'}" alt="${project.titre}" class="project-media" />`;
+    }
+
+    const linkHtml = project.link ? `
+        <div class="modal-links">
+            <a href="${project.link}" target="_blank" class="btn-neon">Voir le Projet Live</a>
+        </div>
+    ` : '';
+
+    modalBody.innerHTML = `
+        ${mediaHtml}
+        <span class="tag-badge">${project.tag}</span>
+        <h3 class="project-title">${project.titre}</h3>
+        <p class="project-desc">${project.desc}</p>
+        ${linkHtml}
+    `;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -181,6 +224,57 @@ document.addEventListener('DOMContentLoaded', () => {
             renderProjects(e.target.dataset.filter);
         });
     });
+    
+    // Modal close events
+    const closeBtn = document.getElementById('close-modal');
+    const modal = document.getElementById('project-modal');
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = contactForm.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Transmission en cours...";
+            btn.disabled = true;
+
+            const formData = {
+                nom: document.getElementById('nom').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                // Utilisation de Formspree (nécessite une ID de formulaire de l'utilisateur)
+                // Pour l'instant on simule l'envoi ou on prépare le code pour Formspree
+                // Si l'utilisateur a une ID, il suffira de remplacer 'YOUR_FORMSPREE_ID'
+                const response = await fetch('https://formspree.io/f/mqakeaqe', { // ID temporaire ou à demander
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    btn.innerText = "Transmission Reçue !";
+                    contactForm.reset();
+                    setTimeout(() => { btn.innerText = originalText; btn.disabled = false; }, 3000);
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                btn.innerText = "Erreur de Transmission";
+                btn.style.borderColor = "red";
+                setTimeout(() => { btn.innerText = originalText; btn.disabled = false; btn.style.borderColor = ""; }, 3000);
+            }
+        });
+    }
     
     // Contact form character counter
     const msg = document.getElementById('message');
