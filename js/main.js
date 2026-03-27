@@ -77,13 +77,13 @@ const projectsData = [
         titre: "IA Generative: Abstract Flame", 
         tag: "Vidéo", 
         desc: "Exploration des flux de travail IA pour le motion design. Animation assistée par neurones.", 
-        video: "assets/social_colombus97_09304_animate_the_flame_in_the_background_and_add__ad373870-27b5-4cfd-8b80-8c425c85c02e_1.mp4" 
+        video: "assets/social_colombus97_09304_Animate_the_flame_in_the_background_and_add__ad373870-27b5-4cfd-8b80-8c425c85c02e_1.mp4" 
     },
     { 
         titre: "AI Motion Loop: Sci-Fi", 
         tag: "Vidéo", 
         desc: "Seconde expérimentation IA. Création de boucles visuelles pour supports numériques.", 
-        video: "assets/social_colombus97_09304_animate_--ar_7758_--motion_high_--raw_--vide_171b6c64-1485-4e8d-adcb-d7d82c492d88_2.mp4" 
+        video: "assets/social_colombus97_09304_Animate_--ar_7758_--motion_high_--raw_--vide_171b6c64-1485-4e8d-adcb-d7d82c492d88_2.mp4" 
     },
     { 
         titre: "Identité Visuelle: Collaboration", 
