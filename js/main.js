@@ -65,7 +65,7 @@ const projectsData = [
         titre: "Polar Bear: Rendu Motion", 
         tag: "Vidéo", 
         desc: "Animation de personnage en 3D. Étude des mouvements naturels et des shaders.", 
-        video: "assets/ours.mp4" 
+        video: "assets/ours_compressed.mp4" 
     },
     { 
         titre: "Planet Simulation: Eevee", 
