@@ -27,10 +27,22 @@
             <div class="hero-actions">
                 <a href="projets.html" class="btn-neon">Explorer les projets</a>
                 <a href="contact.html" class="btn-neon outline">Me contacter</a>
-                <a href="assets/CV MMI.pdf" target="_blank" class="btn-neon outline" title="Ouvrir pour lire, imprimer ou télécharger">Voir le CV</a>
+                <button onclick="openCvModal()" class="btn-neon outline" title="Ouvrir le CV">Voir le CV</button>
             </div>
         </section>
     </div>
+
+    <!-- Modale pour le CV -->
+    <div id="cv-modal" class="modal-overlay">
+        <div class="modal-content" style="height: 90vh; max-width: 1000px; display: flex; flex-direction: column;">
+            <button class="modal-close" onclick="closeCvModal()">&times;</button>
+            <iframe src="assets/CV%20MMI.pdf" style="flex-grow: 1; width: 100%; border: none; border-radius: 20px;" title="CV David Colombo"></iframe>
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="assets/CV MMI.pdf" download="CV_David_Colombo.pdf" class="btn-neon" style="padding: 15px 30px; font-size: 8px;">Télécharger le CV PDF</a>
+            </div>
+        </div>
+    </div>
+
     <nav class="main-nav">
         <a href="index.html" class="nav-link active">Accueil</a>
         <a href="projets.html" class="nav-link">Projets</a>
@@ -38,5 +50,19 @@
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
     <script src="js/main.js"></script>
+    <script>
+        function openCvModal() {
+            document.getElementById('cv-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCvModal() {
+            document.getElementById('cv-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        // Fermeture en cliquant à l'extérieur
+        document.getElementById('cv-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeCvModal();
+        });
+    </script>
 </body>
 </html>
