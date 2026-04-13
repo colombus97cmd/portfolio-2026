@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Pitch Deck - Minage PME Guadeloupe</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css">
+
+		<!-- Custom Styling -->
+		<style>
+			.reveal h1, .reveal h2, .reveal h3 {
+				color: #e2a829; /* Bitcoin Gold */
+				text-transform: uppercase;
+			}
+			.reveal .slide-background {
+				background-image: radial-gradient(circle, #2b2b2b, #111);
+			}
+			.box {
+				background: rgba(0,0,0,0.5);
+				border: 1px solid #e2a829;
+				padding: 20px;
+				border-radius: 10px;
+				margin-top: 20px;
+			}
+			.reveal ul {
+				list-style-type: square;
+				color: #eee;
+			}
+			.highlight { color: #50c878; font-weight: bold; } /* Emerald Green */
+			.highlight-blue { color: #3498db; font-weight: bold; } 
+			.print-btn {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				z-index: 9999;
+				background-color: #e2a829;
+				color: #111;
+				border: none;
+				padding: 10px 20px;
+				font-size: 16px;
+				font-weight: bold;
+				border-radius: 5px;
+				cursor: pointer;
+				box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+			}
+			.print-btn:hover { background-color: #ffc107; }
+			
+			@media print {
+				.print-btn { display: none; }
+			}
+		</style>
+	</head>
+	<body>
+		<button class="print-btn" onclick="openPrintView()">Imprimer en PDF (Banque)</button>
+
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- Slide 1 -->
+				<section>
+					<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin Logo" style="width: 150px; background: transparent; border: none; box-shadow: none;">
+					<h1>Minage 2.0 en Guadeloupe</h1>
+					<h3>Rentabilité Asymétrique & "Green Mining"</h3>
+					<p><small>Dossier de Demande de Financement Bancaire PME</small></p>
+				</section>
+
+				<!-- Slide 2 -->
+				<section>
+					<h2>1. Une Preuve de Concept Validée</h2>
+					<div class="box">
+						<ul>
+							<li><strong>Objectif :</strong> Structurer une ferme professionnelle de minage de cryptomonnaies.</li>
+							<li><strong>Expertise démontrée :</strong> Le projet ne part pas de zéro. Le porteur gère déjà une installation autonome fluide.</li>
+							<li><strong>Hardware testé :</strong> Unité <i>Bitaxe</i> (~4,6 TH/s) validant la configuration réseau et la stabilité des revenus sur plusieurs mois consécutifs.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Slide 3 -->
+				<section>
+					<h2>2. Stratégie "Dual-Pool"</h2>
+					<p>L'investissement financera un parc de machines <strong>Power Mining</strong> à haute efficience énergétique pour dépasser <span class="highlight-blue">19 TH/s</span>.</p>
+					
+					<div style="display: flex; justify-content: space-between; gap: 20px;">
+						<div class="box" style="flex: 1; font-size: 0.8em;">
+							<h3 style="font-size: 1.2em;">Pool Stabilité</h3>
+							<p>Partie du parc connectée aux pools traditionnels en continu.</p>
+							<p class="highlight">Ojectif : Générer les liquidités quotidiennes pour le paiement des charges fixes (Banque, Électricité).</p>
+						</div>
+						<div class="box" style="flex: 1; font-size: 0.8em;">
+							<h3 style="font-size: 1.2em;">Pool Jackpot (Solo)</h3>
+							<p>Partie du parc configurée pour résoudre un bloc complet (Solo Mining).</p>
+							<p class="highlight">Objectif : Rentabilité haut-risque (Loterie) permettant des gains asymétriques colossaux sans nuire aux charges fixes.</p>
+						</div>
+					</div>
+				</section>
+
+				<!-- Slide 4 -->
+				<section>
+					<h2>3. Réduction des Charges : Solaire</h2>
+					<p>En Guadeloupe (ZNI), le coût OPEX principal est l'électricité. La solution certifiée ESG :</p>
+					<ul>
+						<li>Couplage du parc avec des <strong>panneaux photovoltaïques</strong> en autoconsommation solaire.</li>
+						<li><span class="highlight">Impact Financier :</span> Division par 3 des charges d'électricité par rapport à un raccord standard.</li>
+						<li>Protection par la <span class="highlight-blue">péréquation tarifaire</span> nationale lors de l'usage en source d'appoint de nuit (EDF).</li>
+					</ul>
+				</section>
+
+				<!-- Slide 5 -->
+				<section>
+					<h2>4. Structure Financière Solide</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Investissement (CAPEX)</th>
+								<th>Ressources de Financement</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Parc ASIC Power Mining : ~40 k€</td>
+								<td>Apports propres : ~20 k€</td>
+							</tr>
+							<tr>
+								<td>Centrale Solaire & Local : ~35 k€</td>
+								<td><strong>Emprunt Banque : ~65 k€</strong></td>
+							</tr>
+							<tr>
+								<td>Trésorerie de garantie : ~10 k€</td>
+								<td>Subventions <span class="highlight-blue">FEDER / Région</span> possibles</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><small>*Données chiffrées de référence à adapter selon devis.</small></p>
+				</section>
+
+				<!-- Slide 6 -->
+				<section>
+					<h2>5. Réinvestissement Local & Durable</h2>
+					<p>Les excédents de flux de trésorerie de cette activité globale financeront le développement endémique ultra-novateur post-emprunt :</p>
+					<div class="box" style="text-align: left; font-size: 0.8em;">
+						<ul>
+							<li>🌱 <strong>Agriculture Hors-sol :</strong> Investissement massif dans la production locale 100% hydroponique garantie <span class="highlight">sans Chlordécone</span>.</li>
+							<li>🥥 <strong>Impression 3D Végétale :</strong> Production industrielle d'art et d'objets via un filament à partir de fibre de coco (biodégradable et ressource insulaire illimitée).</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- Slide 7 -->
+				<section>
+					<h2>Conclusion</h2>
+					<h3 class="highlight">Un projet rentable, vert et prévoyant.</h3>
+					<p>Alliant une excellente <strong>gestion des risques</strong> via le Dual-Pool, l'intégration des <strong>normes ESG</strong> par l'autoconsommation solaire, et une vraie <strong>vision économique à long terme</strong> pour l'île.</p>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+			});
+
+			function openPrintView() {
+				// Reveal.js native PDF print requires ?print-pdf in the URL
+				if (!window.location.search.match(/print-pdf/gi)) {
+					window.location.search = '?print-pdf';
+				} else {
+					window.print();
+				}
+			}
+			
+			// Si la page charge avec print-pdf, ouvrir automatiquement l'invite d'impression
+			if (window.location.search.match(/print-pdf/gi)) {
+				setTimeout(() => {
+					window.print();
+				}, 1500);
+			}
+		</script>
+	</body>
+</html>

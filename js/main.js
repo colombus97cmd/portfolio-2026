@@ -2,11 +2,24 @@
 
 const projectsData = [
     { 
+        titre: "Startup : Ferme de Minage Solaire", 
+        tag: "Business", 
+        desc: "Création d'un Data Center Web3 éco-responsable (Guadeloupe) structuré en SASU.", 
+        link: "assets/Buisness plan/Dossier_Complet_Banque.html", 
+        img: "assets/Logo.png",
+        contexte: "Projet entrepreneurial de création d'une ferme de minage Bitcoin. L'objectif est d'atteindre le PetaHash en combinant du matériel ASIC de pointe et l'énergie solaire thermique.",
+        demarche: "Rédaction d'un Business Plan certifié pour financement bancaire, élaboration d'un prévisionnel sur 3 ans, et conception des statuts légaux (SASU). Le projet inclut une vision de réinvestissement local (agriculture sans chlordécone, impression 3D coco).",
+        outils: ["Business Plan", "Finance", "Web3", "Énergie Solaire"]
+    },
+    { 
         titre: "DApp BeamUp: Streaming Web3", 
         tag: "Code", 
-        desc: "Plateforme de streaming décentralisée sur BNB Chain. Intégration IPFS et Solidity.", 
+        desc: "Plateforme de streaming décentralisée pour financer le projet transmédia 'Bible de l'Univers'.", 
         link: "https://beam-up.vercel.app/", 
-        img: "assets/capture-escape-game.jpg" 
+        img: "assets/capture-escape-game.jpg",
+        contexte: "Création d'une infrastructure Web3 indépendante pour financer et diffuser la 'Bible de l'Univers'. Une nécessité pour garantir une vision artistique hors des systèmes capitalistes traditionnels.",
+        demarche: "Développement d'un smart contract sur BNB Chain et intégration IPFS. L'objectif est de lier la technologie décentralisée et la diffusion d'œuvres transmédia (Webtoon, Animations).",
+        outils: ["Solidity", "JavaScript", "Web3", "IPFS"]
     },
     { 
         titre: "Kakarot Riddim (colombus97)", 
@@ -20,46 +33,67 @@ const projectsData = [
         tag: "3D", 
         desc: "Vidéo promotionnelle réalisée pour le département MMI. Modélisation et montage.", 
         link: "https://www.youtube.com/watch?v=BW7Gnu_yyTs",
-        img: "assets/Logo.png" 
+        img: "assets/Logo.png",
+        contexte: "Projet de promotion pour le département MMI. L'objectif était de montrer les capacités techniques acquises en modélisation et animation 3D.",
+        demarche: "Modélisation de scènes complexes, texturage optimisé et rendu. Montage final dynamique pour susciter l'intérêt des futurs étudiants.",
+        outils: ["Blender", "Premiere Pro", "After Effects"]
     },
     { 
         titre: "Babylon Burn: Overbike", 
         tag: "3D", 
-        desc: "Modèle 3D Hard Surface. Optimisation GLB pour visualisation interactive temps réel.", 
+        desc: "Asset 3D pour la série 'La Chair'. Modélisation Hard Surface optimisée.", 
         model3d: "assets/over_bike.glb",
-        img: "assets/Baylonburn.png"
+        img: "assets/Baylonburn.png",
+        contexte: "Fait partie de la 'Bible de l'Univers', un projet transmédia afrofuturiste (2029-2238). Cet overbike appartient aux bas-fonds urbains de la série d'animation 'La Chair'.",
+        demarche: "Création d'une modélisation 3D Hard Surface interactive. Le but était de concevoir un véhicule illustrant la technologie unie aux obsessions organiques de l'univers.",
+        outils: ["Blender", "Substance Painter", "GLTF"]
     },
     { 
         titre: "Escape Game: Expérience MMI", 
         tag: "Code", 
-        desc: "Jeu narratif interactif développé en JavaScript. Focus sur l'UX et le Game Design.", 
+        desc: "Jeu narratif interactif introduisant l'univers de 'Bible de l'Univers'.", 
         link: "https://escape-game-mmi-colombo.netlify.app/", 
-        img: "assets/capture-escape-game.jpg" 
+        img: "assets/capture-escape-game.jpg",
+        contexte: "SAÉ MMI de 1ère année fusionnée avec mon projet transmédia 'Bible de l'Univers'. Le jeu permet d'explorer les tensions entre spiritualité et matérialité à travers un futur afrofuturiste.",
+        demarche: "Développement d'un jeu textuel en JavaScript. L'interface cyberpunk sert l'immersion du joueur dans cet univers complexe critiquant les systèmes socio-économiques.",
+        outils: ["JavaScript", "HTML5", "CSS3", "IA"]
     },
     { 
         titre: "Motion Narrative: Exercice MMI", 
         tag: "Vidéo", 
         desc: "Réalisation audiovisuelle complexe (Ex10). Travail sur le montage et les effets dynamiques.", 
-        video: "assets/Ex10-01DC.mp4" 
+        video: "assets/Ex10-01DC.mp4",
+        contexte: "Exercice MMI Ex10. L'objectif était de réaliser une composition audiovisuelle dynamique narrative.",
+        demarche: "Travail intensif sur le sound design et la synchronisation rythmique. Utilisation d'effets de transition complexes et de colorimétrie pour renforcer l'ambiance.",
+        outils: ["Premiere Pro", "After Effects", "Audition"]
     },
     { 
         titre: "Stepmotion: Animation Rythmique", 
         tag: "Vidéo", 
         desc: "Exercice de stop-motion réalisé au MMI. Travail sur la cadence et l'image par image.", 
         img: "assets/Ex09-01DC.png",
-        video: "assets/Ex08-02.mp4" 
+        video: "assets/Ex08-02.mp4",
+        contexte: "Exercice MMI d'animation en volume (stop-motion). L'objectif était de maîtriser la cadence d'animation par images clés.",
+        demarche: "Captation image par image d'éléments physiques, intégration dans un workflow numérique pour post-production. Recherche d'un rythme visuel percutant.",
+        outils: ["Appareil Photo", "Dragonframe", "After Effects"]
     },
     { 
         titre: "Composition Design MMI", 
         tag: "Design", 
         desc: "Création graphique (Ex09). Recherche sur l'équilibre visuel et la typographie.", 
-        img: "assets/Ex09-01DC.png" 
+        img: "assets/Ex09-01DC.png",
+        contexte: "Exercice MMI Ex09 de création graphique. L'objectif était de travailler sur l'équilibre visuel, le poids et la hiérarchie de l'information.",
+        demarche: "Application des règles de grille et de proportions. Choix typographique fort et composition asymétrique pour créer du dynamisme.",
+        outils: ["Illustrator", "Photoshop", "InDesign"]
     },
     { 
         titre: "Composition Éditoriale MMI", 
         tag: "Design", 
         desc: "Mise en page graphique (DS). Respect des grilles et de la hiérarchie visuelle.", 
-        img: "assets/afficheDSMMI1_David-colombo.png" 
+        img: "assets/afficheDSMMI1_David-colombo.png",
+        contexte: "Devoir surveillé MMI de mise en page graphique. L'objectif était de réaliser une affiche promotionnelle ou éditoriale complète en temps limité.",
+        demarche: "Gestion stricte des alignements, des marges et du parcours de l'œil. Respect des contraintes d'impression et de lisibilité.",
+        outils: ["InDesign", "Illustrator"]
     },
     { 
         titre: "Polar Bear: Rendu Motion", 
@@ -70,8 +104,11 @@ const projectsData = [
     { 
         titre: "Planet Simulation: Eevee", 
         tag: "Vidéo", 
-        desc: "Simulation environnementale Blender. Rendu d'atmosphères et de textures procédurales.", 
-        video: "assets/planet.mp4" 
+        desc: "Environnement de l'utopie 'Afridi' et du sanctuaire de 'Mémoria' pour la 'Bible de l'Univers'.", 
+        video: "assets/planet.mp4",
+        contexte: "Création visuelle pour le volet 'Le Verbe' (un webtoon sur la reconstruction de l'utopie Afridi et de sa cité écologique Mémoria sans argent).",
+        demarche: "Simulation sous Blender pour représenter les planètes et sanctuaires mondiaux de données, unissant technologie de pointe et concepts théologiques.",
+        outils: ["Blender", "Eevee", "Procédural"]
     },
     { 
         titre: "IA Generative: Abstract Flame", 
@@ -107,7 +144,7 @@ const projectsData = [
         titre: "QR Gateway: Web3 Donation", 
         tag: "Design", 
         desc: "Design de passerelle de paiement crypto. Intégration QR Code personnalisée.", 
-        img: "assets/WhatsApp Image 2026-03-17 at 16.31.03.jpeg" 
+        img: "assets/QRCODE BNB.jpeg" 
     }
 ];
 
@@ -193,11 +230,28 @@ function openModal(project) {
         </div>
     ` : '';
 
+    const outilsHtml = project.outils ? `
+        <div class="project-tools">
+            ${project.outils.map(outil => `<span class="tool-badge">${outil}</span>`).join('')}
+        </div>
+    ` : '';
+
+    const etudeHtml = project.contexte && project.demarche ? `
+        <div class="project-case-study">
+            <h4>Contexte & Objectifs</h4>
+            <p>${project.contexte}</p>
+            <h4>Démarche & Solution</h4>
+            <p>${project.demarche}</p>
+        </div>
+    ` : '';
+
     modalBody.innerHTML = `
         ${mediaHtml}
         <span class="tag-badge">${project.tag}</span>
         <h3 class="project-title">${project.titre}</h3>
-        <p class="project-desc">${project.desc}</p>
+        ${outilsHtml}
+        <p class="project-desc" style="${project.contexte ? 'margin-bottom: 20px;' : ''}">${project.desc}</p>
+        ${etudeHtml}
         ${linkHtml}
     `;
 

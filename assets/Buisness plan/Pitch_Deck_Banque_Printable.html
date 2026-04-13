@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Business Plan - Minage PME Guadeloupe (Version A4 Imprimable)</title>
+	<style>
+		/* Règles globales pour un format document texte */
+		:root {
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 11pt;
+			line-height: 1.4;
+			color: #000; /* 100% Noir pour économie d'encre */
+		}
+		body {
+			background-color: #fff;
+			margin: 0 auto;
+			max-width: 800px; /* Largeur de lecture sur écran */
+			padding: 20px;
+		}
+		
+		/* Définition de la page A4 (portrait) pour l'impression */
+		@page {
+			size: A4 portrait;
+			margin: 15mm;
+		}
+
+		/* Typographie */
+		h1, h2, h3 {
+			text-transform: uppercase;
+			page-break-after: avoid; /* Évite les coupures après un titre */
+			color: #000;
+		}
+		h1 {
+			font-size: 18pt;
+			text-align: center;
+			margin-bottom: 5px;
+			border-bottom: 2px solid #000;
+			padding-bottom: 10px;
+		}
+		h2 {
+			font-size: 13pt; /* Écriture plus petite */
+			margin-top: 15px;
+			margin-bottom: 8px;
+			border-left: 4px solid #000;
+			padding-left: 10px;
+		}
+		h3 {
+			font-size: 11pt;
+			margin-bottom: 5px;
+		}
+		.subtitle {
+			text-align: center;
+			font-size: 11pt;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		/* Blocs et structure */
+		.section-block {
+			margin-bottom: 15px;
+			page-break-inside: avoid; /* Essaie de garder chaque bloc d'un seul tenant */
+		}
+		.box {
+			border: 1px solid #000;
+			padding: 8px 12px;
+			margin: 5px 0;
+			border-radius: 4px;
+		}
+		
+		/* Listes */
+		ul {
+			margin: 5px 0 10px 0;
+			padding-left: 20px;
+		}
+		li {
+			margin-bottom: 4px;
+		}
+
+		/* Mise en page en colonnes */
+		.flex-container {
+			display: flex;
+			gap: 10px;
+			align-items: stretch;
+		}
+		.flex-col {
+			flex: 1;
+		}
+
+		/* Tableaux */
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 10px 0;
+		}
+		th, td {
+			border: 1px solid #000;
+			padding: 6px;
+			text-align: left;
+			font-size: 10pt;
+		}
+		th {
+			font-weight: bold;
+			background-color: #f9f9f9; /* Très léger ou transparent à l'impression */
+		}
+
+		/* Emphasize text */
+		.highlight { text-decoration: underline; font-weight: bold; }
+		.highlight-italic { font-style: italic; font-weight: bold; }
+		
+		/* Logo et Bouton Impression */
+		.header-logo {
+			display: block;
+			margin: 0 auto 5px auto;
+			width: 60px; /* Logo compressé */
+			filter: grayscale(100%) contrast(1.5); /* Forcé au noir/blanc */
+		}
+		.print-btn {
+			display: block;
+			margin: 10px auto 30px auto;
+			padding: 10px 20px;
+			font-size: 12pt;
+			font-weight: bold;
+			background-color: #fff;
+			color: #000;
+			border: 2px solid #000;
+			cursor: pointer;
+			border-radius: 4px;
+		}
+		.print-btn:hover { background-color: #f0f0f0; }
+
+		/* Ce qui se passe spécifiquement lors du lancement de l'impression */
+		@media print {
+			.print-btn { display: none !important; }
+			body { max-width: none; padding: 0; }
+			/* Forcer l'impression noir & blanc précise */
+			* {
+				-webkit-print-color-adjust: exact !important;
+				print-color-adjust: exact !important;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<button class="print-btn" onclick="window.print()">🖨️ Générer le PDF (A4 Portrait)</button>
+
+	<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin Logo" class="header-logo">
+	<h1>Minage 2.0 en Guadeloupe</h1>
+	<div class="subtitle">Rentabilité Asymétrique & "Green Mining"<br>
+		<span style="font-weight:normal; font-size: 10pt;">Dossier de Demande de Financement Bancaire PME</span>
+	</div>
+
+	<div class="section-block">
+		<h2>1. Le Porteur de Projet : Bâtisseur Tech & Web3</h2>
+		<p>Le projet est piloté par un profil atypique, offrant des garanties techniques et humaines fortes :</p>
+		<div class="box" style="background-color: #f9f9f9 !important;">
+			<ul>
+				<li><strong>Maturité & Résilience :</strong> Étudiant de 30 ans en reprise d'études, prouvant une immense capacité d'adaptation et d'apprentissage continu.</li>
+				<li><strong>Expertise Informatique (Pas de l'improvisation) :</strong> Créateur opérationnel d'une <i>dApp</i> (Application Décentralisée Web3) et d'un portfolio en ligne pointu. Le porteur de projet est un développeur qui comprend nativement l'infrastructure blockchain.</li>
+				<li><strong>Vision Internationale :</strong> Opérant selon les standards web mondiaux, l'entreprise locale est conçue dès le premier jour avec une stratégie de scalabilité et de projection à l'international.</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="section-block">
+		<h2>2. Une Preuve de Concept Validée</h2>
+		<div class="box">
+			<ul>
+				<li><strong>Objectif :</strong> Structurer une ferme professionnelle de minage de cryptomonnaies.</li>
+				<li><strong>Expertise démontrée :</strong> Le projet ne part pas de zéro. Le porteur gère déjà une installation autonome fluide.</li>
+				<li><strong>Hardware testé :</strong> Unité <i>Bitaxe</i> (~4,6 TH/s) validant la configuration réseau et la stabilité des revenus sur plusieurs mois consécutifs.</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="section-block">
+		<h2>3. Stratégie "Dual-Pool"</h2>
+		<p>L'investissement financera un parc de machines <strong>Power Mining</strong> à haute efficience énergétique pour dépasser <span class="highlight-italic">19 TH/s</span>.</p>
+		
+		<div class="flex-container">
+			<div class="box flex-col">
+				<h3>Pool Stabilité</h3>
+				<p>Partie du parc connectée aux pools traditionnels en continu.</p>
+				<p class="highlight">Objectif : Générer les liquidités quotidiennes pour le paiement des charges fixes (Banque, Électricité).</p>
+			</div>
+			<div class="box flex-col">
+				<h3>Pool Jackpot (Solo)</h3>
+				<p>Partie du parc configurée pour résoudre un bloc complet (Solo Mining).</p>
+				<p class="highlight">Objectif : Rentabilité haut-risque (Loterie) permettant des gains asymétriques colossaux sans nuire aux charges fixes.</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="section-block">
+		<h2>4. Réduction des Charges : Solaire</h2>
+		<p>En Guadeloupe (ZNI), le coût OPEX principal est l'électricité. La solution certifiée ESG :</p>
+		<ul>
+			<li>Couplage du parc avec des <strong>panneaux photovoltaïques</strong> en autoconsommation solaire.</li>
+			<li><span class="highlight">Impact Financier :</span> Division par 3 des charges d'électricité par rapport à un raccord standard.</li>
+			<li>Protection par la <span class="highlight-italic">péréquation tarifaire</span> nationale lors de l'usage en source d'appoint de nuit (EDF).</li>
+		</ul>
+	</div>
+
+	<div class="section-block">
+		<h2>5. Structure Financière Solide</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Investissement (CAPEX)</th>
+					<th>Ressources de Financement</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Parc ASIC Power Mining : ~40 k€</td>
+					<td>Apports propres : ~20 k€</td>
+				</tr>
+				<tr>
+					<td>Centrale Solaire & Local : ~35 k€</td>
+					<td><strong>Emprunt Banque : ~65 k€</strong></td>
+				</tr>
+				<tr>
+					<td>Trésorerie de garantie : ~10 k€</td>
+					<td>Subventions <span class="highlight-italic">FEDER / Région</span> possibles</td>
+				</tr>
+			</tbody>
+		</table>
+		<p style="font-size: 9pt; margin-top: -5px;">*Données chiffrées de référence à adapter selon devis.</p>
+	</div>
+
+	<div class="section-block">
+		<h2>6. Réinvestissement Local & Durable</h2>
+		<p>Les excédents de flux de trésorerie de cette activité globale financeront le développement endémique ultra-novateur post-emprunt :</p>
+		<div class="box">
+			<ul>
+				<li><strong>Agriculture Hors-sol :</strong> Investissement massif dans la production locale 100% hydroponique garantie <span class="highlight">sans Chlordécone</span>.</li>
+				<li><strong>Impression 3D Végétale :</strong> Production industrielle d'art et d'objets via un filament à partir de fibre de coco (biodégradable et ressource insulaire illimitée).</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="section-block" style="text-align: center; margin-top: 25px; border-top: 2px solid #000; padding-top: 15px;">
+		<h2>Conclusion</h2>
+		<h3 class="highlight">Un projet rentable, vert et prévoyant.</h3>
+		<p>Alliant une excellente <strong>gestion des risques</strong> via le Dual-Pool, l'intégration des <strong>normes ESG</strong> par l'autoconsommation solaire, et une vraie <strong>vision économique à long terme</strong> pour l'île.</p>
+	</div>
+
+</body>
+</html>

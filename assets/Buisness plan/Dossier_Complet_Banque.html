@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Dossier Complet - Minage PME Guadeloupe</title>
+	<style>
+		:root {
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 11pt;
+			line-height: 1.5;
+			color: #000;
+		}
+		body {
+			background-color: #fff;
+			margin: 0 auto;
+			max-width: 850px;
+			padding: 20px;
+		}
+		@page {
+			size: A4 portrait;
+			margin: 15mm;
+		}
+		
+		/* Typographie */
+		h1 { font-size: 18pt; text-align: center; border-bottom: 2px solid #000; padding-bottom: 10px; text-transform: uppercase; page-break-after: avoid; }
+		h2 { font-size: 14pt; margin-top: 25px; margin-bottom: 10px; border-left: 5px solid #000; padding-left: 10px; text-transform: uppercase; page-break-after: avoid; background-color: #f7f7f7; padding-top: 5px; padding-bottom: 5px;}
+		h3 { font-size: 11pt; margin-bottom: 5px; text-transform: uppercase; font-weight: bold; page-break-after: avoid; }
+		p { margin-bottom: 15px; }
+		
+		/* Structure */
+		.page-break { page-break-before: always; border-top: none; }
+		.section-block { margin-bottom: 20px; page-break-inside: avoid; }
+		.box { border: 1px solid #000; padding: 15px; margin: 10px 0; border-radius: 4px; background-color: #fcfcfc;}
+		.flex-container { display: flex; gap: 15px; align-items: stretch; }
+		.flex-col { flex: 1; }
+
+		/* Listes */
+		ul, ol { margin: 5px 0 15px 0; padding-left: 20px; }
+		li { margin-bottom: 6px; }
+
+		/* Tableaux */
+		table { width: 100%; border-collapse: collapse; margin: 15px 0; page-break-inside: avoid; }
+		th, td { border: 1px solid #000; padding: 8px; text-align: left; font-size: 10pt; }
+		th { font-weight: bold; background-color: #f2f2f2; }
+
+		/* Mises en forme */
+		.highlight { text-decoration: underline; font-weight: bold; }
+		.highlight-italic { font-style: italic; font-weight: bold; }
+		.text-center { text-align: center; }
+
+		/* Covers & Logos */
+		.cover-page { height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+		.cover-title { font-size: 28pt; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; border-bottom: none;}
+		.cover-subtitle { font-size: 16pt; margin-bottom: 40px; }
+		.cover-footer { font-size: 12pt; margin-top: auto; border-top: 1px solid #000; padding-top: 20px; width: 100%; }
+		.header-logo { width: 80px; filter: grayscale(100%) contrast(1.5); margin-bottom: 20px; }
+
+		.print-btn {
+			display: block; margin: 20px auto 40px auto; padding: 12px 24px; font-size: 14pt; font-weight: bold;
+			background-color: #fff; color: #000; border: 2px solid #000; cursor: pointer; border-radius: 5px; box-shadow: 2px 2px 0 #000;
+		}
+		.print-btn:hover { background-color: #f0f0f0; }
+
+		@media print {
+			.print-btn { display: none !important; }
+			body { max-width: none; padding: 0; }
+			* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+		}
+	</style>
+</head>
+<body>
+
+	<button class="print-btn" onclick="window.print()">🖨️ Générer le Dossier Complet PDF (A4)</button>
+
+	<!-- PAGE DE GARDE -->
+	<div class="cover-page">
+		<img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Bitcoin.svg" alt="Bitcoin Logo" class="header-logo" style="width: 120px;">
+		<h1 class="cover-title">Dossier de Financement PME</h1>
+		<div class="cover-subtitle">Minage de Cryptomonnaies 2.0 & Transition Énergétique en Guadeloupe</div>
+		<p style="font-size: 14pt; max-width: 600px; margin-top: 20px;"><strong>Objectif :</strong> Structuration d'une infrastructure "Data Center" PME alimentée par centrale solaire photovoltaïque en autoconsommation.</p>
+		
+		<div class="cover-footer">
+			<strong>Document Confidentiel</strong> - À l'attention exclusive des partenaires bancaires et subventionnaires (Banque, BPI France, FEDER).
+		</div>
+	</div>
+
+	<!-- PARTIE 1 : PITCH DECK INFOGRAPHIQUE -->
+	<div class="page-break">
+		<h1>1. Pitch Deck Exécutif (Infographie)</h1>
+		
+		<div class="section-block">
+			<h3>1.1. Le Porteur de Projet : Bâtisseur Tech & Web3</h3>
+			<p>Le projet est piloté par un profil atypique, offrant des garanties techniques et humaines fortes :</p>
+			<div class="box">
+				<ul>
+					<li><strong>Maturité & Résilience :</strong> Étudiant de 30 ans en reprise d'études, prouvant une immense capacité d'adaptation et d'apprentissage continu.</li>
+					<li><strong>Expertise Informatique (Pas de l'improvisation) :</strong> Créateur opérationnel d'une dApp (Application Décentralisée Web3) et d'un portfolio en ligne pointu. Le porteur de projet est un développeur qui comprend nativement l'infrastructure blockchain.</li>
+					<li><strong>Vision Internationale :</strong> Opérant selon les standards web mondiaux, l'entreprise locale est conçue dès le premier jour avec une stratégie de scalabilité et de projection à l'international.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="section-block">
+			<h3>1.2. Une Preuve de Concept Validée</h3>
+			<div class="box">
+				<ul>
+					<li><strong>Objectif :</strong> Structurer une ferme professionnelle de minage de cryptomonnaies.</li>
+					<li><strong>Expertise démontrée :</strong> Le projet ne part pas de zéro. Le porteur gère déjà une installation autonome fluide.</li>
+					<li><strong>Hardware testé :</strong> Unité <i>Bitaxe</i> (~4,6 TH/s) validant la configuration réseau et la stabilité des revenus sur plusieurs mois consécutifs.</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="section-block">
+			<h3>1.3. Stratégie "Dual-Pool"</h3>
+			<p>L'investissement financera un parc de machines <strong>Power Mining</strong> à haute efficience énergétique pour dépasser <span class="highlight-italic">19 TH/s</span>.</p>
+			<div class="flex-container">
+				<div class="box flex-col">
+					<h3>Pool Stabilité</h3>
+					<p>Partie du parc connectée aux pools traditionnels en continu. Objectif : Générer les liquidités quotidiennes pour le paiement des charges.</p>
+				</div>
+				<div class="box flex-col">
+					<h3>Pool Jackpot (Solo)</h3>
+					<p>Partie configurée pour résoudre un bloc complet. Objectif : Rentabilité haut-risque (Loterie) permettant des gains asymétriques.</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="section-block">
+			<h3>1.4. Réduction des Charges : Solaire</h3>
+			<div class="box">
+				<ul>
+					<li>Couplage du parc avec des <strong>panneaux photovoltaïques</strong> en autoconsommation solaire.</li>
+					<li>Division par 3 des charges d'électricité par rapport à un raccord standard (ZNI).</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="section-block">
+			<h3>1.5. Réinvestissement Local & Durable</h3>
+			<div class="box">
+				<ul>
+					<li><strong>Agriculture Hors-sol :</strong> Investissement massif dans la production locale 100% hydroponique garantie <span class="highlight">sans Chlordécone</span>.</li>
+					<li><strong>Impression 3D Végétale :</strong> Production industrielle d'art et d'objets via un filament à partir de fibre de coco locale.</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- PARTIE 2 : BUSINESS PLAN TEXTUEL -->
+	<div class="page-break">
+		<h1>2. Plan d'Affaires Détaillé (Business Plan)</h1>
+		
+		<h2>2.1. Présentation du Marché & Écosystème</h2>
+		<p>Le Bitcoin repose sur le protocole "Proof-of-Work" (Preuve de Travail). Les mineurs sécurisent le réseau et valident les transactions en allouant de la puissance informatique. En échange, ils sont rémunérés par la création de nouveaux Bitcoins (récompense de bloc) et par les frais de transaction payés par les utilisateurs.</p>
+		<p>Dans ce modèle économique, il n'y a pas de problème d'acquisition client. L'entreprise "vend" sa puissance de calcul au protocole mondial en étant connectée à un Pool de minage. Le chiffre d'affaires est liquidé quotidiennement et de manière garantie sous forme d'actifs numériques (BTC).</p>
+
+		<h2>2.2. Stratégie Opérationnelle (Mise à l'échelle)</h2>
+		<p>Ayant maîtrisé le minage avec l'unité Bitaxe (4 TH/s), l'objectif est d'installer un parc de machines fournies par l'équipementier <i>Power Mining</i> offrant une efficience record. La durée de vie optimale de l'équipement est de 3 à 4 ans, restant rentable tant que le rendement énergétique (J/TH) dépasse le coût du kWh net.</p>
+
+		<h2>2.3. Environnement territorial : L'Ancrage en Guadeloupe</h2>
+		<p>Le projet s'inscrit au cœur des enjeux du territoire guadeloupéen, justifiant les sollicitations bancaires et FEDER/Région :</p>
+		<ul>
+			<li><strong>Gisement Solaire Exceptionnel :</strong> L'installation photovoltaïque tirera parti de l'ensoleillement maximal de la zone (1 400 à 2 500 heures/an), permettant de diviser la facture électrique.</li>
+			<li><strong>Contexte ZNI :</strong> Le projet profitera de la péréquation tarifaire d'EDF tout en stabilisant le réseau insulaire (l'autoconsommation diminue l'appel de charge en journée).</li>
+			<li><strong>Approche ESG :</strong> Contribue à une démarche "Green Mining" (Minage vert) s'alignant sur les critères Critères Environnementaux, Sociaux et de Gouvernance.</li>
+		</ul>
+
+		<h2>2.4. Analyse SWOT (Matrice de Risques)</h2>
+		<table>
+			<tr>
+				<th>Forces (Strengths)</th>
+				<th>Faiblesses (Weaknesses)</th>
+			</tr>
+			<tr>
+				<td>- Frais électriques drastiquement réduits (Solaire)<br>- Maîtrise technique déjà prouvée (PoC validée)<br>- Projet de vie (Étudiant Tech & Web3)</td>
+				<td>- Investissement initial (CAPEX) plus important (Achat Solaire)<br>- Dépendance partielle à la météo (nuages)</td>
+			</tr>
+			<tr>
+				<th>Opportunités (Opportunities)</th>
+				<th>Menaces (Threats)</th>
+			</tr>
+			<tr>
+				<td>- Valorisation ESG très favorable<br>- Subventions (FEDER)<br>- Autonomie énergétique en zone insulaire</td>
+				<td>- Volatilité des cours des cryptomonnaies<br>- Augmentation de la "difficulté" mathématique du réseau</td>
+			</tr>
+		</table>
+	</div>
+
+	<!-- PARTIE 3 : TABLEAU FINANCIER -->
+	<div class="page-break">
+		<h1>3. Prévisionnel Financier & Plan de Financement</h1>
+
+		<h2>3.1. Hypothèses de Départ (Modèle conservateur)</h2>
+		<ul>
+			<li><strong>Investissement Global (CAPEX) :</strong> 75 000 € (40k€ Matériel + 35k€ Solaire)</li>
+			<li><strong>Financement :</strong> Emprunt bancaire de 65 000 € (durée 5 ans) + Apport de 10 000 / 20 000 €.</li>
+			<li><strong>Rentabilité :</strong> Basée sur un Low-Case permettant de rassurer la banque indépendamment des bull runs spéculatifs. Le cash-flow doit rembourser l'emprunt même en marché baissier.</li>
+		</ul>
+
+		<h2>3.2. Compte de Résultat et Trésorerie sur 3 ans</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Rubriques</th>
+					<th>Année 1</th>
+					<th>Année 2</th>
+					<th>Année 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="background-color: #f9f9f9; font-weight: bold;">
+					<td>CHIFFRE D'AFFAIRES (CA)</td>
+					<td>35 000 €</td>
+					<td>35 000 €</td>
+					<td>35 000 €</td>
+				</tr>
+				<tr>
+					<td><small>Vente de calcul informatique (Minage crypto)</small></td>
+					<td>35 000 €</td>
+					<td>35 000 €</td>
+					<td>35 000 €</td>
+				</tr>
+				<tr><td colspan="4" style="height: 10px; border: none;"></td></tr>
+				<tr style="background-color: #f9f9f9; font-weight: bold;">
+					<td>CHARGES OPÉRATIONNELLES (OPEX)</td>
+					<td>- 8 000 €</td>
+					<td>- 8 000 €</td>
+					<td>- 8 000 €</td>
+				</tr>
+				<tr><td>Électricité (Avec abattement partiel solaire)</td><td>- 4 000 €</td><td>- 4 000 €</td><td>- 4 000 €</td></tr>
+				<tr><td>Internet & Connectivité</td><td>- 600 €</td><td>- 600 €</td><td>- 600 €</td></tr>
+				<tr><td>Assurance Professionnelle</td><td>- 1 400 €</td><td>- 1 400 €</td><td>- 1 400 €</td></tr>
+				<tr><td>Logiciels banciares (SumUp) & Compta</td><td>- 2 000 €</td><td>- 2 000 €</td><td>- 2 000 €</td></tr>
+				<tr><td colspan="4" style="height: 10px; border: none;"></td></tr>
+				<tr style="background-color: #e6f7ff; font-weight: bold;">
+					<td>EXCÉDENT BRUT D'EXPLOITATION (EBE)</td>
+					<td>+ 27 000 €</td>
+					<td>+ 27 000 €</td>
+					<td>+ 27 000 €</td>
+				</tr>
+				<tr><td colspan="4" style="height: 10px; border: none;"></td></tr>
+				<tr style="background-color: #fff1f0; font-weight: bold;">
+					<td>REMBOURSEMENT EMPRUNT BANQUE</td>
+					<td>- 14 300 €</td>
+					<td>- 14 300 €</td>
+					<td>- 14 300 €</td>
+				</tr>
+				<tr>
+					<td><small>(Capital + Intérêts emprunt 65k€, mens. ~1190€)</small></td>
+					<td></td><td></td><td></td>
+				</tr>
+				<tr><td colspan="4" style="height: 10px; border: none;"></td></tr>
+				<tr style="background-color: #f6ffed; font-weight: bold; font-size: 11pt;">
+					<td>TRÉSORERIE ANNUELLE DISPONIBLE (Marge de sécurité net)</td>
+					<td>+ 12 700 €</td>
+					<td>+ 12 700 €</td>
+					<td>+ 12 700 €</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="box" style="margin-top: 30px; border-color: #000; border-width: 2px;">
+			<h3 class="text-center">NOTE DE SÉCURITÉ BANCAIRE</h3>
+			<p class="text-center" style="margin-bottom: 0;">L'entreprise dégage un Excédent Brut d'Exploitation de 27 000 € par an, couvrant l'annuité de crédit de 14 300 €. La marge de sécurité restante de sécurité de **+12 700 € / an** garantit la capacité de remboursement du prêt même face à une volatilité extrême du marché (Baisse des cours), rendue possible par la maitrise drastique de la charge électrique (OPEX Solaire).</p>
+		</div>
+	</div>
+
+</body>
+</html>
