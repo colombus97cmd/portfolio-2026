@@ -139,12 +139,6 @@ const projectsData = [
         tag: "Design", 
         desc: "Création de logotype personnel. Minimalisme et symétrie technologique.", 
         img: "assets/Logo.png" 
-    },
-    { 
-        titre: "QR Gateway: Web3 Donation", 
-        tag: "Design", 
-        desc: "Design de passerelle de paiement crypto. Intégration QR Code personnalisée.", 
-        img: "assets/QRCODE BNB.jpeg" 
     }
 ];
 
