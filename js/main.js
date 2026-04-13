@@ -22,14 +22,14 @@ const projectsData = [
                 titre: "La Bible Universelle",
                 tag: "Document",
                 desc: "Le document maître détaillant la timeline du monde politique, économique et spirituel de 2029 à 2238.",
-                link: "assets/Buisness plan/Bible de l'Univers _ Verbe et Chair - Google Docs.pdf",
+                link: "assets/Buisness plan/bible_univers.pdf",
                 img: "assets/Logo.png"
             },
             {
                 titre: "Note d'Intention & Narration",
                 tag: "Document",
                 desc: "Analyse philosophique, genèse des deux volets du projet (Le Verbe / La Chair) et parti pris visuel.",
-                link: "assets/Buisness plan/Philosophie et Transmédia _ Note d'Intention - Google Docs.pdf",
+                link: "assets/Buisness plan/note_intention.pdf",
                 img: "assets/Logo.png"
             },
             { 
