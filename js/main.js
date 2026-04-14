@@ -37,7 +37,7 @@ const projectsData = [
                 tag: "Code", 
                 desc: "Plateforme de streaming décentralisée pour financer le projet transmédia 'Bible de l'Univers'.", 
                 link: "https://beam-up.vercel.app/", 
-                img: "assets/capture-escape-game.jpg",
+                img: "assets/beamup_thumb.png",
                 contexte: "Création d'une infrastructure Web3 indépendante pour financer et diffuser la 'Bible de l'Univers'. Une nécessité pour garantir une vision artistique hors des systèmes capitalistes traditionnels.",
                 demarche: "Développement d'un smart contract sur BNB Chain et intégration IPFS. L'objectif est de lier la technologie décentralisée et la diffusion d'œuvres transmédia (Webtoon, Animations).",
                 outils: ["Solidity", "JavaScript", "Web3", "IPFS"]
@@ -130,7 +130,7 @@ const projectsData = [
         tag: "3D", 
         desc: "Vidéo promotionnelle réalisée pour le département MMI. Modélisation et montage.", 
         link: "https://www.youtube.com/watch?v=BW7Gnu_yyTs",
-        img: "assets/Logo.png",
+        img: "assets/showreel_thumb.jpg",
         contexte: "Projet de promotion pour le département MMI. L'objectif était de montrer les capacités techniques acquises en modélisation et animation 3D.",
         demarche: "Modélisation de scènes complexes, texturage optimisé et rendu. Montage final dynamique pour susciter l'intérêt des futurs étudiants.",
         outils: ["Blender", "Premiere Pro", "After Effects"]
@@ -187,7 +187,7 @@ const projectsData = [
         tag: "Vidéo", 
         desc: "Pré-production et storyboard pour la gamme de parfum St Barth (ex 06).", 
         link: "assets/spot_vanille.pdf",
-        img: "assets/capture-escape-game.jpg",
+        img: "assets/Logo.png",
         contexte: "Exercice de direction artistique pour concevoir un spot publicitaire ancré en Guadeloupe.",
         demarche: "Découpage technique, storyboard, sélection musicale thématique (Patrick Saint-Éloi) et choix des décors pour créer une ambiance caribéenne luxueuse.",
         outils: ["Premiere Pro", "Storyboard", "Direction Artistique"]
