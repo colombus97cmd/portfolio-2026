@@ -171,6 +171,36 @@ const projectsData = [
         contexte: "Devoir surveillé MMI de mise en page graphique. L'objectif était de réaliser une affiche promotionnelle ou éditoriale complète en temps limité.",
         demarche: "Gestion stricte des alignements, des marges et du parcours de l'œil. Respect des contraintes d'impression et de lisibilité.",
         outils: ["InDesign", "Illustrator"]
+    },
+    { 
+        titre: "Identité Visuelle : PixelChain", 
+        tag: "Design", 
+        desc: "Dossier de création de marque pour une entreprise Play-to-Earn (LOGO Marque).", 
+        link: "https://drive.google.com/drive/u/0/folders/1MkQR4sBUc5CTebXTZLXw71fdAU5u0eeg",
+        img: "assets/Logo.png",
+        contexte: "Projet de branding (ex 01) nécessitant la construction d'une identité visuelle complète pour l'écosystème d'un jeu blockchain.",
+        demarche: "Recherche sur les valeurs d'innovation, de communauté et de souveraineté numérique. Création du logotype PixelChain et de ses déclinaisons.",
+        outils: ["Illustrator", "Branding", "Web3"]
+    },
+    { 
+        titre: "Spot Publicitaire : Vanille West Indies", 
+        tag: "Vidéo", 
+        desc: "Pré-production et storyboard pour la gamme de parfum St Barth (ex 06).", 
+        link: "https://drive.google.com/drive/u/0/folders/1MkQR4sBUc5CTebXTZLXw71fdAU5u0eeg",
+        img: "assets/capture-escape-game.jpg",
+        contexte: "Exercice de direction artistique pour concevoir un spot publicitaire ancré en Guadeloupe.",
+        demarche: "Découpage technique, storyboard, sélection musicale thématique (Patrick Saint-Éloi) et choix des décors pour créer une ambiance caribéenne luxueuse.",
+        outils: ["Premiere Pro", "Storyboard", "Direction Artistique"]
+    },
+    { 
+        titre: "Étude Transdisciplinaire : Man Ray", 
+        tag: "Design", 
+        desc: "Présentation approfondie : Man Ray, pionnier de l'art transdisciplinaire.",
+        link: "https://drive.google.com/drive/u/0/folders/1MkQR4sBUc5CTebXTZLXw71fdAU5u0eeg",
+        img: "assets/afficheDSMMI1_David-colombo.png",
+        contexte: "Travail de recherche et de mise en page sur l'histoire de l'art, centré sur le Dadaïsme et le Surréalisme.",
+        demarche: "Analyse sur 13 pages de la porosité entre la photographie, la peinture et le cinéma. Mise en perspective avec l'art contemporain et les transmédias.",
+        outils: ["InDesign", "Histoire de l'art", "Recherche"]
     }
 ];
 
