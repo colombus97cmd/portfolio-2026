@@ -5,7 +5,7 @@ const projectsData = [
         titre: "Startup : Ferme de Minage Solaire", 
         tag: "Business", 
         desc: "Création d'un Data Center Web3 éco-responsable (Guadeloupe) structuré en SASU.", 
-        link: "assets/Buisness plan/Dossier_Complet_Banque.html", 
+        link: "assets/Buisness plan/Pitch_Deck_Banque_Printable.html", 
         img: "assets/Logo.png",
         contexte: "Projet entrepreneurial de création d'une ferme de minage Bitcoin. L'objectif est d'atteindre le PetaHash en combinant du matériel ASIC de pointe et l'énergie solaire thermique.",
         demarche: "Rédaction d'un Business Plan certifié pour financement bancaire, élaboration d'un prévisionnel sur 3 ans, et conception des statuts légaux (SASU). Le projet inclut une vision de réinvestissement local (agriculture sans chlordécone, impression 3D coco).",
