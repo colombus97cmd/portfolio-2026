@@ -1,2 +1,4 @@
 # Only use LFS for the over-sized video (>100MB)
 assets/ours.mp4 filter=lfs diff=lfs merge=lfs -text
+assets/impt_montage_final.mp4 filter=lfs diff=lfs merge=lfs -text
+jeu-echecs/Build/jeu-echecs.data filter=lfs diff=lfs merge=lfs -text
