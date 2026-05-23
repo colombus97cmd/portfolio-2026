@@ -47,8 +47,8 @@ class SmokeParticle {
             
             if (dist < 600) {
                 // Gentle pull towards the pointer to create responsive movement
-                this.vx += (dx / dist) * 0.012;
-                this.vy += (dy / dist) * 0.012;
+                this.vx += (dx / dist) * 0.035;
+                this.vy += (dy / dist) * 0.035;
             }
         }
 
@@ -267,13 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mouse.y = e.clientY;
         mouse.active = true;
         
-        // Spawn trail particles if mouse has moved significantly
-        const deltaX = mouse.lastX !== undefined ? Math.abs(mouse.x - mouse.lastX) : 0;
-        const deltaY = mouse.lastY !== undefined ? Math.abs(mouse.y - mouse.lastY) : 0;
+        // Calculate cumulative distance since last spawn to handle slow moves and gaming mice
+        const lastX = mouse.lastX !== undefined ? mouse.lastX : mouse.x;
+        const lastY = mouse.lastY !== undefined ? mouse.lastY : mouse.y;
+        const dist = Math.sqrt((mouse.x - lastX) ** 2 + (mouse.y - lastY) ** 2);
         
-        if (deltaX > 4 || deltaY > 4) {
-            // Spawn 1 to 2 trail smoke particles for paint/brush effect
-            if (trails.length < 50) { // Safety ceiling to protect CPU
+        if (dist > 15 || mouse.lastX === undefined) {
+            // Spawn trail smoke particles for paint/brush effect
+            if (trails.length < 60) { // Safety ceiling to protect CPU
                 trails.push(new TrailSmokeParticle(mouse.x, mouse.y));
             }
             mouse.lastX = mouse.x;
