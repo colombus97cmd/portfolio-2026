@@ -1,6 +1,12 @@
-/* CYBERPUNK DYNAMIC BACKGROUND ANIMATION - 2026 */
-/* Multicolored volatile smoke + floating binary digits (0 and 1) */
-/* Mouse interactive: Vortex spiral on stationary cursor & digits revealed through smoke */
+/* CYBERPUNK DYNAMIC BACKGROUND ANIMATION & PAGE TRANSITIONS - 2026 */
+/* Multicolored drifting smoke + floating binary digits revealed through smoke */
+/* Galaxy vortex page transitions (Page In and Page Out) */
+
+const colors = [
+    { r: 0, g: 242, b: 255 },    // Neon Cyan
+    { r: 188, g: 19, b: 254 },   // Neon Purple
+    { r: 255, g: 0, b: 128 }     // Neon Magenta
+];
 
 const mouse = {
     x: undefined,
@@ -37,13 +43,6 @@ class SmokeParticle {
         this.maxAlpha = 0.06 + Math.random() * 0.08; // Base visibility (6-14%)
         this.life = 0;
         this.maxLife = 500 + Math.random() * 400; // Lifespan of 8 to 15s
-        
-        // Colors: Cyberpunk HSL Cyan, Purple, and Magenta
-        const colors = [
-            { r: 0, g: 242, b: 255 },    // Neon Cyan
-            { r: 188, g: 19, b: 254 },   // Neon Purple
-            { r: 255, g: 0, b: 128 }     // Neon Magenta
-        ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -128,12 +127,6 @@ class TrailSmokeParticle {
         this.life = 0;
         this.maxLife = 60 + Math.random() * 30; // Fades out in ~1-1.5s
         this.isVortex = isVortex;
-        
-        const colors = [
-            { r: 0, g: 242, b: 255 },    // Neon Cyan
-            { r: 188, g: 19, b: 254 },   // Neon Purple
-            { r: 255, g: 0, b: 128 }     // Neon Magenta
-        ];
         this.color = colors[Math.floor(Math.random() * colors.length)];
     }
 
@@ -141,7 +134,7 @@ class TrailSmokeParticle {
         // Swirl vortex physics around the stationary cursor
         if (mouse.active && mouse.isStationary) {
             const dx = this.x - mouse.x;
-            const dy = this.y - mouse.y;
+            const dy = mouse.y - this.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
             
             if (dist > 6) {
@@ -260,6 +253,80 @@ class DigitParticle {
     }
 }
 
+class GalaxyParticle {
+    constructor(cx, cy, color, angleOffset, direction = 'out') {
+        this.cx = cx;
+        this.cy = cy;
+        this.direction = direction; // 'in' or 'out'
+        
+        // Polar coordinates
+        this.angle = angleOffset + (Math.random() - 0.5) * 0.3;
+        this.maxRadius = Math.max(window.innerWidth, window.innerHeight) * 1.2;
+        
+        if (direction === 'out') {
+            this.radius = 0;
+            this.speed = 5 + Math.random() * 7; // Spiral outward speed
+            this.rotSpeed = 0.015 + Math.random() * 0.025; // Rotation speed
+            this.alpha = 0.55 + Math.random() * 0.25;
+        } else {
+            this.radius = this.maxRadius * (0.8 + Math.random() * 0.3);
+            this.speed = -(8 + Math.random() * 8); // Fast spiral inward speed
+            this.rotSpeed = 0.025 + Math.random() * 0.035;
+            this.alpha = 0.0; // Starts transparent and fades in as it contracts
+        }
+
+        this.size = 15 + Math.random() * 25; // Small initial size
+        this.growthRate = 1.4 + Math.random() * 1.8; // Grow fast
+        this.maxSize = 160 + Math.random() * 90; // Expand to represent volatile gas
+        
+        this.life = 0;
+        this.maxLife = 90 + Math.random() * 30; // 1.5 to 2 seconds
+        this.color = color;
+    }
+
+    update() {
+        this.life++;
+        
+        // Update polar coordinates
+        this.radius += this.speed;
+        this.angle += this.rotSpeed;
+
+        // Convert polar to cartesian coordinates
+        this.x = this.cx + this.radius * Math.cos(this.angle);
+        this.y = this.cy + this.radius * Math.sin(this.angle);
+
+        // Size expansion
+        if (this.size < this.maxSize) {
+            this.size += this.growthRate;
+        }
+
+        // Alpha calculation
+        if (this.direction === 'out') {
+            this.alpha = (1 - (this.life / this.maxLife)) * 0.85;
+        } else {
+            // Fade in as it contracts to center to hide the screen
+            this.alpha = Math.min(0.9, (this.life / (this.maxLife * 0.7)));
+        }
+    }
+
+    draw(ctx) {
+        if (this.alpha <= 0) return;
+        ctx.save();
+        ctx.globalCompositeOperation = 'screen';
+        
+        const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+        grad.addColorStop(0, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha})`);
+        grad.addColorStop(0.5, `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.alpha * 0.35})`);
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Create and inject the background canvas
     const canvas = document.createElement('canvas');
@@ -280,6 +347,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = canvas.getContext('2d');
     let w = canvas.width = window.innerWidth;
     let h = canvas.height = window.innerHeight;
+
+    // 1.2 Create and inject the transition overlay canvas
+    const transCanvas = document.createElement('canvas');
+    transCanvas.id = 'cyber-transition-canvas';
+    transCanvas.style.position = 'fixed';
+    transCanvas.style.top = '0';
+    transCanvas.style.left = '0';
+    transCanvas.style.width = '100%';
+    transCanvas.style.height = '100%';
+    transCanvas.style.zIndex = '10005'; // Cover all contents including modals
+    transCanvas.style.pointerEvents = 'none';
+    transCanvas.style.display = 'none';
+    document.body.appendChild(transCanvas);
+
+    const transCtx = transCanvas.getContext('2d');
+    let tw = transCanvas.width = window.innerWidth;
+    let th = transCanvas.height = window.innerHeight;
 
     // 2. Mouse Tracking Listeners
     window.addEventListener('mousemove', (e) => {
@@ -311,6 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
         w = canvas.width = window.innerWidth;
         h = canvas.height = window.innerHeight;
+        tw = transCanvas.width = window.innerWidth;
+        th = transCanvas.height = window.innerHeight;
     });
 
     // 3. Initialize Particles
@@ -395,7 +481,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const dy = s.y - d.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
                 if (dist < s.size) {
-                    // Density falls off linearly from center of smoke
                     influence += (1 - (dist / s.size)) * s.alpha;
                 }
             });
@@ -417,5 +502,137 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(animate);
     }
 
+    // 5. Page Enter and Exit Transitions (Vortex math)
+    function triggerPageIn() {
+        transCanvas.style.display = 'block';
+        transCanvas.style.pointerEvents = 'auto'; // Block user input during transition
+        
+        const cx = tw / 2;
+        const cy = th / 2;
+        const particles = [];
+        
+        // Spawn particles spiraling OUTWARD from center
+        const armsCount = 4;
+        const particlesPerArm = 20;
+        
+        for (let arm = 0; arm < armsCount; arm++) {
+            const armAngle = (arm * Math.PI * 2) / armsCount;
+            for (let j = 0; j < particlesPerArm; j++) {
+                const angleOffset = armAngle + (Math.random() - 0.5) * 0.3;
+                const color = colors[arm % colors.length];
+                particles.push(new GalaxyParticle(cx, cy, color, angleOffset, 'out'));
+            }
+        }
+        
+        let overlayAlpha = 1.0; // Starts fully black
+        
+        function pageInLoop() {
+            transCtx.clearRect(0, 0, tw, th);
+            
+            // Draw fading black background overlay
+            overlayAlpha -= 0.02; // Fades out over ~0.8s
+            if (overlayAlpha < 0) overlayAlpha = 0;
+            
+            transCtx.fillStyle = `rgba(2, 2, 2, ${overlayAlpha})`;
+            transCtx.fillRect(0, 0, tw, th);
+            
+            // Update and draw particles
+            let activeParticles = 0;
+            particles.forEach(p => {
+                p.update();
+                p.draw(transCtx);
+                if (p.life < p.maxLife) {
+                    activeParticles++;
+                }
+            });
+            
+            if (activeParticles > 0 || overlayAlpha > 0) {
+                requestAnimationFrame(pageInLoop);
+            } else {
+                // Done! Clean up and allow interactions
+                transCanvas.style.display = 'none';
+                transCanvas.style.pointerEvents = 'none';
+            }
+        }
+        
+        pageInLoop();
+    }
+
+    function triggerPageOut(targetUrl) {
+        transCanvas.style.display = 'block';
+        transCanvas.style.pointerEvents = 'auto'; // Block clicks
+        
+        const cx = tw / 2;
+        const cy = th / 2;
+        const particles = [];
+        
+        // Spawn particles spiraling INWARD to cover the screen
+        const armsCount = 4;
+        const particlesPerArm = 22;
+        
+        for (let arm = 0; arm < armsCount; arm++) {
+            const armAngle = (arm * Math.PI * 2) / armsCount;
+            for (let j = 0; j < particlesPerArm; j++) {
+                const angleOffset = armAngle + (Math.random() - 0.5) * 0.3;
+                const color = colors[arm % colors.length];
+                particles.push(new GalaxyParticle(cx, cy, color, angleOffset, 'in'));
+            }
+        }
+        
+        let overlayAlpha = 0.0; // Starts fully transparent
+        
+        function pageOutLoop() {
+            transCtx.clearRect(0, 0, tw, th);
+            
+            // Draw fading in black background overlay
+            overlayAlpha += 0.025; // Fades in over ~0.6s
+            if (overlayAlpha > 1.0) overlayAlpha = 1.0;
+            
+            transCtx.fillStyle = `rgba(2, 2, 2, ${overlayAlpha})`;
+            transCtx.fillRect(0, 0, tw, th);
+            
+            // Update and draw particles
+            let activeParticles = 0;
+            particles.forEach(p => {
+                p.update();
+                p.draw(transCtx);
+                if (p.life < p.maxLife) {
+                    activeParticles++;
+                }
+            });
+            
+            // Redirect when overlay is fully opaque
+            if (overlayAlpha >= 1.0) {
+                window.location.href = targetUrl;
+            } else {
+                requestAnimationFrame(pageOutLoop);
+            }
+        }
+        
+        pageOutLoop();
+    }
+
+    // 6. Intercept navigation links for transitions
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) {
+            const href = link.getAttribute('href');
+            const target = link.getAttribute('target');
+            
+            // Intercept only internal same-window page changes
+            if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:') && !href.startsWith('tel:') && target !== '_blank') {
+                // Ignore downloads and static PDF documents
+                if (href.endsWith('.pdf') || href.startsWith('assets/')) {
+                    return;
+                }
+                
+                e.preventDefault();
+                triggerPageOut(href);
+            }
+        }
+    });
+
+    // Start background animation and trigger page enter transition
     animate();
+    triggerPageIn();
 });
