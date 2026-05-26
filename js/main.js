@@ -600,6 +600,7 @@ function closeModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    initSocialDock();
     initHackerNav();
     renderProjects();
     
@@ -631,7 +632,42 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalText = btn.innerText;
             btn.innerText = "Transmission en cours...";
             btn.disabled = true;
-            setTimeout(() => { btn.innerText = "Transmission Reçue !"; contactForm.reset(); setTimeout(()=> { btn.innerText=originalText; btn.disabled=false;}, 2000)}, 1000);
+
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            try {
+                const response = await fetch("https://formsubmit.co/ajax/david-colombo@outlook.fr", {
+                    method: "POST",
+                    headers: { 
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: nom,
+                        email: email,
+                        message: message
+                    })
+                });
+                
+                if (response.ok) {
+                    btn.innerText = "Transmission Reçue !";
+                    contactForm.reset();
+                    const restant = document.getElementById('restant');
+                    if (restant) restant.textContent = "500";
+                } else {
+                    btn.innerText = "Erreur de transmission";
+                }
+            } catch (error) {
+                btn.innerText = "Échec de connexion";
+                console.error("Erreur de formulaire:", error);
+            }
+
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }, 3000);
         });
     }
     
@@ -643,3 +679,92 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// APPLE DOCK STYLE SOCIAL SIDEBAR
+function initSocialDock() {
+    const dock = document.createElement('div');
+    dock.className = 'social-dock';
+    
+    const socialLinks = [
+        {
+            name: "LinkedIn",
+            url: "https://www.linkedin.com/in/david-colombo-2bb172113/",
+            icon: `<svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`
+        },
+        {
+            name: "GitHub",
+            url: "https://github.com/colombus97cmd",
+            icon: `<svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`
+        },
+        {
+            name: "ArtStation",
+            url: "https://www.artstation.com/davidcolombo",
+            icon: `<svg viewBox="0 0 24 24"><path d="M.057 17.433l4.636-8.04L18.423 23.1H3.344L.057 17.433zm23.886 0h-6.574L12.029 8.196l5.34-9.296 6.574 11.411v7.122zm-12.052-1.637L7.332 8.194l4.56-7.925 4.563 7.925-4.563 7.602z"/></svg>`
+        },
+        {
+            name: "YouTube",
+            url: "https://www.youtube.com/channel/UCwcCigU5bFZ4voNeGoqgJ3Q",
+            icon: `<svg viewBox="0 0 24 24"><path d="M23.498 6.163c-.272-1.022-1.074-1.826-2.099-2.099-1.854-.5-9.4-.5-9.4-.5s-7.546 0-9.4.5c-1.026.273-1.828 1.077-2.1 2.1-.5 1.853-.5 5.72-.5 5.72s0 3.868.5 5.721c.272 1.022 1.074 1.826 2.099 2.099 1.854.5 9.4.5 9.4.5s7.546 0 9.4-.5c1.025-.273 1.827-1.077 2.1-2.1.5-1.853.5-5.721.5-5.721s0-3.868-.5-5.722zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`
+        },
+        {
+            name: "WhatsApp",
+            url: "https://wa.me/590690449224",
+            icon: `<svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.731-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.023-5.117-2.887-6.98-1.864-1.864-4.348-2.887-6.989-2.888-5.439 0-9.865 4.42-9.869 9.865-.001 1.761.47 3.482 1.365 5.022L1.933 21.91l4.714-1.236zM17.487 14.39c-.3-.15-1.774-.875-2.049-.976-.275-.1-.475-.15-.675.15-.2.3-.775.976-.95 1.176-.175.2-.35.225-.65.075-.3-.15-1.267-.467-2.413-1.49-.893-.797-1.496-1.782-1.67-1.93-.175-.15-.018-.23.132-.38.135-.135.3-.35.45-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.675-1.625-.925-2.225-.244-.588-.493-.508-.675-.518-.175-.01-.375-.01-.575-.01-.2 0-.525.075-.8 1.025-.275.95-1.05 3.275-1.05 3.575s.1.587.275.825c.175.237 2.725 4.16 6.625 5.675.928.36 1.65.576 2.213.754.935.297 1.787.255 2.46.154.75-.113 1.774-.725 2.025-1.375.25-.65.25-1.2.175-1.375-.075-.175-.275-.275-.575-.425z"/></svg>`
+        }
+    ];
+
+    socialLinks.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'dock-item';
+        a.innerHTML = `
+            ${link.icon}
+            <span class="dock-tooltip">${link.name}</span>
+        `;
+        dock.appendChild(a);
+    });
+
+    document.body.appendChild(dock);
+
+    const dockItems = dock.querySelectorAll('.dock-item');
+    const maxScale = 1.8;
+    const range = 120; 
+
+    document.addEventListener('mousemove', (e) => {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        const dockRect = dock.getBoundingClientRect();
+        
+        const isNearDock = mouseX > dockRect.left - 100 && mouseX < dockRect.right + 100 &&
+                           mouseY > dockRect.top - 100 && mouseY < dockRect.bottom + 100;
+
+        if (isNearDock) {
+            dockItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const itemX = rect.left + rect.width / 2;
+                const itemY = rect.top + rect.height / 2;
+
+                const distance = Math.sqrt((mouseX - itemX) ** 2 + (mouseY - itemY) ** 2);
+                
+                let scale = 1;
+                if (distance < range) {
+                    scale = 1 + (maxScale - 1) * (1 - distance / range);
+                }
+                const translateX = -(scale - 1) * 15;
+                item.style.transform = `scale(${scale}) translateX(${translateX}px)`;
+            });
+        } else {
+            resetDock();
+        }
+    });
+
+    dock.addEventListener('mouseleave', resetDock);
+
+    function resetDock() {
+        dockItems.forEach(item => {
+            item.style.transform = 'scale(1) translateX(0px)';
+        });
+    }
+}
