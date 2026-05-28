@@ -435,7 +435,7 @@ function renderStandardModal(project, modalBody, isSub = false) {
                 <ul style="margin-left: 20px; margin-top: 8px; color: var(--text-gray); list-style-type: square; line-height: 1.8;">
                     <li>Lancer le site via un serveur local (ex: extension VS Code <strong>Live Server</strong>).</li>
                     <li>Ou exécuter dans un terminal : <code style="background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; color: var(--accent);">npx http-server</code> ou <code style="background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; color: var(--accent);">python -m http.server</code></li>
-                    <li>Ou consulter la version en ligne : <a href="https://portfolio-2026-alpha-nine.vercel.app/" target="_blank" style="color: var(--accent); text-decoration: underline;">portfolio-2026-alpha-nine.vercel.app</a></li>
+                    <li>Ou consulter la version en ligne : <a href="https://portfolio-2026-colombod.vercel.app/" target="_blank" style="color: var(--accent); text-decoration: underline;">portfolio-2026-colombod.vercel.app</a></li>
                 </ul>
             </div>
         ` : '';
