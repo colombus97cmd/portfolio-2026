@@ -710,3 +710,25 @@ body {
         display: none !important;
     }
 }
+
+/* FOOTER */
+.site-footer {
+    text-align: center;
+    padding: 60px 20px 140px 20px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 80px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+}
+.site-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: 0.3s;
+}
+.site-footer a:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--accent);
+}
+

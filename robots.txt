@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-2026-alpha-nine.vercel.app/sitemap.xml
