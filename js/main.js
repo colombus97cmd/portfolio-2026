@@ -61,6 +61,28 @@ const projectsData = [
         outils: ["Unity", "C#", "WebGL", "3D Render"]
     },
     {
+        titre: "SAE 2.02 : WARA - Mode Éco-Responsable",
+        tag: "Code",
+        desc: "Intégration d'un site vitrine et e-commerce pour une marque de vêtements biodégradables à base de sargasses en Guadeloupe.",
+        link: "https://sae-2-02-wara.vercel.app/index.html",
+        img: "assets/Logo.png",
+        category: "Cursus MMI",
+        contexte: "Conception d'une marque de mode circulaire visant à valoriser les sargasses (algues invasives des Caraïbes) en textile biodégradable.",
+        demarche: "Création de la charte graphique et développement front-end complet. Gestion du multilingue (FR/EN), animations au scroll et intégration d'un Style Quiz interactif.",
+        outils: ["HTML5", "CSS3", "JavaScript", "AOS Library", "Ergonomie"]
+    },
+    {
+        titre: "SAE 2.03 : Centre Social Le Moule",
+        tag: "Code",
+        desc: "Portail citoyen dynamique et interactif développé en PHP pour faciliter l'accès aux services de la ville du Moule.",
+        link: "https://santsosyalmoule.infinityfree.me/index.php?i=1",
+        img: "assets/Logo.png",
+        category: "Cursus MMI",
+        contexte: "Création d'une plateforme d'information et d'inscription aux événements/services d'un centre social guadeloupéen.",
+        demarche: "Architecture MVC simplifiée, programmation dynamique backend en PHP/MySQL, gestion des bases de données et intégration d'une interface responsive avec gestion de thèmes.",
+        outils: ["PHP", "SQL", "JavaScript", "Responsive Design", "Expérience Utilisateur (UX)"]
+    },
+    {
         titre: "Scream : Court-métrage 1 Minute",
         tag: "Vidéo",
         desc: "Exercice universitaire de suspense de 1 minute s'inspirant des codes du cinéma d'horreur.",
