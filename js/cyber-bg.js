@@ -416,6 +416,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Animation Loop
     function animate() {
+        if (document.body.classList.contains('animations-off')) {
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#020202';
+            ctx.fillRect(0, 0, w, h);
+            requestAnimationFrame(animate);
+            return;
+        }
+
         ctx.clearRect(0, 0, w, h);
         
         // Radial deep space background gradient

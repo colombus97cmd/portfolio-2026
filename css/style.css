@@ -732,3 +732,247 @@ body {
     text-shadow: 0 0 10px var(--accent);
 }
 
+/* ==========================================================================
+   ACCESSIBILITY & WIDGET STYLES
+   ========================================================================== */
+
+/* 1. TEXT SCALING OVERRIDES */
+body.text-lg {
+    font-size: 1.25rem;
+}
+body.text-lg .about-text { font-size: 19px !important; }
+body.text-lg .project-desc { font-size: 13px !important; }
+body.text-lg .nav-link { font-size: 14px !important; }
+body.text-lg .hero-subtitle { font-size: 16px !important; }
+body.text-lg .badge, body.text-lg .version { font-size: 11px !important; }
+body.text-lg .btn-neon { font-size: 13px !important; }
+body.text-lg .section-subtitle { font-size: 13px !important; }
+body.text-lg .skill-desc { font-size: 14px !important; }
+body.text-lg .form-input, body.text-lg .form-textarea { font-size: 16px !important; }
+body.text-lg .project-title { font-size: 22px !important; }
+body.text-lg .skill-title { font-size: 18px !important; }
+body.text-lg .site-footer { font-size: 13px !important; }
+body.text-lg .tool-badge { font-size: 11px !important; }
+body.text-lg .audio-title { font-size: 19px !important; }
+body.text-lg .audio-subtitle { font-size: 12px !important; }
+
+body.text-xl {
+    font-size: 1.5rem;
+}
+body.text-xl .about-text { font-size: 22px !important; }
+body.text-xl .project-desc { font-size: 16px !important; }
+body.text-xl .nav-link { font-size: 17px !important; }
+body.text-xl .hero-subtitle { font-size: 18px !important; }
+body.text-xl .badge, body.text-xl .version { font-size: 14px !important; }
+body.text-xl .btn-neon { font-size: 16px !important; }
+body.text-xl .section-subtitle { font-size: 16px !important; }
+body.text-xl .skill-desc { font-size: 16px !important; }
+body.text-xl .form-input, body.text-xl .form-textarea { font-size: 18px !important; }
+body.text-xl .project-title { font-size: 26px !important; }
+body.text-xl .skill-title { font-size: 21px !important; }
+body.text-xl .site-footer { font-size: 16px !important; }
+body.text-xl .tool-badge { font-size: 13px !important; }
+body.text-xl .audio-title { font-size: 22px !important; }
+body.text-xl .audio-subtitle { font-size: 15px !important; }
+
+/* 2. PROJECTOR / HIGH CONTRAST MODE */
+body.projector-mode {
+    background-color: #000000 !important;
+    --text-gray: #e0e0e0;
+    --glass-bg: #111111;
+    --glass-border: #666666;
+}
+
+body.projector-mode .cyber-card,
+body.projector-mode .main-nav,
+body.projector-mode .modal-content,
+body.projector-mode .cyber-form,
+body.projector-mode .skill-card,
+body.projector-mode .wallet-address-box,
+body.projector-mode .project-case-study,
+body.projector-mode .cyber-audio-player {
+    background: #111111 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: #666666 !important;
+    box-shadow: none !important;
+}
+
+body.projector-mode * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+body.projector-mode .about-text {
+    font-weight: 500 !important;
+    color: #ffffff !important;
+}
+
+body.projector-mode .project-desc, 
+body.projector-mode .skill-desc,
+body.projector-mode .hero-subtitle {
+    font-weight: 500 !important;
+    color: #ffffff !important;
+}
+
+body.projector-mode .nav-link,
+body.projector-mode .filter-item {
+    color: #cccccc !important;
+}
+body.projector-mode .nav-link.active,
+body.projector-mode .nav-link:hover,
+body.projector-mode .filter-item.active {
+    color: var(--accent) !important;
+    font-weight: 900 !important;
+}
+
+/* 3. WIDGET UI */
+.accessibility-widget {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 10001;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.accessibility-toggle {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.accessibility-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px var(--accent);
+    background: var(--accent);
+    color: black;
+}
+
+.accessibility-panel {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 280px;
+    background: rgba(5, 5, 5, 0.98);
+    border: 1.5px solid var(--accent);
+    border-radius: 24px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.accessibility-panel.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.accessibility-title {
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.accessibility-option {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.accessibility-option label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-gray);
+}
+
+.accessibility-btn-group {
+    display: flex;
+    gap: 5px;
+}
+
+.access-opt-btn {
+    flex-grow: 1;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.access-opt-btn:hover {
+    background: rgba(0, 242, 255, 0.08);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.access-opt-btn.active {
+    background: var(--accent);
+    color: black;
+    border-color: var(--accent);
+}
+
+.access-toggle-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--glass-border);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.2s;
+    text-align: center;
+}
+
+.access-toggle-btn:hover {
+    background: rgba(188, 19, 254, 0.08);
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.access-toggle-btn.active {
+    background: var(--secondary);
+    color: white;
+    border-color: var(--secondary);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.35);
+}
+
+@media (max-width: 768px) {
+    .accessibility-widget {
+        bottom: 20px;
+        left: 20px;
+    }
+}
+
+
