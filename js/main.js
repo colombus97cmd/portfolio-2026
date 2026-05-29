@@ -19,7 +19,7 @@ const projectsData = [
             {
                 titre: "Diaporama de Soutenance Oral",
                 tag: "Design",
-                desc: "Diaporama interactif plein écran optimisé pour la présentation orale de 3 minutes.",
+                desc: "Diaporama interactif plein écran optimisé pour la présentation orale de 5 minutes.",
                 link: "sae-soutenance-slides.html",
                 img: "assets/afficheDSMMI1_David-colombo.png"
             },
@@ -33,7 +33,7 @@ const projectsData = [
             {
                 titre: "Fiche Script Oral (PDF/Tablette)",
                 tag: "Document",
-                desc: "Fiche mémo téléchargeable et lisible sur tablette pour accompagner l'oral de 3 minutes.",
+                desc: "Fiche mémo téléchargeable et lisible sur tablette pour accompagner l'oral de 5 minutes.",
                 link: "sae-print-soutenance.html?print=true",
                 img: "assets/Logo.png"
             },
@@ -180,6 +180,7 @@ const projectsData = [
                 tag: "Code", 
                 desc: "Plateforme de streaming décentralisée pour financer le projet transmédia 'Bible de l'Univers'.", 
                 link: "https://beam-up.vercel.app/", 
+                link2: "https://distrokid.com/hyperfollow/colombus97/beamup", 
                 img: "assets/beamup_thumb.png",
                 contexte: "Création d'une infrastructure Web3 indépendante pour financer et diffuser la 'Bible de l'Univers'. Une nécessité pour garantir une vision artistique hors des systèmes capitalistes traditionnels.",
                 demarche: "Développement d'un smart contract sur BNB Chain et intégration IPFS. L'objectif est de lier la technologie décentralisée et la diffusion d'œuvres transmédia (Webtoon, Animations).",
@@ -269,6 +270,28 @@ const projectsData = [
         link: "https://www.youtube.com/watch?v=P3FTkBDxrMg", 
         video: "assets/kakarot_preview.mp4",
         category: "Projet Perso"
+    },
+    {
+        titre: "Papa Legba: Open the Gates",
+        tag: "Musique",
+        desc: "Single original de colombus97. Une fusion rythmique afro-futuriste mariant vibrations traditionnelles et basses industrielles cyberpunk.",
+        link: "https://distrokid.com/hyperfollow/colombus97/papa-legba-open-the-gates",
+        img: "assets/Baylonburn.png",
+        category: "Projet Perso",
+        contexte: "Création d'une œuvre musicale inspirée de la mythologie vaudou et des sonorités cyberpunk, conçue pour servir d'ambiance et de signature sonore dans nos projets de films d'animation.",
+        demarche: "Composition rythmique hybride sur DAW, mixage et mastering haute fidélité. Distribution internationale via DistroKid.",
+        outils: ["Sound Design", "Composition", "DAW", "Mastering"]
+    },
+    {
+        titre: "BeamUp: Official Soundtrack",
+        tag: "Musique",
+        desc: "La bande originale officielle de la plateforme de streaming décentralisée BeamUp. Synthés rétro-futuristes et basses lourdes.",
+        link: "https://distrokid.com/hyperfollow/colombus97/beamup",
+        img: "assets/beamup_thumb.png",
+        category: "Projet Perso",
+        contexte: "Composition de l'identité sonore et musicale pour le projet transmédia 'Bible de l'Univers' et sa plateforme Web3 BeamUp.",
+        demarche: "Production d'un thème musical immersif unifiant la narration transmédia et la plateforme de streaming. Publication et distribution numérique.",
+        outils: ["Sound Design", "Composition", "DAW", "Web3 Marketing"]
     },
     { 
         titre: "MMI Guadeloupe: Showreel 3D", 
@@ -500,11 +523,16 @@ function renderStandardModal(project, modalBody, isSub = false) {
         mediaHtml = `<img src="${project.img || 'assets/Logo.png'}" alt="${project.titre}" class="project-media" />`;
     }
 
-    const linkHtml = project.link && !isAudio ? `
-        <div class="modal-links">
-            <a href="${encodeURI(project.link)}" target="_blank" class="btn-neon">Voir en plein écran / Live</a>
-        </div>
-    ` : '';
+    let linkHtml = '';
+    if (project.link && !isAudio) {
+        linkHtml += `<a href="${encodeURI(project.link)}" target="_blank" class="btn-neon">Voir en plein écran / Live</a>`;
+    }
+    if (project.link2) {
+        linkHtml += `<a href="${encodeURI(project.link2)}" target="_blank" class="btn-neon outline" style="border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 15px rgba(188, 19, 254, 0.15);">Hyperfollow DistroKid</a>`;
+    }
+    if (linkHtml !== '') {
+        linkHtml = `<div class="modal-links" style="display: flex; gap: 15px; flex-wrap: wrap;">${linkHtml}</div>`;
+    }
 
     const outilsHtml = project.outils ? `
         <div class="project-tools">
