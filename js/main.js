@@ -2,6 +2,56 @@
 
 const projectsData = [
     {
+        titre: "SAE : Présence & Réseaux Sociaux",
+        tag: "Business",
+        desc: "Dossier stratégique interactif, diaporama de soutenance et bannières optimisées de David Colombo (colombus97) pour le BUT MMI.",
+        img: "assets/linkedin_banner.png",
+        isFolder: true,
+        category: "Cursus MMI",
+        subProjects: [
+            {
+                titre: "Dossier Stratégique Interactif",
+                tag: "Business",
+                desc: "Rapport complet des livrables 1 à 4 : analyses SWOT, benchmark et calendrier de contenu.",
+                link: "sae-reseaux.html",
+                img: "assets/Logo.png"
+            },
+            {
+                titre: "Diaporama de Soutenance Oral",
+                tag: "Design",
+                desc: "Diaporama interactif plein écran optimisé pour la présentation orale de 3 minutes.",
+                link: "sae-soutenance-slides.html",
+                img: "assets/afficheDSMMI1_David-colombo.png"
+            },
+            {
+                titre: "Rapport PDF (Livrables 1 & 2)",
+                tag: "Document",
+                desc: "Rapport complet imprimable contenant l'audit numérique (SWOT, benchmark) et la stratégie personnelle.",
+                link: "sae-print-livrables.html",
+                img: "assets/Logo.png"
+            },
+            {
+                titre: "Fiche Script Oral (PDF/Tablette)",
+                tag: "Document",
+                desc: "Fiche mémo téléchargeable et lisible sur tablette pour accompagner l'oral de 3 minutes.",
+                link: "sae-print-soutenance.html?print=true",
+                img: "assets/Logo.png"
+            },
+            {
+                titre: "Bannière LinkedIn",
+                tag: "Design",
+                desc: "Bannière cyberpunk personnalisée créée pour le profil LinkedIn professionnel de David Colombo.",
+                img: "assets/linkedin_banner.png"
+            },
+            {
+                titre: "Bannière ArtStation",
+                tag: "Design",
+                desc: "Bannière cyberpunk personnalisée créée pour le profil ArtStation de colombus97.",
+                img: "assets/artstation_banner.png"
+            }
+        ]
+    },
+    {
         titre: "IMPT.INF : Enquête & Média Numérique",
         tag: "Vidéo",
         desc: "Enquête multimédia étudiante traitant de la méritocratie et du racisme. Projet complet regroupant enquête, production vidéo et identité de marque.",

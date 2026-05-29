@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport SAE - Livrables 1 & 2 | David Colombo</title>
+    <style>
+        /* Styles de mise en page pour l'impression A4 et le PDF */
+        @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap");
+
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            color: #111;
+            background: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            font-size: 14px;
+        }
+
+        .header-print {
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-print h1 {
+            font-size: 26px;
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .header-print p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .meta-info {
+            text-align: right;
+            font-size: 12px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 20px;
+            color: #000;
+            text-transform: uppercase;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 16px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* SWOT */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .swot-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .swot-box h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .swot-s h4 { color: #0088aa; border-bottom: 1px solid #0088aa; }
+        .swot-w h4 { color: #cc0044; border-bottom: 1px solid #cc0044; }
+        .swot-o h4 { color: #8800cc; border-bottom: 1px solid #8800cc; }
+        .swot-t h4 { color: #cc7700; border-bottom: 1px solid #cc7700; }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 12px;
+        }
+
+        th {
+            background: #f0f0f0;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Print formatting rules */
+        @media print {
+            body {
+                padding: 0;
+                font-size: 12px;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .swot-grid {
+                gap: 15px;
+            }
+
+            .swot-box {
+                padding: 15px;
+            }
+        }
+
+        /* Float action button for manual triggering */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 1px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+
+        .print-btn:hover {
+            background: #222;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bouton pour déclencher l'impression manuellement en mode écran -->
+    <button class="print-btn no-print" onclick="window.print()">Imprimer / Enregistrer PDF</button>
+
+    <div class="header-print">
+        <div>
+            <h1>Rapport de SAE : Présence Numérique</h1>
+            <p>Livrable 1 & Livrable 2 — Stratégie de Marque Personnelle</p>
+        </div>
+        <div class="meta-info">
+            <strong>David Colombo (colombus97)</strong><br>
+            Étudiant BUT MMI 1ère Année<br>
+            Université des Antilles (Guadeloupe)
+        </div>
+    </div>
+
+    <!-- LIVRABLE 1 -->
+    <section>
+        <h2>Livrable 1 — Audit Numérique & Benchmark</h2>
+        
+        <h3>1. Recherche de Présence Numérique Actuelle</h3>
+        <p>
+            La présence en ligne actuelle s'articule autour de l'identité civile <strong>David Colombo</strong> pour les aspects formels et académiques, et de l'identité artistique <strong>colombus97</strong> pour les créations de contenus visuels et de développements Web3.
+        </p>
+        <ul>
+            <li><strong>LinkedIn (David Colombo)</strong> : Réseau professionnel généraliste servant de passerelle académique et de communication institutionnelle sur les projets de création d'entreprise.</li>
+            <li><strong>ArtStation (colombus97)</strong> : Portfolio artistique centré sur la modélisation 3D (Blender, Hard Surface) et la direction artistique de projets d'animation.</li>
+            <li><strong>GitHub (colombus97cmd)</strong> : Dépôt de code documentant la "Proof of Work" technique sur les contrats intelligents (Solidity) et l'intégration web.</li>
+            <li><strong>YouTube / Sound</strong> : Canaux de diffusion secondaires pour les teasers d'animation et les productions musicales associées.</li>
+        </ul>
+
+        <h3>2. Analyse SWOT Personnelle</h3>
+        <div class="swot-grid">
+            <div class="swot-box swot-s">
+                <h4>Forces (Strengths)</h4>
+                <ul>
+                    <li>Double profil hybride créatif 3D et programmation Web3 (Creative Technologist).</li>
+                    <li>Projets concrets finalisés (Business plan SASU minage, bible transmédia).</li>
+                    <li>Forte autonomie sur l'ensemble de la chaîne de production numérique.</li>
+                </ul>
+            </div>
+            <div class="swot-box swot-w">
+                <h4>Faiblesses (Weaknesses)</h4>
+                <ul>
+                    <li>Dispersion perçue entre les projets écologiques, financiers et créatifs.</li>
+                    <li>Absence de ligne éditoriale systématique sur LinkedIn.</li>
+                    <li>Optimisation SEO globale de l'identité récente en cours d'indexation.</li>
+                </ul>
+            </div>
+            <div class="swot-box swot-o">
+                <h4>Opportunités (Opportunities)</h4>
+                <ul>
+                    <li>Candidature ciblée pour le Master Animation de <strong>Parallel 14</strong> en Martinique.</li>
+                    <li>Utilisation du Web3 pour financer de manière indépendante des projets créatifs.</li>
+                    <li>Forte demande régionale pour des profils techniques et artistiques polyvalents.</li>
+                </ul>
+            </div>
+            <div class="swot-box swot-t">
+                <h4>Menaces (Threats)</h4>
+                <ul>
+                    <li>Taux de sélection élevé à l'admission de Parallel 14.</li>
+                    <li>Méfiance institutionnelle ou académique face au domaine des crypto-monnaies.</li>
+                    <li>Obsolescence rapide des compétences face aux générateurs d'images IA.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>3. Benchmark Sectoriel</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Profil Type</th>
+                    <th>Force Visuelle</th>
+                    <th>Force Technique</th>
+                    <th>Force Réseau</th>
+                    <th>Positionnement</h3>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>L'Artiste 3D Standard</strong></td>
+                    <td>Très élevé (ArtStation dense).</td>
+                    <td>Faible. Pas de compétences en intégration ou programmation.</td>
+                    <td>Moyen. Utilisation passive.</td>
+                    <td>Créatif pur dépendant de structures d'intégration externes.</td>
+                </tr>
+                <tr>
+                    <td><strong>Le Développeur Classique</strong></td>
+                    <td>Faible. Interface brute sans identité graphique.</td>
+                    <td>Très élevé (GitHub actif).</td>
+                    <td>Élevé. Présence active dans les réseaux technologiques.</td>
+                    <td>Technicien focalisé sur l'implémentation de fonctionnalités logicielles.</td>
+                </tr>
+                <tr>
+                    <td><strong>David Colombo (colombus97)</strong></td>
+                    <td>Élevé (Viewer 3D, animation Blender).</td>
+                    <td>Élevé (Smart contracts Solidity, intégration web).</td>
+                    <td>Optimisé (Vision alternative, contacts directs).</td>
+                    <td><strong>Creative Technologist hybride</strong> faisant le pont entre art et code.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- PAGE BREAK POUR IMPRESSION PROPRE -->
+    <div class="page-break"></div>
+
+    <!-- LIVRABLE 2 -->
+    <section>
+        <h2>Livrable 2 — Stratégie Personnelle</h2>
+        
+        <h3>1. Cible & Positionnement</h3>
+        <p>
+            <strong>Cible prioritaire :</strong> Le jury de sélection du Master de l'école <strong>Parallel 14</strong> en Martinique. Ce jury recherche des candidats autonomes capables d'assimiler les pipelines de production 3D complexes tout en affirmant une maturité artistique affirmée.<br>
+            <strong>Cible secondaire :</strong> Les recruteurs de studios de design indépendants ou de projets Web3 cherchant des profils techniques et créatifs polyvalents aux Antilles.
+        </p>
+        <p>
+            <strong>Positionnement de marque :</strong> <em>"Creative Technologist & 3D Artist engagé dans l'autonomie créative et le développement de modèles sociétaux alternatifs."</em>
+        </p>
+
+        <h3>2. Objectifs Stratégiques</h3>
+        <ul>
+            <li><strong>Court terme (1 an)</strong> : Intégrer Parallel 14 et valider la 1ère année de BUT MMI avec un portfolio valorisant des projets interactifs (modèles 3D en ligne).</li>
+            <li><strong>Moyen terme (3 ans)</strong> : Lancer le studio créatif indépendant <em>Umoja</em>, structurer la ferme agro-écologique hors-sol aux Antilles et consolider le business model de minage solaire.</li>
+            <li><strong>Long terme (5 ans+)</strong> : Atteindre l'indépendance financière complète via les infrastructures décentralisées, pour soutenir et développer à l'échelle locale un écosystème de vie alternatif.</li>
+        </ul>
+
+        <h3>3. Ligne Éditoriale par Plateforme</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Réseau</th>
+                    <th>Nom de Profil</th>
+                    <th>Contenu Principal</th>
+                    <th>Tonalité & Objectif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>LinkedIn</strong></td>
+                    <td>David Colombo</td>
+                    <td>Business plans, dossiers techniques (minage solaire), avancement des projets de BUT MMI.</td>
+                    <td>Professionnel, pragmatique et structuré. Fédérer les partenaires financiers et académiques.</td>
+                </tr>
+                <tr>
+                    <td><strong>ArtStation</strong></td>
+                    <td>colombus97</td>
+                    <td>Rendus 3D de haute qualité (Overbike), animations (Polar Bear) et concepts graphiques.</td>
+                    <td>Artistique et axé sur la rigueur technique du rendu. Convaincre le jury de Parallel 14.</td>
+                </tr>
+                <tr>
+                    <td><strong>YouTube / TikTok</strong></td>
+                    <td>colombus97</td>
+                    <td>Démos animées, making-of rapides, synchronisations musicales (Riddim).</td>
+                    <td>Dynamique et immersif. Capter l'intérêt d'une communauté de créatifs et d'étudiants.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Déclenchement automatique du dialogue d'impression sur PDF sur chargement de la page -->
+    <script>
+        window.onload = function() {
+            // Un bref délai permet de laisser le moteur de rendu charger la police d'écriture
+            setTimeout(function() {
+                window.print();
+            }, 800);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAE : Présence Numérique & Réseaux Sociaux | David Colombo</title>
+    <meta name="description" content="Audit numérique, stratégie personnelle et planification de présence sur les réseaux sociaux pour la SAE MMI de David Colombo (colombus97).">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/cyber-bg.js" defer></script>
+    <script src="js/accessibility.js" defer></script>
+    <style>
+        /* Styles spécifiques pour le dashboard de la SAE */
+        .sae-container {
+            margin-top: 50px;
+            margin-bottom: 120px;
+        }
+        
+        .sae-tabs-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 20px;
+        }
+
+        .sae-tab-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-gray);
+            padding: 14px 28px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .sae-tab-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .sae-tab-btn.active {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.35);
+        }
+
+        .sae-tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .sae-tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SWOT Styles */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .swot-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .swot-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            border-radius: 2px 0 0 2px;
+        }
+
+        .swot-s::before { background: #00f2ff; } /* Cyan for Strengths */
+        .swot-w::before { background: #ff0055; } /* Pink-red for Weaknesses */
+        .swot-o::before { background: #bc13fe; } /* Purple for Opportunities */
+        .swot-t::before { background: #ffaa00; } /* Amber for Threats */
+
+        .swot-title {
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .swot-title-s { color: #00f2ff; }
+        .swot-title-w { color: #ff0055; }
+        .swot-title-o { color: #bc13fe; }
+        .swot-title-t { color: #ffaa00; }
+
+        .swot-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .swot-list li {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #d0d0d0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .swot-list li::before {
+            content: '▫';
+            position: absolute;
+            left: 0;
+            color: var(--text-gray);
+        }
+
+        /* Tables style */
+        .cyber-table-container {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.005);
+            margin-top: 30px;
+        }
+
+        .cyber-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .cyber-table th {
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 18px 24px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .cyber-table td {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--glass-border);
+            color: #d0d0d0;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .cyber-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cyber-table tr:hover td {
+            background: rgba(0, 242, 255, 0.01);
+        }
+
+        /* Timeline style */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .timeline-node {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-node:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(188, 19, 254, 0.1);
+        }
+
+        .timeline-period {
+            font-size: 9px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Checklist style */
+        .checklist-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 16px;
+            transition: 0.3s;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--accent);
+            background: rgba(0, 242, 255, 0.01);
+        }
+
+        .checklist-icon {
+            color: var(--accent);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .checklist-content h5 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .checklist-content p {
+            font-size: 11px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Mockup containers */
+        .mockup-container {
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            background: #0d0d0d;
+            margin-top: 30px;
+        }
+
+        .mockup-header {
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mockup-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mockup-dot.red { background: #ff5f56; }
+        .mockup-dot.yellow { background: #ffbd2e; }
+        .mockup-dot.green { background: #27c93f; }
+
+        .mockup-title {
+            margin-left: 10px;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+        }
+
+        .mockup-body {
+            padding: 30px;
+        }
+
+        .profile-mock {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .profile-avatar-placeholder {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 24px;
+            color: black;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        .profile-info-mock h4 {
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .profile-info-mock p.headline {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .profile-info-mock p.details {
+            font-size: 10px;
+            color: var(--text-gray);
+        }
+
+        .post-copy {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #ccc;
+            white-space: pre-wrap;
+        }
+
+        /* Calendar */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .calendar-day {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .day-name {
+            font-size: 9px;
+            font-weight: 900;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .day-content h6 {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .day-content p {
+            font-size: 11px;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* Soutenance slider/deck */
+        .deck-container {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .deck-card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        .deck-card:hover {
+            border-color: var(--accent);
+            background: rgba(0, 242, 255, 0.005);
+        }
+
+        .deck-timer {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--accent);
+            font-family: monospace;
+            background: rgba(0, 242, 255, 0.05);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);
+        }
+
+        .deck-content {
+            flex-grow: 1;
+        }
+
+        .deck-step {
+            font-size: 8px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .deck-title {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .deck-text {
+            font-size: 12px;
+            color: #d0d0d0;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .deck-tips {
+            margin-top: 10px;
+            font-size: 10px;
+            color: var(--text-gray);
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .deck-tips::before {
+            content: '💡';
+        }
+
+        @media (max-width: 768px) {
+            .swot-grid, .timeline-grid, .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .deck-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .deck-timer {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-100 sae-container">
+        
+        <!-- Header de Section -->
+        <header class="section-header">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="projets.html" class="btn-neon outline" style="margin-bottom: 30px; padding: 10px 20px; font-size: 8px; display: inline-block;">← Retour aux Archives</a>
+                <a href="sae-print-livrables.html" target="_blank" class="btn-neon" style="margin-bottom: 30px; padding: 10px 20px; font-size: 8px; display: inline-block; background: var(--secondary); color: white; border-color: var(--secondary); box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);">📥 Télécharger Livrables 1 & 2 (PDF)</a>
+            </div>
+            <h1 class="section-title">Présence Numérique<br><span>& Réseaux Sociaux</span></h1>
+            <p class="section-subtitle">Dossier Complet & Livrables SAE • David Colombo (colombus97)</p>
+        </header>
+
+        <!-- Navigation par Onglets -->
+        <nav class="sae-tabs-nav">
+            <button class="sae-tab-btn active" onclick="switchTab(event, 'audit')">L1. Audit Numérique</button>
+            <button class="sae-tab-btn" onclick="switchTab(event, 'strategie')">L2. Stratégie Personnelle</button>
+            <button class="sae-tab-btn" onclick="switchTab(event, 'portfolio')">L3. Audit Portfolio</button>
+            <button class="sae-tab-btn" onclick="switchTab(event, 'reseaux')">L4. Réseaux Sociaux</button>
+            <button class="sae-tab-btn" onclick="switchTab(event, 'soutenance')">L5. Pitch Soutenance</button>
+        </nav>
+
+        <!-- CONTENU : LIVRABLE 1 -->
+        <section id="audit" class="sae-tab-content active">
+            <header class="section-header" style="margin-bottom: 30px; border: none; padding-bottom: 0;">
+                <span class="tag-badge">Livrable 1</span>
+                <h2 class="project-title" style="font-size: 28px; color: var(--accent);">Audit numérique & Benchmark</h2>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                    Analyse critique de la présence en ligne actuelle de David Colombo (alias colombus97), confrontation SWOT et étude comparative sectorielle.
+                </p>
+            </header>
+
+            <!-- Présence actuelle -->
+            <div class="cyber-card" style="margin-bottom: 40px; cursor: default;">
+                <h3 class="project-title" style="color: white; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 20px;">1. Recherche de Présence Actuelle</h3>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: #ccc; margin-bottom: 20px; line-height: 1.8;">
+                    La présence en ligne actuelle s'articule autour de l'identité d'artiste <strong>colombus97</strong> et du nom professionnel <strong>David Colombo</strong>, marquant la double identité entre ingénierie technique et conception artistique.
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <span class="tag-badge">LinkedIn</span>
+                        <h4 class="skill-title">David Colombo</h4>
+                        <p class="skill-desc" style="text-transform: none; font-size: 11px;">Point d'ancrage professionnel B2B. Utilisé pour le réseautage, la communication autour du projet entrepreneurial (Ferme de Minage Solaire) et la présentation du cursus universitaire BUT MMI.</p>
+                    </div>
+                    <div class="skill-card">
+                        <span class="tag-badge">ArtStation</span>
+                        <h4 class="skill-title">colombus97</h4>
+                        <p class="skill-desc" style="text-transform: none; font-size: 11px;">Vitrine artistique principale. Présente les modélisations 3D Hard Surface interactives, les animations de personnages (Polar Bear) et la direction artistique (concept-art Babylonburn).</p>
+                    </div>
+                    <div class="skill-card">
+                        <span class="tag-badge">GitHub</span>
+                        <h4 class="skill-title">colombus97cmd</h4>
+                        <p class="skill-desc" style="text-transform: none; font-size: 11px;">Dépôt technique. Héberge les codes sources Web3 (Solidity smart contracts), le code du portfolio et les projets de développement interactifs (Unity, PHP/JS).</p>
+                    </div>
+                    <div class="skill-card">
+                        <span class="tag-badge">YouTube / Sound</span>
+                        <h4 class="skill-title">colombus97 / Kakarot</h4>
+                        <p class="skill-desc" style="text-transform: none; font-size: 11px;">Diffusion de projets audiovisuels, d'exercices d'animation (showreel 3D MMI) et de productions musicales (Riddim/Cyberpunk).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SWOT -->
+            <h3 class="project-title" style="color: white; margin-top: 40px;">2. Analyse SWOT Personnelle</h3>
+            <div class="swot-grid">
+                <div class="swot-card swot-s">
+                    <h4 class="swot-title swot-title-s">Forces (Strengths)</h4>
+                    <ul class="swot-list">
+                        <li><strong>Identité hybride forte</strong> : Profil de "Creative Technologist" maîtrisant simultanément la modélisation 3D (Blender), le code Web3 (Solidity) et la production audiovisuelle.</li>
+                        <li><strong>Projets concrets & ambitieux</strong> : Présence de cas réels (Business Plan de startup de minage solaire, Bible transmédia sur 200 ans).</li>
+                        <li><strong>Production autonome</strong> : Capacité à gérer un projet de A à Z (visuals, musique, développement web).</li>
+                        <li><strong>Sensibilisation aux enjeux d'avenir</strong> : Orientation vers des solutions résilientes (ferme agro-écologique, minage thermo-solaire).</li>
+                    </ul>
+                </div>
+                <div class="swot-card swot-w">
+                    <h4 class="swot-title swot-title-w">Faiblesses (Weaknesses)</h4>
+                    <ul class="swot-list">
+                        <li><strong>Dispersion apparente</strong> : Risque que les recruteurs peinent à situer le profil à cause des multiples projets (AV, Agro-écologie, Blockchain).</li>
+                        <li><strong>Ligne éditoriale jeune</strong> : Publications sur les réseaux sociaux (LinkedIn) encore asynchrones et peu régulières.</li>
+                        <li><strong>Indexation SEO récente</strong> : Travaux d'optimisation du nom de marque et d'artiste toujours en cours de déploiement.</li>
+                        <li><strong>Monétisation indirecte</strong> : Des projets ambitieux mais qui nécessitent des financements lourds.</li>
+                    </ul>
+                </div>
+                <div class="swot-card swot-o">
+                    <h4 class="swot-title swot-title-o">Opportunités (Opportunities)</h4>
+                    <ul class="swot-list">
+                        <li><strong>Poursuite d'études ciblée</strong> : Candidature solide pour le Master en film d'animation de <strong>Parallel 14</strong> (Martinique) grâce aux projets 3D.</li>
+                        <li><strong>Marché caribéen en expansion</strong> : Opportunités de production locale et de développement d'agro-technologies aux Antilles.</li>
+                        <li><strong>Financement décentralisé</strong> : Utilisation des protocoles Web3 pour contourner les intermédiaires de production classiques (ex: DApp BeamUp).</li>
+                    </ul>
+                </div>
+                <div class="swot-card swot-t">
+                    <h4 class="swot-title swot-title-t">Menaces (Threats)</h4>
+                    <ul class="swot-list">
+                        <li><strong>Sélectivité de Parallel 14</strong> : Taux d'admission restreint, exigeant un portfolio irréprochable et un positionnement clair.</li>
+                        <li><strong>Perceptions négatives du Web3</strong> : Réticences de certains acteurs académiques ou traditionnels face aux cryptomonnaies.</li>
+                        <li><strong>Évolution rapide de l'IA</strong> : Nécessité constante de se former pour conserver une valeur ajoutée sur le marché 3D et code.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Benchmark -->
+            <h3 class="project-title" style="color: white; margin-top: 50px;">3. Benchmark Comparative</h3>
+            <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                Comparaison de l'approche de positionnement hybride de David Colombo face aux archétypes classiques du secteur :
+            </p>
+            <div class="cyber-table-container">
+                <table class="cyber-table">
+                    <thead>
+                        <tr>
+                            <th>Profil Type</th>
+                            <th>ArtStation / Visuel</th>
+                            <th>GitHub / Technique</th>
+                            <th>LinkedIn / Professionnel</th>
+                            <th>Positionnement stratégique</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. L'Artiste 3D Standard</strong> (ex: Candidat école d'animation classique)</td>
+                            <td>Très fort. Portfolio visuel dense mais souvent confiné à des exercices d'école.</td>
+                            <td>Inexistant ou obsolète. Pas de compétences en programmation.</td>
+                            <td>Moyen. Utilisation passive pour candidater ou poster des rendus d'images.</td>
+                            <td><em>Spécialiste créatif.</em> Dépendant d'une équipe technique pour l'intégration de ses œuvres.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Le Développeur Pur</strong> (ex: Étudiant d'école d'ingénieurs)</td>
+                            <td>Absent. Aucun sens esthétique ou maîtrise des outils de modélisation.</td>
+                            <td>Très actif. Beaucoup de contributions de code (JS, C++) mais sans saveur visuelle.</td>
+                            <td>Actif. Cible des entreprises technologiques classiques de services.</td>
+                            <td><em>Spécialiste technique.</em> Difficulté à communiquer avec les équipes artistiques.</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--accent);">3. David Colombo (Creative Technologist)</strong></td>
+                            <td style="color: var(--accent);">Fort. Modèles interactifs en 3D (Overbike) et intégration WebGL (Jeu d'échecs).</td>
+                            <td style="color: var(--accent);">Actif. Code Solidity (DApps), intégration Web frontend (HTML/CSS) et scripts Unity.</td>
+                            <td style="color: var(--accent);">Optimisé. Présente une vision sociétale claire (Modèle de vie alternatif, SASU minage).</td>
+                            <td style="color: var(--accent);"><strong>Hybride visionnaire.</strong> Autonome, capable de combler la fracture entre l'art visuel et la complexité technique.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CONTENU : LIVRABLE 2 -->
+        <section id="strategie" class="sae-tab-content">
+            <header class="section-header" style="margin-bottom: 30px; border: none; padding-bottom: 0;">
+                <span class="tag-badge">Livrable 2</span>
+                <h2 class="project-title" style="font-size: 28px; color: var(--accent);">Stratégie Personnelle</h2>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                    Définition des cibles, des objectifs de carrière et de la ligne éditoriale pour maximiser la visibilité de la vision de David Colombo.
+                </p>
+            </header>
+
+            <div class="swot-grid">
+                <!-- Cible et Positionnement -->
+                <div class="cyber-card" style="cursor: default;">
+                    <h4 class="tag-badge">Positionnement & Cible</h4>
+                    <h3 class="project-title" style="color: white; margin-top: 10px;">La Proposition de Valeur</h3>
+                    <p class="project-desc" style="text-transform: none; font-size: 12px; color: #ccc; margin-bottom: 20px; line-height: 1.8;">
+                        David Colombo se positionne comme un <strong>Creative Technologist & Concepteur Alternatif</strong>. Il ne se limite pas à produire du contenu, il crée un modèle de vie résilient et autosuffisant (Studio + Ferme + Minage) soutenu par les technologies décentralisées.
+                    </p>
+                    <div style="background: rgba(0, 242, 255, 0.05); border-left: 2px solid var(--accent); padding: 15px; border-radius: 4px; margin-top: 15px;">
+                        <span style="font-size: 9px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">Cible Prioritaire :</span>
+                        <p style="font-size: 11px; margin-top: 5px; color: white; line-height: 1.6;">Le jury de sélection du Master Animation de <strong>Parallel 14</strong>, à la recherche de profils matures ayant un univers créatif fort, doublé d'une autonomie technique indispensable pour les pipelines 3D modernes.</p>
+                    </div>
+                </div>
+
+                <!-- Ligne Éditoriale -->
+                <div class="cyber-card" style="cursor: default;">
+                    <h4 class="tag-badge">Voix & Tonalité</h4>
+                    <h3 class="project-title" style="color: white; margin-top: 10px;">Ligne Éditoriale</h3>
+                    <p class="project-desc" style="text-transform: none; font-size: 12px; color: #ccc; line-height: 1.8;">
+                        La voix de David doit refléter le professionnalisme, la technicité et une vision alternative du futur :
+                    </p>
+                    <ul class="swot-list" style="margin-top: 15px;">
+                        <li><strong>LinkedIn</strong> : Partage de Business Plans, de pipelines techniques et d'avancement du projet thermo-solaire. Ton : <em>Professionnel, constructif, visionnaire</em>.</li>
+                        <li><strong>ArtStation</strong> : Présentation de portfolios de rendus 3D de haute qualité (Blender/ZBrush). Ton : <em>Technique, orienté artiste</em>.</li>
+                        <li><strong>YouTube</strong> : Coulisses des animations, musique cyberpunk, démo WebGL. Ton : <em>Démonstratif, immersif</em>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Timeline Objectifs -->
+            <h3 class="project-title" style="color: white; margin-top: 50px;">Timeline d'Objectifs Stratégiques</h3>
+            <div class="timeline-grid">
+                <div class="timeline-node">
+                    <span class="timeline-period">Court Terme (2026)</span>
+                    <h4 class="skill-title" style="color: var(--accent);">Parallel 14 & Validation BUT</h4>
+                    <p class="skill-desc" style="text-transform: none; font-size: 11px; margin-top: 10px;">
+                        - Admission au Master Film d'Animation de Parallel 14.<br>
+                        - Finalisation de la première année de BUT MMI avec un portfolio optimisé et responsive.<br>
+                        - Structuration de l'identité en ligne sur Google Search.
+                    </p>
+                </div>
+                <div class="timeline-node">
+                    <span class="timeline-period">Moyen Terme (2027 - 2029)</span>
+                    <h4 class="skill-title" style="color: var(--secondary);">Émergence du Modèle Alternatif</h4>
+                    <p class="skill-desc" style="text-transform: none; font-size: 11px; margin-top: 10px;">
+                        - Production de courts-métrages d'animation au sein du studio indépendant Umoja.<br>
+                        - Lancement des prototypes de la ferme agro-écologique hors-sol aux Antilles.<br>
+                        - Structuration administrative de la SASU pour la ferme de minage solaire.
+                    </p>
+                </div>
+                <div class="timeline-node">
+                    <span class="timeline-period">Long Terme (2030+)</span>
+                    <h4 class="skill-title" style="color: #ffaa00;">Autonomie & Modèle Réplicable</h4>
+                    <p class="skill-desc" style="text-transform: none; font-size: 11px; margin-top: 10px;">
+                        - Économie décentralisée active : le minage de crypto-monnaies finance la ferme agricole et les créations audiovisuelles du studio.<br>
+                        - Modèle de vie alternatif abouti et répliqué dans d'autres territoires insulaires.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENU : LIVRABLE 3 -->
+        <section id="portfolio" class="sae-tab-content">
+            <header class="section-header" style="margin-bottom: 30px; border: none; padding-bottom: 0;">
+                <span class="tag-badge">Livrable 3</span>
+                <h2 class="project-title" style="font-size: 28px; color: var(--accent);">Audit du Portfolio</h2>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                    Analyse de l'intégration technique, de la responsivité, de l'ergonomie et de la valorisation des projets sur le site web.
+                </p>
+            </header>
+
+            <div class="cyber-card" style="cursor: default; margin-bottom: 40px;">
+                <h3 class="project-title" style="color: white; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 20px;">Auto-évaluation Ergonomique</h3>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: #ccc; line-height: 1.8;">
+                    Le portfolio a été conçu à partir d'une feuille de style CSS native et d'architectures JS pures pour garantir une flexibilité et des performances maximales (Core Web Vitals optimisés).
+                </p>
+                
+                <div class="checklist-group">
+                    <div class="checklist-item">
+                        <div class="checklist-icon">✓</div>
+                        <div class="checklist-content">
+                            <h5>Responsivité Fluide (CSS Flexible Grid)</h5>
+                            <p>Le layout s'adapte automatiquement sur les smartphones, tablettes et écrans larges. Les vidéos et visionneuses 3D interactives sont encapsulées dans des conteneurs proportionnels (aspect-ratio 16/9).</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-icon">✓</div>
+                        <div class="checklist-content">
+                            <h5>Accessibilité Numérique Intégrée</h5>
+                            <p>Mise en place d'un widget d'accessibilité en JS (`accessibility.js`) permettant aux utilisateurs de modifier la taille des caractères (A, A+, A++) ou de couper les animations. Idéal pour répondre aux normes RGAA.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-icon">✓</div>
+                        <div class="checklist-content">
+                            <h5>Mode Projecteur (Contraste Élevé pour Soutenance)</h5>
+                            <p>Création d'un style CSS dédié (`body.projector-mode`) qui élimine les ombres complexes, force un arrière-plan noir profond sans reflets et augmente la lisibilité des textes lors d'une projection sur tableau blanc en salle d'examen.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checklist-icon">✓</div>
+                        <div class="checklist-content">
+                            <h5>Valorisation de Projets Avancée</h5>
+                            <p>Le portfolio utilise Google `model-viewer` pour intégrer des modèles GLTF interactifs en temps réel, permettant à l'utilisateur de manipuler les assets 3D (ex: l'Overbike) directement dans le navigateur.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENU : LIVRABLE 4 -->
+        <section id="reseaux" class="sae-tab-content">
+            <header class="section-header" style="margin-bottom: 30px; border: none; padding-bottom: 0;">
+                <span class="tag-badge">Livrable 4</span>
+                <h2 class="project-title" style="font-size: 28px; color: var(--accent);">Stratégie de Contenu & Réseaux Sociaux</h2>
+                <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                    Maquette de profils optimisés, techniques de copywriting pour attirer l'attention des cibles et calendrier de publication.
+                </p>
+            </header>
+
+            <!-- Mockup LinkedIn -->
+            <div class="mockup-container">
+                <div class="mockup-header">
+                    <div class="mockup-dot red"></div>
+                    <div class="mockup-dot yellow"></div>
+                    <div class="mockup-dot green"></div>
+                    <span class="mockup-title">Maquette Profil LinkedIn Optimisé</span>
+                </div>
+                <div class="mockup-body">
+                    <!-- Banner LinkedIn -->
+                    <div style="width: 100%; aspect-ratio: 4/1; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                        <img src="assets/linkedin_banner.png" alt="LinkedIn Banner" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="profile-mock">
+                        <div class="profile-avatar-placeholder">DC</div>
+                        <div class="profile-info-mock">
+                            <h4>David Colombo</h4>
+                            <p class="headline">Creative Technologist | 3D Designer & Web3 Developer | Aspirant Master Parallel 14</p>
+                            <p class="details">Guadeloupe, Antilles • Plus de 500 relations • Coordonnées : https://wa.me/590690449224</p>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 15px;"><span class="tag-badge">Section Info / À Propos :</span></div>
+                    <p style="font-size: 12px; line-height: 1.7; color: #ccc; margin-bottom: 25px; text-transform: none;">
+                        "Étudiant en BUT MMI, je développe des univers à l'intersection du design 3D et du Web3. Mon objectif est d'intégrer le Master en film d'animation à l'école Parallel 14 en Martinique afin de perfectionner mes compétences en narration visuelle et de soutenir l'émergence d'un studio créatif indépendant. Convaincu que la technologie doit servir l'autonomie collective, j'accompagne ma production artistique par des projets réels d'agro-écologie et d'infrastructures de minage décentralisées."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mockup ArtStation -->
+            <div class="mockup-container" style="margin-top: 30px;">
+                <div class="mockup-header">
+                    <div class="mockup-dot red"></div>
+                    <div class="mockup-dot yellow"></div>
+                    <div class="mockup-dot green"></div>
+                    <span class="mockup-title">Maquette Profil ArtStation Optimisé</span>
+                </div>
+                <div class="mockup-body">
+                    <!-- Banner ArtStation -->
+                    <div style="width: 100%; aspect-ratio: 4/1; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--glass-border);">
+                        <img src="assets/artstation_banner.png" alt="ArtStation Banner" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="profile-mock">
+                        <div class="profile-avatar-placeholder" style="background: linear-gradient(135deg, var(--secondary), var(--accent));">colombus97</div>
+                        <div class="profile-info-mock">
+                            <h4>colombus97</h4>
+                            <p class="headline">3D Designer & Animator</p>
+                            <p class="details">ArtStation Portfolio • https://www.artstation.com/davidcolombo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copywriting -->
+            <h3 class="project-title" style="color: white; margin-top: 40px;">2. Copywriting Persuasif (Formule AIDA)</h3>
+            <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray); margin-bottom: 20px;">
+                Exemple de post LinkedIn rédigé pour susciter l'intérêt de la communauté créative et des jurys d'admission :
+            </p>
+            <div class="post-copy">
+[POST PERSUASIF LINKEDIN — FORMULE AIDA]
+
+🚨 La 3D dans le navigateur est-elle l'avenir du portfolio artistique ? 
+
+Pendant des années, présenter un modèle 3D sur le web se limitait à une image fixe ou à un lien vers une vidéo de rendu. Aujourd'hui, on peut faire interagir l'utilisateur en temps réel. 
+
+Dans le cadre de mon projet transmédia afrofuturiste "La Bible de l'Univers", j'ai conçu et modélisé en Hard Surface un "Overbike" sous Blender et Substance Painter. Mais je voulais aller plus loin qu'un simple rendu d'image.
+
+J'ai intégré le modèle interactif au format GLTF sur mon portfolio 2026. Vous pouvez maintenant le faire tourner, l'inspecter et l'analyser sous tous les angles directement depuis votre navigateur. 
+
+👉 Découvrez l'Overbike en 3D et manipulez-le ici : https://portfolio-2026-colombod.vercel.app/projets.html
+
+Qu'en pensez-vous ? La 3D interactive sur le web est-elle un atout indispensable pour capter l'attention aujourd'hui ? Donnez-moi vos avis en commentaires ! 👇
+
+#3DModeling #Blender3D #Web3 #CreativeTechnology #BUTMMI #Animation #Parallel14
+            </div>
+
+            <!-- Calendrier éditorial -->
+            <h3 class="project-title" style="color: white; margin-top: 50px;">3. Calendrier Éditorial Type (1 Semaine)</h3>
+            <div class="calendar-grid">
+                <div class="calendar-day">
+                    <span class="day-name">Lundi — LinkedIn</span>
+                    <div class="day-content">
+                        <h6>Focus Business & Innovation</h6>
+                        <p>Publication sur l'avancement de la Ferme de Minage Solaire (Business Plan, transition écologique, défis administratifs).</p>
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-name">Mercredi — ArtStation</span>
+                    <div class="day-content">
+                        <h6>Visual Showcase 3D</h6>
+                        <p>Mise en ligne d'un nouveau rendu ou d'une recherche graphique (WIP Overbike, sculpts de personnages pour Parallel 14).</p>
+                    </div>
+                </div>
+                <div class="calendar-day">
+                    <span class="day-name">Vendredi — YouTube / TikTok</span>
+                    <div class="day-content">
+                        <h6>Behind-the-scenes & Motion</h6>
+                        <p>Teaser vidéo de 30 secondes montrant le workflow (le passage de Blender aux calques d'animation ou production musicale Riddim).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTENU : LIVRABLE 5 -->
+        <section id="soutenance" class="sae-tab-content">
+            <header class="section-header" style="margin-bottom: 30px; border: none; padding-bottom: 0; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+                <div>
+                    <span class="tag-badge">Livrable 5</span>
+                    <h2 class="project-title" style="font-size: 28px; color: var(--accent);">Script de Soutenance (Pitch Oral)</h2>
+                    <p class="project-desc" style="text-transform: none; font-size: 12px; color: var(--text-gray);">
+                        Structure chronologique et script de l'oral de 3 minutes pour convaincre le jury de la pertinence de votre présence en ligne.
+                    </p>
+                </div>
+                <div style="display: flex; gap: 15px;">
+                    <a href="sae-soutenance-slides.html" target="_blank" class="btn-neon" style="padding: 15px 30px; font-size: 10px; box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);">Lancer le Diaporama Oral</a>
+                    <a href="sae-print-soutenance.html" target="_blank" class="btn-neon outline" style="padding: 15px 30px; font-size: 10px; border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 20px rgba(188, 19, 254, 0.15);">📥 Script PDF (Tablette)</a>
+                </div>
+            </header>
+
+            <div class="deck-container">
+                <!-- Etape 1 -->
+                <div class="deck-card">
+                    <div class="deck-timer">0:00</div>
+                    <div class="deck-content">
+                        <span class="deck-step">Acte I : Exposition (45s)</span>
+                        <h4 class="deck-title">Accroche & Présentation de la vision globale</h4>
+                        <p class="deck-text">
+                            "Bonjour à tous. Aujourd'hui, la plupart des portfolios d'étudiants se ressemblent : ils présentent des compétences. Mais peu présentent une vision du monde. Je m'appelle David Colombo, et je me positionne en tant que Creative Technologist. Mon objectif à travers mes études de BUT MMI et mon projet de Master à Parallel 14 en Martinique est de construire une autonomie créative complète. Je refuse d'être confiné dans un seul rôle : je développe une synergie entre la production de films d'animation 3D, l'agro-écologie hors-sol et les modèles décentralisés du Web3 boostés à l'énergie solaire."
+                        </p>
+                        <div class="deck-tips">Parler avec assurance, marquer un temps d'arrêt après "vision du monde".</div>
+                    </div>
+                </div>
+
+                <!-- Etape 2 -->
+                <div class="deck-card">
+                    <div class="deck-timer">0:45</div>
+                    <div class="deck-content">
+                        <span class="deck-step">Acte II : Confrontation (75s)</span>
+                        <h4 class="deck-title">Matérialisation technique et stratégie réseau</h4>
+                        <p class="deck-text">
+                            "Cette dualité entre art et technologie n'est pas qu'une idée, elle est visible sur ma présence en ligne. Sur ArtStation, sous le pseudonyme colombus97, je valorise mes créations 3D comme l'Overbike interactif en GLTF. Sur GitHub, je partage mes contrats Solidity Web3 qui permettent de financer ces créations de manière décentralisée avec ma plateforme de streaming BeamUp. Et enfin, sur LinkedIn, sous mon nom civil David Colombo, je fédère et crédibilise ces projets auprès des professionnels de la Caraïbe en montrant des livrables concrets : business plans de SASU et dossiers techniques de minage thermo-solaire. Chaque réseau a son rôle dans mon entonnoir marketing personnel."
+                        </p>
+                        <div class="deck-tips">Montrer les sections de votre portfolio en direct à l'écran si possible.</div>
+                    </div>
+                </div>
+
+                <!-- Etape 3 -->
+                <div class="deck-card">
+                    <div class="deck-timer">2:00</div>
+                    <div class="deck-content">
+                        <span class="deck-step">Acte III : Résolution (60s)</span>
+                        <h4 class="deck-title">Le choix de Parallel 14 & Appel à l'action</h4>
+                        <p class="deck-text">
+                            "Mon avenir créatif se joue dans la Caraïbe. L'intégration de la prestigieuse école Parallel 14 en Martinique est la prochaine étape cruciale de mon parcours. Elle me permettra de porter mes univers 3D à un niveau professionnel international. Ma présence numérique sur les réseaux sociaux n'est pas une simple vitrine d'étudiant : c'est un écosystème en action, prêt à accueillir et à collaborer avec les futurs talents de l'animation locale. Je vous invite à scanner le QR code présent sur ma page de contact ou à me retrouver sur LinkedIn pour échanger sur cette vision du futur. Merci pour votre attention."
+                        </p>
+                        <div class="deck-tips">Terminer sur une note positive en affichant la page d'accueil de votre portfolio avec vos réseaux.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script de gestion des onglets -->
+    <script>
+        function switchTab(evt, tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.sae-tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.sae-tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show active tab content and mark button as active
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+
+            // Scroll to the top of the tab container to make it smooth
+            window.scrollTo({
+                top: document.querySelector('.sae-tabs-nav').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

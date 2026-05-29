@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation Soutenance SAE : Réseaux Sociaux | David Colombo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/cyber-bg.js" defer></script>
+    <style>
+        /* Styles pour le diaporama plein écran */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #020202;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Space Grotesk", sans-serif;
+            color: white;
+        }
+
+        .slides-container {
+            width: 90vw;
+            height: 80vh;
+            max-width: 1200px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1.5px solid var(--glass-border);
+            border-radius: 40px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            animation: slideIn 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-title {
+            font-size: 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .slide-title span {
+            color: var(--accent);
+        }
+
+        .slide-body {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #d0d0d0;
+            flex-grow: 1;
+        }
+
+        /* Controls */
+        .slides-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .control-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .control-btn:hover {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+        }
+
+        .slide-progress {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--text-gray);
+            letter-spacing: 3px;
+        }
+
+        /* Elements spécifiques */
+        .slide-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .bullets-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bullets-list li {
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .bullets-list li::before {
+            content: '▫';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .badge-step {
+            font-size: 9px;
+            font-weight: 900;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .banner-preview {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            margin-top: 15px;
+            box-shadow: 0 0 15px rgba(0,242,255,0.05);
+        }
+
+        /* Keyboard hint */
+        .keyboard-hint {
+            position: fixed;
+            bottom: 15px;
+            right: 40px;
+            font-size: 8px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slides-container">
+        
+        <!-- SLIDE 1: INTRODUCTION / TITRE -->
+        <div class="slide active">
+            <span class="badge-step">Soutenance MMI</span>
+            <h1 class="slide-title" style="font-size: 55px; border: none; padding: 0;">SAE : Présence &<br><span>Réseaux Sociaux</span></h1>
+            <p style="font-size: 16px; letter-spacing: 4px; text-transform: uppercase; color: var(--text-gray); margin-top: 10px;">
+                Stratégie de personal branding et d'indépendance créative
+            </p>
+            <div style="margin-top: 50px; border-left: 2px solid var(--accent); padding-left: 20px;">
+                <p style="font-size: 14px; font-weight: 700; color: white;">David Colombo — colombus97</p>
+                <p style="font-size: 11px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 2px;">Étudiant en 1ère année de BUT MMI</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: L1 - AUDIT SWOT -->
+        <div class="slide">
+            <span class="badge-step">Livrable 1 — Audit Numérique</span>
+            <h2 class="slide-title">Analyse <span>SWOT</span></h2>
+            <div class="slide-grid">
+                <div>
+                    <h3 style="color: var(--accent); font-size: 16px; text-transform: uppercase; margin-bottom: 10px;">Forces</h3>
+                    <ul class="bullets-list" style="font-size: 13px;">
+                        <li>Double profil créatif 3D et technique Web3/Code.</li>
+                        <li>Projets concrets et business plan construits.</li>
+                    </ul>
+                    <h3 style="color: #ffaa00; font-size: 16px; text-transform: uppercase; margin-top: 20px; margin-bottom: 10px;">Opportunités</h3>
+                    <ul class="bullets-list" style="font-size: 13px;">
+                        <li>Poursuite en Martinique : Master Animation à <strong>Parallel 14</strong>.</li>
+                        <li>Financement décentralisé (DApps) pour l'indépendance.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: #ff0055; font-size: 16px; text-transform: uppercase; margin-bottom: 10px;">Faiblesses</h3>
+                    <ul class="bullets-list" style="font-size: 13px;">
+                        <li>Dispersion apparente (agro-écologie, minage, animation).</li>
+                        <li>Ligne éditoriale jeune sur LinkedIn.</li>
+                    </ul>
+                    <h3 style="color: var(--text-gray); font-size: 16px; text-transform: uppercase; margin-top: 20px; margin-bottom: 10px;">Menaces</h3>
+                    <ul class="bullets-list" style="font-size: 13px;">
+                        <li>Forte sélectivité aux concours d'admission.</li>
+                        <li>Réticences des profils traditionnels face au Web3.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: L2 - POSITIONNEMENT & OBJECTIFS -->
+        <div class="slide">
+            <span class="badge-step">Livrable 2 — Stratégie Personnelle</span>
+            <h2 class="slide-title">Positionnement <span>Hybride</span></h2>
+            <div class="slide-grid">
+                <div>
+                    <p style="font-size: 15px; font-weight: 700; color: white; margin-bottom: 15px;">
+                        Proposition de valeur unique :
+                    </p>
+                    <p style="font-size: 14px; line-height: 1.8; color: #ccc; border-left: 2px solid var(--secondary); padding-left: 15px; font-style: italic;">
+                        "Creative Technologist & 3D Designer autonome, créateur d'univers et de modèles de vie alternatifs résilients."
+                    </p>
+                    <p style="font-size: 12px; margin-top: 20px; color: var(--text-gray);">
+                        <strong>Cible :</strong> Parallel 14, recruteurs créatifs de la Caraïbe et écosystème Web3.
+                    </p>
+                </div>
+                <div>
+                    <h3 style="color: var(--accent); font-size: 16px; text-transform: uppercase; margin-bottom: 10px;">Ligne Éditoriale</h3>
+                    <ul class="bullets-list">
+                        <li><strong>LinkedIn (David Colombo)</strong> : Analyses de projets, business, transition.</li>
+                        <li><strong>ArtStation (colombus97)</strong> : Portfolio 3D pur, rendus qualitatifs.</li>
+                        <li><strong>YouTube / GitHub</strong> : Proof of work technique et showreel MMI.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: L3 - PORTFOLIO AUDIT -->
+        <div class="slide">
+            <span class="badge-step">Livrable 3 — Auto-évaluation Portfolio</span>
+            <h2 class="slide-title">Audit du <span>Site Web</span></h2>
+            <div class="slide-grid">
+                <div>
+                    <h3 style="color: var(--accent); font-size: 16px; text-transform: uppercase; margin-bottom: 10px;">Ergonomie & Responsivité</h3>
+                    <ul class="bullets-list">
+                        <li>Intégration en HTML/CSS natif & JS pur pour optimiser les performances (Core Web Vitals).</li>
+                        <li>Intégration d'un modèle 3D interactif (Overbike) via Google <code>model-viewer</code>.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--secondary); font-size: 16px; text-transform: uppercase; margin-bottom: 10px;">Options Accessibilité (RGAA)</h3>
+                    <ul class="bullets-list">
+                        <li>Widget d'accessibilité pour redimensionner les textes à la volée.</li>
+                        <li><strong>Mode Projecteur</strong> : Forçage du contraste et suppression des flous pour la projection en salle de soutenance.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: L4 - MOCKUPS RÉSEAUX SOCIAUX -->
+        <div class="slide">
+            <span class="badge-step">Livrable 4 — Cohérence Visuelle</span>
+            <h2 class="slide-title">Identité <span>Optimisée</span></h2>
+            <div class="slide-grid">
+                <div>
+                    <h3 style="color: var(--accent); font-size: 15px; text-transform: uppercase; margin-bottom: 8px;">LinkedIn : David Colombo</h3>
+                    <p style="font-size: 12px; color: #ccc;">
+                        Bannière cyberpunk unifiée néon cyan & purple avec slogan :
+                    </p>
+                    <img src="assets/linkedin_banner.png" alt="LinkedIn Banner Preview" class="banner-preview">
+                </div>
+                <div>
+                    <h3 style="color: var(--secondary); font-size: 15px; text-transform: uppercase; margin-bottom: 8px;">ArtStation : colombus97</h3>
+                    <p style="font-size: 12px; color: #ccc;">
+                        Mise en valeur de la direction artistique et des rendus wireframe :
+                    </p>
+                    <img src="assets/artstation_banner.png" alt="ArtStation Banner Preview" class="banner-preview">
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: CONCLUSION / FIN -->
+        <div class="slide">
+            <span class="badge-step">Conclusion</span>
+            <h2 class="slide-title" style="border: none; margin-bottom: 10px;">Vers <span>l'Autonomie Créative</span></h2>
+            <p style="font-size: 16px; color: #ccc; margin-bottom: 40px; max-width: 800px; line-height: 1.8;">
+                Une présence numérique qui n'est pas un simple CV, mais un écosystème cohérent démontrant la viabilité d'un modèle alternatif à l'échelle de la Caraïbe.
+            </p>
+            <div style="border-top: 1.5px solid var(--glass-border); padding-top: 25px; display: flex; gap: 40px;">
+                <div>
+                    <span style="font-size: 9px; font-weight: 900; color: var(--accent); text-transform: uppercase; letter-spacing: 2px;">LinkedIn :</span>
+                    <p style="font-size: 14px; font-weight: 700; color: white;">David Colombo</p>
+                </div>
+                <div>
+                    <span style="font-size: 9px; font-weight: 900; color: var(--secondary); text-transform: uppercase; letter-spacing: 2px;">ArtStation :</span>
+                    <p style="font-size: 14px; font-weight: 700; color: white;">colombus97</p>
+                </div>
+                <div>
+                    <span style="font-size: 9px; font-weight: 900; color: #ffaa00; text-transform: uppercase; letter-spacing: 2px;">WhatsApp :</span>
+                    <p style="font-size: 14px; font-weight: 700; color: white;">+590 690 44 92 24</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTROLS FOOTER -->
+        <footer class="slides-controls">
+            <button class="control-btn" onclick="prevSlide()">Précédent</button>
+            <span class="slide-progress" id="slide-num">1 / 6</span>
+            <button class="control-btn" onclick="nextSlide()">Suivant</button>
+        </footer>
+
+    </div>
+
+    <div class="keyboard-hint">Utilisez les touches ← et → du clavier pour naviguer</div>
+
+    <!-- Script de navigation du diaporama -->
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const slideNumEl = document.getElementById('slide-num');
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            slideNumEl.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlideDisplay();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlideDisplay();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
