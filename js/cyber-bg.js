@@ -3,9 +3,9 @@
 /* Galaxy vortex page transitions (Page In and Page Out) */
 
 const colors = [
-    { r: 0, g: 242, b: 255 },    // Neon Cyan
-    { r: 188, g: 19, b: 254 },   // Neon Purple
-    { r: 255, g: 0, b: 128 }     // Neon Magenta
+    { r: 0, g: 255, b: 208 },    // Cyber Mint
+    { r: 255, g: 81, b: 0 },     // Solar Orange
+    { r: 255, g: 183, b: 0 }     // Amber Gold
 ];
 
 const mouse = {
@@ -210,7 +210,7 @@ class DigitParticle {
         this.vy = -(0.2 + Math.random() * 0.4); // Slow float upward
         this.life = 0;
         this.maxLife = 400 + Math.random() * 400;
-        this.color = Math.random() > 0.5 ? '#00f2ff' : '#bc13fe'; // Cyan or Purple
+        this.color = Math.random() > 0.5 ? '#00ffd0' : '#ff5100'; // Mint or Orange
         
         this.baseAlpha = 0.015; // Faint default (makes it virtually invisible in empty black space)
         this.alpha = this.baseAlpha;
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.style.height = '100%';
     canvas.style.zIndex = '-1';
     canvas.style.pointerEvents = 'none';
-    canvas.style.background = '#020202';
+    canvas.style.background = '#050508';
     
     document.body.prepend(canvas);
     
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate() {
         if (document.body.classList.contains('animations-off')) {
             ctx.clearRect(0, 0, w, h);
-            ctx.fillStyle = '#020202';
+            ctx.fillStyle = '#050508';
             ctx.fillRect(0, 0, w, h);
             requestAnimationFrame(animate);
             return;
@@ -428,8 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Radial deep space background gradient
         const bgGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, Math.max(w, h));
-        bgGrad.addColorStop(0, '#0c0316');
-        bgGrad.addColorStop(1, '#020202');
+        bgGrad.addColorStop(0, '#021410'); // Deep dark mint glow
+        bgGrad.addColorStop(1, '#050508'); // Obsidian navy-black
         ctx.fillStyle = bgGrad;
         ctx.fillRect(0, 0, w, h);
 
@@ -541,7 +541,7 @@ document.addEventListener('DOMContentLoaded', () => {
             overlayAlpha -= 0.02; // Fades out over ~0.8s
             if (overlayAlpha < 0) overlayAlpha = 0;
             
-            transCtx.fillStyle = `rgba(2, 2, 2, ${overlayAlpha})`;
+            transCtx.fillStyle = `rgba(5, 5, 8, ${overlayAlpha})`;
             transCtx.fillRect(0, 0, tw, th);
             
             // Update and draw particles
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
             overlayAlpha += 0.025; // Fades in over ~0.6s
             if (overlayAlpha > 1.0) overlayAlpha = 1.0;
             
-            transCtx.fillStyle = `rgba(2, 2, 2, ${overlayAlpha})`;
+            transCtx.fillStyle = `rgba(5, 5, 8, ${overlayAlpha})`;
             transCtx.fillRect(0, 0, tw, th);
             
             // Update and draw particles

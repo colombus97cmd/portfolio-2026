@@ -420,7 +420,7 @@ function renderProjects(filter = 'Tous') {
         }
 
         const ytBadge = p.link && p.link.includes('youtube') ? '<span class="youtube-badge">YouTube</span>' : '';
-        const folderBadge = p.isFolder ? '<span class="youtube-badge" style="background:#bc13fe; right:auto; left:10px;">DOSSIER COMPLET</span>' : '';
+        const folderBadge = p.isFolder ? '<span class="youtube-badge" style="background:var(--secondary); right:auto; left:10px;">DOSSIER COMPLET</span>' : '';
 
         card.innerHTML = `
             <div class="project-image-container">
@@ -500,7 +500,7 @@ function renderStandardModal(project, modalBody, isSub = false) {
     } else if (project.model3d) {
         const isLocal = window.location.protocol === 'file:';
         const warningHtml = isLocal ? `
-            <div style="background: rgba(188, 19, 254, 0.05); border: 1px solid var(--secondary); color: var(--text-white); padding: 20px; border-radius: 20px; font-size: 11px; margin-bottom: 20px; line-height: 1.6; letter-spacing: 1px;">
+            <div style="background: rgba(255, 81, 0, 0.05); border: 1px solid var(--secondary); color: var(--text-white); padding: 20px; border-radius: 20px; font-size: 11px; margin-bottom: 20px; line-height: 1.6; letter-spacing: 1px;">
                 <span style="color: var(--accent); font-weight: 900; display: block; margin-bottom: 8px; text-transform: uppercase;">⚠️ Protocole Local (file://) détecté</span>
                 Le modèle 3D interactif ne peut pas se charger directement depuis les fichiers locaux en raison des restrictions de sécurité CORS du navigateur.
                 <br><br>
@@ -528,7 +528,7 @@ function renderStandardModal(project, modalBody, isSub = false) {
         linkHtml += `<a href="${encodeURI(project.link)}" target="_blank" class="btn-neon">Voir en plein écran / Live</a>`;
     }
     if (project.link2) {
-        linkHtml += `<a href="${encodeURI(project.link2)}" target="_blank" class="btn-neon outline" style="border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 15px rgba(188, 19, 254, 0.15);">Hyperfollow DistroKid</a>`;
+        linkHtml += `<a href="${encodeURI(project.link2)}" target="_blank" class="btn-neon outline" style="border-color: var(--secondary); color: var(--secondary); box-shadow: 0 0 15px rgba(255, 81, 0, 0.15);">Hyperfollow DistroKid</a>`;
     }
     if (linkHtml !== '') {
         linkHtml = `<div class="modal-links" style="display: flex; gap: 15px; flex-wrap: wrap;">${linkHtml}</div>`;
