@@ -23,6 +23,7 @@
     "sharp": "^0.34.5"
   },
   "dependencies": {
-    "@ffmpeg-installer/ffmpeg": "^1.1.0"
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "puppeteer": "^25.5.0"
   }
 }
