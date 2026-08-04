@@ -11,7 +11,7 @@ const path = require('path');
   
   await page.setViewport({ width: 1100, height: 1555, deviceScaleFactor: 2 });
   
-  await page.goto(filePath, { waitUntil: 'networkidle0' });
+  await page.goto(filePath, { waitUntil: 'load', timeout: 60000 });
   
   const outputPath = path.resolve(__dirname, 'assets/CV MMI.pdf');
   console.log(`Génération du PDF vers: ${outputPath}`);
