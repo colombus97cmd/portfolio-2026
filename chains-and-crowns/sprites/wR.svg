@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="piece-svg piece-wR" role="img" aria-label="Tour — Empire">
+  <defs>
+    <linearGradient id="cc-wR-g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#c9bfae"/><stop offset="0.42" stop-color="#fbf7ef"/><stop offset="1" stop-color="#c9bfae"/>
+    </linearGradient>
+    <radialGradient id="cc-wR-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#d4af37" stop-opacity="0.9"/><stop offset="1" stop-color="#1f3b7a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="socle">
+    <ellipse cx="50" cy="90" rx="31" ry="5.5" fill="#3a3328" opacity="0.35"/>
+    <path d="M21 89 L26 80 L74 80 L79 89 Z" fill="url(#cc-wR-g)" stroke="#3a3328" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="29" y="74" width="42" height="7" rx="2" fill="url(#cc-wR-g)" stroke="#3a3328" stroke-width="2"/>
+    <rect x="29" y="76.5" width="42" height="2" fill="#d4af37" opacity="0.8"/>
+  </g>
+  <g id="corps">
+    <path d="M32 74 L34 34 L66 34 L68 74 Z" fill="url(#cc-wR-g)" stroke="#3a3328" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M30 34 V24 H37 V29 H44 V24 H56 V29 H63 V24 H70 V34 Z" fill="url(#cc-wR-g)" stroke="#3a3328" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M34 50 H66" stroke="#d4af37" stroke-width="2"/>
+    <path d="M46 74 V62 a4 4 0 0 1 8 0 V74 Z" fill="#3a3328" opacity="0.8"/>
+  </g>
+  <g id="embleme">
+    <path d="M50 24 V6" stroke="#3a3328" stroke-width="2"/>
+    <rect x="50" y="6" width="5" height="9" fill="#1f3b7a"/>
+    <rect x="55" y="6" width="5" height="9" fill="#ffffff" stroke="#3a3328" stroke-width="0.4"/>
+    <rect x="60" y="6" width="5" height="9" fill="#c0392b"/>
+  </g>
+</svg>

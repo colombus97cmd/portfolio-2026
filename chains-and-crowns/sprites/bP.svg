@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="piece-svg piece-bP" role="img" aria-label="Pion — Résistance">
+  <defs>
+    <linearGradient id="cc-bP-g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#1c100a"/><stop offset="0.42" stop-color="#5a3622"/><stop offset="1" stop-color="#1c100a"/>
+    </linearGradient>
+    <radialGradient id="cc-bP-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f2b34a" stop-opacity="0.9"/><stop offset="1" stop-color="#e8822a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="socle">
+    <ellipse cx="50" cy="90" rx="31" ry="5.5" fill="#0d0805" opacity="0.35"/>
+    <path d="M21 89 L26 80 L74 80 L79 89 Z" fill="url(#cc-bP-g)" stroke="#0d0805" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="29" y="74" width="42" height="7" rx="2" fill="url(#cc-bP-g)" stroke="#0d0805" stroke-width="2"/>
+    <rect x="29" y="76.5" width="42" height="2" fill="#f2b34a" opacity="0.8"/>
+  </g>
+  <g id="corps">
+    <path d="M38 74 C38 62 41 58 44 50 L56 50 C59 58 62 62 62 74 Z"
+      fill="url(#cc-bP-g)" stroke="#0d0805" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="50" cy="40" r="11" fill="url(#cc-bP-g)" stroke="#0d0805" stroke-width="2"/>
+  </g>
+  <g id="embleme">
+    <path d="M38 52 A12.5 5 0 1 0 62 52" fill="none" stroke="#0d0805" stroke-width="5"/>
+    <path d="M38 52 A12.5 5 0 1 0 62 52" fill="none" stroke="#8a8f96" stroke-width="2.6"/>
+    <path d="M38 52 l-4 -5 M62 52 l4 -5" stroke="#e8822a" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+</svg>

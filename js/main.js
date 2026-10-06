@@ -5,7 +5,7 @@ const projectsData = [
         titre: "SAE : Présence & Réseaux Sociaux",
         tag: "Business",
         desc: "Dossier stratégique interactif, diaporama de soutenance et bannières optimisées de David Colombo (colombus97) pour le BUT MMI.",
-        img: "assets/linkedin_banner.png",
+        img: "assets/linkedin_banner.webp",
         isFolder: true,
         category: "Cursus MMI",
         subProjects: [
@@ -21,7 +21,7 @@ const projectsData = [
                 tag: "Design",
                 desc: "Diaporama interactif plein écran optimisé pour la présentation orale de 5 minutes.",
                 link: "sae-soutenance-slides.html",
-                img: "assets/afficheDSMMI1_David-colombo.png"
+                img: "assets/afficheDSMMI1_David-colombo.webp"
             },
             {
                 titre: "Rapport PDF (Livrables 1 & 2)",
@@ -41,13 +41,13 @@ const projectsData = [
                 titre: "Bannière LinkedIn",
                 tag: "Design",
                 desc: "Bannière cyberpunk personnalisée créée pour le profil LinkedIn professionnel de David Colombo.",
-                img: "assets/linkedin_banner.png"
+                img: "assets/linkedin_banner.webp"
             },
             {
                 titre: "Bannière ArtStation",
                 tag: "Design",
                 desc: "Bannière cyberpunk personnalisée créée pour le profil ArtStation de colombus97.",
-                img: "assets/artstation_banner.png"
+                img: "assets/artstation_banner.webp"
             }
         ]
     },
@@ -55,7 +55,7 @@ const projectsData = [
         titre: "IMPT.INF : Enquête & Média Numérique",
         tag: "Vidéo",
         desc: "Enquête multimédia étudiante traitant de la méritocratie et du racisme. Projet complet regroupant enquête, production vidéo et identité de marque.",
-        img: "assets/impt_logo_illustration.jpg",
+        img: "assets/impt_logo_illustration.webp",
         isFolder: true,
         category: "Cursus MMI",
         subProjects: [
@@ -70,7 +70,7 @@ const projectsData = [
                 tag: "Document",
                 desc: "Article d'analyse approfondie sur le racisme systémique et la méritocratie scolaire.",
                 link: "assets/impt_article_redactionnel.pdf",
-                img: "assets/impt_logo_illustration.jpg"
+                img: "assets/impt_logo_illustration.webp"
             },
             {
                 titre: "Identité de Marque : Logo",
@@ -104,11 +104,22 @@ const projectsData = [
         tag: "Code",
         desc: "Jeu d'échecs interactif en 3D développé sous Unity et intégré pour le web via WebGL.",
         link: "jeu-echecs/index.html",
-        img: "assets/affiche_chains_crowns.png",
+        img: "assets/affiche_chains_crowns.webp",
         category: "Cursus MMI",
         contexte: "Conception d'un jeu d'échecs complet en 3D avec interactions utilisateur et règles de jeu intégrées.",
         demarche: "Programmation des scripts de jeu en C# sous Unity, optimisation des meshes et shaders, et compilation WebGL pour intégration web fluide.",
         outils: ["Unity", "C#", "WebGL", "3D Render"]
+    },
+    {
+        titre: "Chains & Crowns : Édition 2D (Guadeloupe 1802)",
+        tag: "Code",
+        desc: "Recréation web de mon jeu d'échecs : la Résistance guadeloupéenne de 1802 contre l'IA impériale, avec des sprites vectoriels prêts pour l'animation.",
+        link: "chains-and-crowns/index.html",
+        img: "assets/affiche_chains_crowns.webp",
+        category: "Projet Perso",
+        contexte: "Mai 1802 : face au rétablissement de l'esclavage, Louis Delgrès, Ignace et la Mulâtresse Solitude mènent la résistance. Le joueur dirige la Résistance contre une IA qui incarne l'armée napoléonienne.",
+        demarche: "Moteur de règles complet en JavaScript (vérifié par tests perft), IA negamax alpha-bêta à 3 niveaux, 12 pièces-objets SVG générées par script et découpées en calques animables, notation S à F en fin de partie, packs de skins interchangeables.",
+        outils: ["JavaScript", "SVG", "Animation CSS", "IA de jeu", "Game Design"]
     },
     {
         titre: "SAE 2.02 : WARA - Mode Éco-Responsable",
@@ -143,21 +154,21 @@ const projectsData = [
         outils: ["Caméra", "Premiere Pro", "After Effects", "Sound Design"]
     },
     { 
-        titre: "Startup : Ferme de Minage Solaire", 
-        tag: "Business", 
-        desc: "Création d'un Data Center Web3 éco-responsable (Guadeloupe) structuré en SASU.", 
-        link: "assets/Buisness plan/Pitch_Deck_Banque_Printable.html", 
+        titre: "Beautiful Earth Corp : Data Center Agrivoltaïque",
+        tag: "Business",
+        desc: "Entreprise en création en Guadeloupe : ombrières solaires, calcul décentralisé, serres hors-sol sans chlordécone et tiers-lieu. Avec simulateur de faisabilité par surface de terrain.",
+        link: "beautiful-earth.html",
         img: "assets/Logo.png",
         category: "Projet Perso",
-        contexte: "Projet entrepreneurial de création d'une ferme de minage Bitcoin. L'objectif est d'atteindre le PetaHash en combinant du matériel ASIC de pointe et l'énergie solaire thermique.",
-        demarche: "Rédaction d'un Business Plan certifié pour financement bancaire, élaboration d'un prévisionnel sur 3 ans, et conception des statuts légaux (SASU). Le projet inclut une vision de réinvestissement local (agriculture sans chlordécone, impression 3D coco).",
-        outils: ["Business Plan", "Finance", "Web3", "Énergie Solaire"]
+        contexte: "Projet entrepreneurial (SAS) au sud de la Basse-Terre : convertir l'énergie solaire produite sur des terrains agricoles en puissance de calcul, avec un objectif final de 209 PH/s atteint palier par palier, terrain après terrain.",
+        demarche: "Business plan, plan de financement, statuts à catégories d'actions, dimensionnement énergétique jour/nuit (ombrières + batteries + éolien + micro-hydro), site pilote interactif et fiche de faisabilité publique.",
+        outils: ["Business Plan", "Finance", "Énergie Solaire", "JavaScript", "Web3"]
     },
     {
         titre: "Univers Transmédia : Bible de l'Univers",
         tag: "Projet Perso",
         desc: "Immense projet transmédia afrofuturiste structuré sur 200 ans, mêlant technologie Web3 et mythologie.",
-        img: "assets/capture-escape-game.jpg",
+        img: "assets/capture-escape-game.webp",
         isFolder: true,
         category: "Projet Perso",
         subProjects: [
@@ -181,7 +192,7 @@ const projectsData = [
                 desc: "Plateforme de streaming décentralisée pour financer le projet transmédia 'Bible de l'Univers'.", 
                 link: "https://beam-up.vercel.app/", 
                 link2: "https://distrokid.com/hyperfollow/colombus97/beamup", 
-                img: "assets/beamup_thumb.png",
+                img: "assets/beamup_thumb.webp",
                 contexte: "Création d'une infrastructure Web3 indépendante pour financer et diffuser la 'Bible de l'Univers'. Une nécessité pour garantir une vision artistique hors des systèmes capitalistes traditionnels.",
                 demarche: "Développement d'un smart contract sur BNB Chain et intégration IPFS. L'objectif est de lier la technologie décentralisée et la diffusion d'œuvres transmédia (Webtoon, Animations).",
                 outils: ["Solidity", "JavaScript", "Web3", "IPFS"]
@@ -191,7 +202,7 @@ const projectsData = [
                 tag: "Code", 
                 desc: "Jeu narratif interactif introduisant l'univers de 'Bible de l'Univers'.", 
                 link: "https://escape-game-mmi-colombo.netlify.app/", 
-                img: "assets/capture-escape-game.jpg",
+                img: "assets/capture-escape-game.webp",
                 contexte: "Le jeu permet d'explorer les tensions entre spiritualité et matérialité à travers un futur afrofuturiste.",
                 demarche: "Développement d'un jeu textuel en JavaScript. L'interface cyberpunk sert l'immersion du joueur dans cet univers complexe critiquant les systèmes socio-économiques.",
                 outils: ["JavaScript", "HTML5", "CSS3", "IA"]
@@ -201,7 +212,7 @@ const projectsData = [
                 tag: "3D", 
                 desc: "Asset 3D pour la série 'La Chair'. Modélisation Hard Surface optimisée.", 
                 model3d: "assets/over_bike.glb",
-                img: "assets/Baylonburn.png",
+                img: "assets/Baylonburn.webp",
                 contexte: "Fait partie de la 'Bible de l'Univers', un projet transmédia afrofuturiste (2029-2238). Cet overbike appartient aux bas-fonds urbains de la série d'animation 'La Chair'.",
                 demarche: "Création d'une modélisation 3D Hard Surface interactive. Le but était de concevoir un véhicule illustrant la technologie unie aux obsessions organiques de l'univers.",
                 outils: ["Blender", "Substance Painter", "GLTF"]
@@ -221,7 +232,7 @@ const projectsData = [
         titre: "Laboratoire & Direction Artistique",
         tag: "Projet Perso",
         desc: "Regroupement de mes recherches esthétiques, d'explorations sur l'IA générative et de conception graphique pure.",
-        img: "assets/Baylonburn.png",
+        img: "assets/Baylonburn.webp",
         isFolder: true,
         category: "Projet Perso",
         subProjects: [
@@ -247,13 +258,13 @@ const projectsData = [
                 titre: "Concept Art: Babylonburn", 
                 tag: "Design", 
                 desc: "Illustration numérique sur Clip Studio Paint. Recherche de style néon-futuriste.", 
-                img: "assets/Baylonburn.png" 
+                img: "assets/Baylonburn.webp" 
             },
             { 
                 titre: "Identité Visuelle: Collaboration", 
                 tag: "Design", 
                 desc: "Charte graphique et logo pour le projet Balleyse Levy.", 
-                img: "assets/balleyse_levy.png" 
+                img: "assets/balleyse_levy.webp" 
             },
             { 
                 titre: "Logo Officiel: Colombo 2026", 
@@ -276,7 +287,7 @@ const projectsData = [
         tag: "Musique",
         desc: "Single original de colombus97. Une fusion rythmique afro-futuriste mariant vibrations traditionnelles et basses industrielles cyberpunk.",
         link: "https://distrokid.com/hyperfollow/colombus97/papa-legba-open-the-gates",
-        img: "assets/Baylonburn.png",
+        img: "assets/Baylonburn.webp",
         category: "Projet Perso",
         contexte: "Création d'une œuvre musicale inspirée de la mythologie vaudou et des sonorités cyberpunk, conçue pour servir d'ambiance et de signature sonore dans nos projets de films d'animation.",
         demarche: "Composition rythmique hybride sur DAW, mixage et mastering haute fidélité. Distribution internationale via DistroKid.",
@@ -287,7 +298,7 @@ const projectsData = [
         tag: "Musique",
         desc: "La bande originale officielle de la plateforme de streaming décentralisée BeamUp. Synthés rétro-futuristes et basses lourdes.",
         link: "https://distrokid.com/hyperfollow/colombus97/beamup",
-        img: "assets/beamup_thumb.png",
+        img: "assets/beamup_thumb.webp",
         category: "Projet Perso",
         contexte: "Composition de l'identité sonore et musicale pour le projet transmédia 'Bible de l'Univers' et sa plateforme Web3 BeamUp.",
         demarche: "Production d'un thème musical immersif unifiant la narration transmédia et la plateforme de streaming. Publication et distribution numérique.",
@@ -339,7 +350,7 @@ const projectsData = [
         titre: "Composition Éditoriale MMI", 
         tag: "Design", 
         desc: "Mise en page graphique (DS). Respect des grilles et de la hiérarchie visuelle.", 
-        img: "assets/afficheDSMMI1_David-colombo.png",
+        img: "assets/afficheDSMMI1_David-colombo.webp",
         category: "Cursus MMI",
         contexte: "Devoir surveillé MMI de mise en page graphique. L'objectif était de réaliser une affiche promotionnelle ou éditoriale complète en temps limité.",
         demarche: "Gestion stricte des alignements, des marges et du parcours de l'œil. Respect des contraintes d'impression et de lisibilité.",
@@ -361,7 +372,7 @@ const projectsData = [
         tag: "Vidéo", 
         desc: "Pré-production et storyboard pour la gamme de parfum St Barth (ex 06).", 
         link: "assets/spot_vanille.pdf",
-        img: "assets/spot_vanille_cover.png",
+        img: "assets/spot_vanille_cover.webp",
         category: "Cursus MMI",
         contexte: "Exercice de direction artistique pour concevoir un spot publicitaire ancré en Guadeloupe.",
         demarche: "Découpage technique, storyboard, sélection musicale thématique (Patrick Saint-Éloi) et choix des décors pour créer une ambiance caribéenne luxueuse.",
@@ -372,7 +383,7 @@ const projectsData = [
         tag: "Design", 
         desc: "Présentation approfondie : Man Ray, pionnier de l'art transdisciplinaire.",
         link: "assets/man_ray_presentation.pdf",
-        img: "assets/man_ray_cover.png",
+        img: "assets/man_ray_cover.webp",
         category: "Cursus MMI",
         contexte: "Travail de recherche et de mise en page sur l'histoire de l'art, centré sur le Dadaïsme et le Surréalisme.",
         demarche: "Analyse sur 13 pages de la porosité entre la photographie, la peinture et le cinéma. Mise en perspective avec l'art contemporain et les transmédias.",
@@ -416,7 +427,7 @@ function renderProjects(filter = 'Tous') {
         } else if (p.video) {
             mediaHtml = `<video src="${p.video}#t=0.001" class="project-media" muted loop playsinline preload="metadata" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
         } else {
-            mediaHtml = `<img src="${p.img || 'assets/Logo.png'}" alt="${p.titre}" class="project-media" loading="lazy" />`;
+            mediaHtml = `<img src="${p.img || 'assets/Logo.png'}" alt="${p.titre}" class="project-media" loading="lazy" decoding="async" />`;
         }
 
         const ytBadge = p.link && p.link.includes('youtube') ? '<span class="youtube-badge">YouTube</span>' : '';
@@ -464,7 +475,7 @@ function renderStandardModal(project, modalBody, isSub = false) {
             <div class="cyber-audio-player">
                 <audio id="modal-audio" src="${project.link}"></audio>
                 <div class="audio-cover">
-                    <img src="${project.img || 'assets/Logo.png'}" alt="Audio Cover" />
+                    <img src="${project.img || 'assets/Logo.png'}" alt="Pochette : ${project.titre}" decoding="async" />
                 </div>
                 <div class="audio-controls-container">
                     <div class="audio-info">
@@ -518,9 +529,9 @@ function renderStandardModal(project, modalBody, isSub = false) {
             <model-viewer src="${project.model3d}" poster="${project.img || 'assets/Logo.png'}" auto-rotate camera-controls style="width:100%; height:400px; background:#050505; border-radius:20px;"></model-viewer>
         `;
     } else if (project.video) {
-        mediaHtml = `<video src="${project.video}" class="project-media" controls autoplay loop playsinline></video>`;
+        mediaHtml = `<video src="${project.video}" class="project-media" controls autoplay loop playsinline preload="metadata"></video>`;
     } else {
-        mediaHtml = `<img src="${project.img || 'assets/Logo.png'}" alt="${project.titre}" class="project-media" />`;
+        mediaHtml = `<img src="${project.img || 'assets/Logo.png'}" alt="${project.titre}" class="project-media" decoding="async" />`;
     }
 
     let linkHtml = '';
@@ -656,9 +667,9 @@ function openModal(project) {
         project.subProjects.forEach((sp, idx) => {
             let mediaPreview = '';
             if (sp.video) {
-                mediaPreview = `<video src="${sp.video}#t=0.001" muted loop style="width:100%; height:100%; object-fit:cover;" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
+                mediaPreview = `<video src="${sp.video}#t=0.001" muted loop playsinline preload="metadata" style="width:100%; height:100%; object-fit:cover;" onmouseover="this.play()" onmouseout="this.pause()"></video>`;
             } else {
-                mediaPreview = `<img src="${sp.img || 'assets/Logo.png'}" style="width:100%; height:100%; object-fit:cover;" />`;
+                mediaPreview = `<img src="${sp.img || 'assets/Logo.png'}" alt="${sp.titre}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;" />`;
             }
 
             html += `

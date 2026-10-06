@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chains & Crowns | Échecs — Guadeloupe 1802</title>
+    <meta name="description" content="Chains & Crowns : jeu d'échecs en 2D inspiré de la résistance guadeloupéenne de 1802 face au rétablissement de l'esclavage. Jouez la Résistance contre l'IA impériale.">
+    <meta property="og:title" content="Chains & Crowns — Guadeloupe 1802">
+    <meta property="og:description" content="Jouez la Résistance de 1802 contre l'IA impériale. Un jeu d'échecs de David Colombo (colombus97).">
+    <meta property="og:image" content="https://portfolio-2026-colombod.vercel.app/assets/affiche_chains_crowns.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <!-- Écran d'accueil -->
+    <section class="screen" id="introScreen">
+        <div class="intro">
+            <p class="kicker">Guadeloupe • mai 1802</p>
+            <h1 class="title"><span class="chains">Chains</span> <span class="amp">&amp;</span> <span class="crowns">Crowns</span></h1>
+            <p class="intro-text">
+                Mai 1802 : Napoléon envoie l'expédition Richepanse rétablir l'ordre colonial en Guadeloupe. Autour de l'officier <strong>Louis Delgrès</strong>, d'<strong>Ignace</strong> et de combattantes comme <strong>la Mulâtresse Solitude</strong>, des hommes et des femmes refusent le retour des chaînes.
+                Vous menez la <strong>Résistance</strong> (pièces sombres) face à l'<strong>armée impériale</strong>, qui ouvre la partie.
+            </p>
+            <form class="intro-form" id="introForm">
+                <label>Votre nom de combattant
+                    <input type="text" id="pseudo" maxlength="20" placeholder="Pseudo" autocomplete="nickname">
+                </label>
+                <label>Adversaire impérial
+                    <select id="level">
+                        <option value="1">Recrue — facile</option>
+                        <option value="2" selected>Officier — intermédiaire</option>
+                        <option value="3">Général — difficile</option>
+                    </select>
+                </label>
+                <button type="submit" class="btn">Entrer dans la bataille</button>
+            </form>
+            <p class="champion" id="championLine"></p>
+            <details class="history">
+                <summary>Repères historiques</summary>
+                <ul>
+                    <li><strong>20 mai 1802</strong> — loi rétablissant l'esclavage dans les colonies où il n'avait pas été aboli.</li>
+                    <li><strong>10 mai 1802</strong> — proclamation de Louis Delgrès : « À l'univers entier, le dernier cri de l'innocence et du désespoir ».</li>
+                    <li><strong>28 mai 1802</strong> — à Matouba, Delgrès et ses compagnons choisissent de mourir plutôt que de se rendre.</li>
+                    <li><strong>Juillet 1802</strong> — l'esclavage est rétabli en Guadeloupe ; il ne sera aboli définitivement qu'en <strong>1848</strong>.</li>
+                </ul>
+            </details>
+        </div>
+    </section>
+
+    <!-- Écran de jeu -->
+    <main class="screen hidden" id="gameScreen">
+        <header class="hud">
+            <div class="hud-side empire">
+                <span class="hud-label">Empire (IA)</span>
+                <div class="captured" id="capturedByWhite" aria-label="Pièces de la Résistance prises"></div>
+            </div>
+            <div class="hud-center">
+                <div class="chrono" id="chrono" aria-label="Temps écoulé">00:00</div>
+                <div class="info" id="info" aria-live="polite">L'Empire réfléchit…</div>
+            </div>
+            <div class="hud-side resistance">
+                <span class="hud-label" id="playerName">Résistance</span>
+                <div class="captured" id="capturedByBlack" aria-label="Pièces impériales prises"></div>
+            </div>
+        </header>
+
+        <div class="arena">
+            <div class="board-wrap">
+                <div class="board" id="board" role="grid" aria-label="Plateau d'échecs"></div>
+            </div>
+            <aside class="side">
+                <h2>Coups joués</h2>
+                <ol class="moves" id="moves"></ol>
+                <div class="side-actions">
+                    <button class="btn ghost" id="btnResign">Abandonner</button>
+                    <button class="btn ghost" id="btnMenu">Menu</button>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Promotion -->
+    <div class="modal hidden" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoTitle">
+        <div class="modal-box">
+            <h2 id="promoTitle">Promotion</h2>
+            <div class="promo-choices" id="promoChoices"></div>
+        </div>
+    </div>
+
+    <!-- Fin de partie -->
+    <div class="modal hidden" id="endModal" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+        <div class="modal-box">
+            <h2 id="endTitle">Fin de partie</h2>
+            <div class="grade" id="endGrade">S</div>
+            <p class="grade-label" id="endGradeLabel"></p>
+            <p id="endDetails"></p>
+            <div class="side-actions">
+                <button class="btn" id="btnReplay">Rejouer</button>
+                <button class="btn ghost" id="btnEndMenu">Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <a class="back-link" href="../projets.html">← Portfolio</a>
+
+    <script src="sprites/sprites.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/ai.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

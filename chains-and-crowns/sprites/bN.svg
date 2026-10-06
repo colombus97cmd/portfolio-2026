@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="piece-svg piece-bN" role="img" aria-label="Cavalier — Résistance">
+  <defs>
+    <linearGradient id="cc-bN-g" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#1c100a"/><stop offset="0.42" stop-color="#5a3622"/><stop offset="1" stop-color="#1c100a"/>
+    </linearGradient>
+    <radialGradient id="cc-bN-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f2b34a" stop-opacity="0.9"/><stop offset="1" stop-color="#e8822a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <g id="socle">
+    <ellipse cx="50" cy="90" rx="31" ry="5.5" fill="#0d0805" opacity="0.35"/>
+    <path d="M21 89 L26 80 L74 80 L79 89 Z" fill="url(#cc-bN-g)" stroke="#0d0805" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="29" y="74" width="42" height="7" rx="2" fill="url(#cc-bN-g)" stroke="#0d0805" stroke-width="2"/>
+    <rect x="29" y="76.5" width="42" height="2" fill="#f2b34a" opacity="0.8"/>
+  </g>
+  <g id="corps">
+    <path d="M34 74 C33 62 38 54 44 48 C38 47 31 50 27 46 C27 38 36 28 44 22 L46 14 L52 21 C62 22 70 32 70 46 C70 58 66 66 66 74 Z"
+      fill="url(#cc-bN-g)" stroke="#0d0805" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="44" cy="31" r="2.4" fill="#e8822a"/>
+    <path d="M30 44 l4 -1" stroke="#0d0805" stroke-width="1.6" stroke-linecap="round"/>
+  </g>
+  <g id="embleme">
+    <g transform="translate(60 28) rotate(60)">
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#0d0805" stroke-width="4.2"/>
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#8a8f96" stroke-width="2.2" />
+    </g>
+    <g transform="translate(65 39) rotate(80)">
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#0d0805" stroke-width="4.2"/>
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#8a8f96" stroke-width="2.2" />
+    </g>
+    <g transform="translate(66 51) rotate(95)">
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#0d0805" stroke-width="4.2"/>
+      <ellipse rx="6" ry="3.6" fill="none" stroke="#8a8f96" stroke-width="2.2" stroke-dasharray="15 6"/>
+    </g>
+  </g>
+</svg>

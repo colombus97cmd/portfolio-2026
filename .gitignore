@@ -4,3 +4,9 @@ dist/
 .env
 *.log
 *.zip
+
+# Skills Claude Code (contiennent des données privées : héritage, cadastre)
+.claude/
+
+# Documents privés (stratégie, notes)
+_prive/

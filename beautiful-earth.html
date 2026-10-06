@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Earth Corp | David Colombo (colombus97)</title>
+    <meta name="description" content="Beautiful Earth Corp : data center agrivoltaïque en Guadeloupe. Ombrières solaires, calcul décentralisé, serres hors-sol sans chlordécone. Fiche de faisabilité interactive selon la surface de terrain.">
+    <meta property="og:title" content="Beautiful Earth Corp | David Colombo (colombus97)">
+    <meta property="og:description" content="Data center agrivoltaïque en Guadeloupe : simulez l'autonomie énergétique et l'amortissement selon la surface de terrain disponible.">
+    <meta property="og:image" content="https://portfolio-2026-colombod.vercel.app/assets/Logo.png">
+    <meta property="og:url" content="https://portfolio-2026-colombod.vercel.app/beautiful-earth.html">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/beautiful-earth.css">
+    <script src="js/cyber-bg.js" defer></script>
+    <script src="js/accessibility.js" defer></script>
+</head>
+<body>
+    <div class="container py-100">
+        <header class="section-header">
+            <h1 class="section-title">Beautiful<br><span>Earth Corp</span></h1>
+            <p class="section-subtitle">Data center agrivoltaïque • Sud Basse-Terre, Guadeloupe • Projet en création</p>
+        </header>
+
+        <p class="be-lead">
+            Beautiful Earth Corp transforme l'<strong>énergie solaire produite sur des terrains agricoles</strong> en puissance de calcul, sans jamais miner sur le réseau fossile. Sous les ombrières, les vergers sont protégés ; dans les serres hors-sol, on cultive des légumes <strong>garantis sans chlordécone</strong> ; la chaleur des machines sèche les récoltes et préchauffe l'eau de pluie des serres.
+        </p>
+
+        <div class="be-pillars">
+            <div class="skill-card"><span class="tag-badge">Pilier 1</span><h4 class="skill-title">Agrivoltaïsme</h4><p>Ombrières surélevées au-dessus des vergers (loi APER : 90 % du rendement agricole maintenu) et serres hydroponiques sans chlordécone.</p></div>
+            <div class="skill-card"><span class="tag-badge">Pilier 2</span><h4 class="skill-title">Calcul décentralisé</h4><p>Machines Antminer S21 XP alimentées uniquement par l'énergie du site (solaire, batteries, éolien, micro-hydro), nœud Bitcoin souverain.</p></div>
+            <div class="skill-card"><span class="tag-badge">Pilier 3</span><h4 class="skill-title">Studio MMI</h4><p>Communication visuelle pour les entreprises locales et rendu 3D de l'univers transmédia Umoja.</p></div>
+            <div class="skill-card"><span class="tag-badge">Pilier 4</span><h4 class="skill-title">Tiers-lieu</h4><p>Bar agricole « Grandeur Nature », recyclage du plastique du quartier en filament d'impression 3D.</p></div>
+        </div>
+
+        <header class="section-header">
+            <h2 class="section-title">La<br><span>Trajectoire</span></h2>
+            <p class="section-subtitle">Chaque palier de calcul n'est lancé qu'une fois son terrain et son énergie installés</p>
+        </header>
+
+        <div class="be-steps">
+            <div class="be-step">
+                <span class="tag-badge">Palier A</span>
+                <h3>6,5 PH/s</h3>
+                <span class="be-step-sub">Site pilote</span>
+                <ul>
+                    <li>~3,8 ha de terrains familiaux</li>
+                    <li>400 kWc d'ombrières + 300 kWh de batteries</li>
+                    <li>24 machines, pleine puissance le jour</li>
+                </ul>
+            </div>
+            <div class="be-step">
+                <span class="tag-badge">Palier B</span>
+                <h3>50 PH/s</h3>
+                <span class="be-step-sub">Palier de trésorerie</span>
+                <ul>
+                    <li>5,6 à 11 ha</li>
+                    <li>~3,9 MWc + ~10 MWh de batteries</li>
+                    <li>~185 machines, 24 h/24</li>
+                </ul>
+            </div>
+            <div class="be-step final">
+                <span class="tag-badge">Palier C — Objectif</span>
+                <h3>209 PH/s</h3>
+                <span class="be-step-sub">Conteneur Antspace</span>
+                <ul>
+                    <li>24 à 47 ha</li>
+                    <li>~16,5 MWc + ~44 MWh de batteries</li>
+                    <li>~775 machines, 24 h/24</li>
+                </ul>
+            </div>
+        </div>
+
+        <header class="section-header">
+            <h2 class="section-title">Fiche de<br><span>Faisabilité</span></h2>
+            <p class="section-subtitle">Que permet un terrain donné, en autonomie complète jour et nuit ?</p>
+        </header>
+
+        <div class="be-sim">
+            <div class="be-panel" aria-label="Paramètres du terrain">
+                <div class="be-control">
+                    <label for="beSurface"><span>Surface du terrain</span><strong id="beSurfaceVal">3,8 ha</strong></label>
+                    <input type="range" id="beSurface" min="0.5" max="50" step="0.1" value="3.8">
+                    <p class="be-hint">Repères : 3,8 ha (site pilote) • 5,6 à 11 ha (50 PH/s) • 24 à 47 ha (209 PH/s)</p>
+                </div>
+                <div class="be-control">
+                    <label for="beDensity"><span>Densité d'ombrières</span></label>
+                    <select id="beDensity">
+                        <option value="0.7">Optimisée — 0,7 MWc/ha (proche du plafond agrivoltaïque)</option>
+                        <option value="0.35">Prudente — 0,35 MWc/ha (vergers très ouverts)</option>
+                    </select>
+                </div>
+                <div class="be-control">
+                    <label for="beHydro"><span>Micro-hydro (si une rivière traverse le terrain)</span><strong id="beHydroVal">0 kW</strong></label>
+                    <input type="range" id="beHydro" min="0" max="30" step="1" value="0">
+                    <p class="be-hint">Production continue, jour et nuit : réduit les batteries nécessaires.</p>
+                </div>
+                <div class="be-control">
+                    <label for="beHashprice"><span>Revenu de calcul (hashprice)</span><strong id="beHashpriceVal">34 €/PH/j</strong></label>
+                    <input type="range" id="beHashprice" min="20" max="60" step="1" value="34">
+                    <p class="be-hint">25 € = scénario pessimiste • 34 € = moyenne de septembre 2026 • 50 € = scénario porteur</p>
+                </div>
+                <div class="be-control">
+                    <label for="beSubsidy"><span>Subventions sur l'énergie</span><strong id="beSubsidyVal">60 %</strong></label>
+                    <input type="range" id="beSubsidy" min="0" max="70" step="5" value="60">
+                    <p class="be-hint">Aides régionales et européennes à la transition énergétique (FEDER, Fonds Vert…)</p>
+                </div>
+            </div>
+
+            <div>
+                <div class="be-results" aria-live="polite">
+                    <div class="be-metric"><span class="lbl">Ombrières installables</span><span class="val" id="rKwc">—</span><span class="sub" id="rProd">—</span></div>
+                    <div class="be-metric accent"><span class="lbl">Calcul en continu (24 h/24)</span><span class="val" id="rPh">—</span><span class="sub" id="rMachines">—</span></div>
+                    <div class="be-metric"><span class="lbl">Batteries pour la nuit</span><span class="val" id="rBatt">—</span><span class="sub">Lithium fer phosphate</span></div>
+                    <div class="be-metric"><span class="lbl">Investissement énergie</span><span class="val" id="rCapexE">—</span><span class="sub" id="rCapexENet">—</span></div>
+                    <div class="be-metric"><span class="lbl">Électricité produite (valeur EDF)</span><span class="val" id="rAvoided">—</span><span class="sub">par an, au tarif pro ~0,18 €/kWh</span></div>
+                    <div class="be-metric accent"><span class="lbl">Amortissement de l'énergie</span><span class="val" id="rPaybackE">—</span><span class="sub">vs acheter l'électricité au réseau</span></div>
+                    <div class="be-metric"><span class="lbl">Revenu de calcul</span><span class="val" id="rRevenue">—</span><span class="sub">par an</span></div>
+                    <div class="be-metric"><span class="lbl">Trésorerie dégagée</span><span class="val" id="rCash">—</span><span class="sub">après maintenance et renouvellement des machines</span></div>
+                    <div class="be-metric"><span class="lbl">Retour sur investissement total</span><span class="val" id="rPaybackT">—</span><span class="sub" id="rCapexT">—</span></div>
+                </div>
+
+                <div class="be-verdict" id="rVerdict">—</div>
+
+                <table class="be-milestones">
+                    <thead><tr><th>Palier</th><th>Surface nécessaire (densité choisie)</th><th>Avec ce terrain</th></tr></thead>
+                    <tbody id="rMilestones"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="be-note">
+            <strong>Hypothèses (estimations indicatives, à confirmer par devis) :</strong> productible solaire 1 550 kWh/kWc/an ; 1 PH/s = 3,7 Antminer S21 XP = 13,5 kW = 118 MWh/an ; 12,5 h de nuit couvertes par batteries (80 % de décharge utile) ; ombrières 1,1 €/Wc, batteries 350 €/kWh, micro-hydro 6 000 €/kW, machines 4 500 € renouvelées tous les 4 ans ; entretien 2 150 €/PH/s par an + 1 % de l'investissement énergie. L'amortissement de l'énergie compare l'investissement (après subventions) à ce que coûterait la même électricité achetée au réseau. Ce simulateur est un outil pédagogique, pas une offre d'investissement.
+        </p>
+
+        <div class="be-cta">
+            <a href="contact.html" class="btn-neon">Devenir partenaire foncier</a>
+            <a href="projets.html" class="btn-neon outline">Retour aux projets</a>
+        </div>
+        <p class="be-note">Vous possédez un terrain agricole dans le sud de la Basse-Terre ? Les propriétaires partenaires peuvent apporter ou louer leur terrain et devenir associés : leurs actions et leurs dividendes sont proportionnels à la valeur du terrain apporté.</p>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 David Colombo (colombus97). Tous droits réservés.</p>
+        <p>3D Designer • Web3 Developer • Sound Creator • <a href="projets.html">Explorer mes archives projets</a></p>
+    </footer>
+
+    <nav class="main-nav">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="projets.html" class="nav-link active">Projets</a>
+        <a href="about.html" class="nav-link">À Propos</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <script src="js/beautiful-earth.js"></script>
+</body>
+</html>
