@@ -28,7 +28,13 @@
                 <label>Votre nom de combattant
                     <input type="text" id="pseudo" maxlength="20" placeholder="Pseudo" autocomplete="nickname">
                 </label>
-                <label>Adversaire impérial
+                <label>Mode de jeu
+                    <select id="mode">
+                        <option value="ai" selected>Contre l'IA impériale</option>
+                        <option value="online">Duel en ligne contre un joueur</option>
+                    </select>
+                </label>
+                <label id="levelField" class="full">Adversaire impérial
                     <select id="level">
                         <option value="1">Recrue — facile</option>
                         <option value="2" selected>Officier — intermédiaire</option>
@@ -50,20 +56,31 @@
         </div>
     </section>
 
+    <!-- Recherche d'adversaire -->
+    <section class="screen hidden" id="searchScreen">
+        <div class="intro search">
+            <p class="kicker">Duel en ligne</p>
+            <div class="spinner" aria-hidden="true"></div>
+            <p class="intro-text" id="searchStatus" aria-live="polite">Recherche d'un adversaire…</p>
+            <button class="btn ghost" id="btnCancelSearch">Annuler</button>
+            <p class="note">Les deux navigateurs se connectent directement (WebRTC) : votre adversaire voit votre pseudo, et votre adresse IP lui est techniquement accessible, comme dans tout jeu pair-à-pair. Aucune donnée n'est conservée.</p>
+        </div>
+    </section>
+
     <!-- Écran de jeu -->
     <main class="screen hidden" id="gameScreen">
         <header class="hud">
-            <div class="hud-side empire">
-                <span class="hud-label">Empire (IA)</span>
-                <div class="captured" id="capturedByWhite" aria-label="Pièces de la Résistance prises"></div>
+            <div class="hud-side opponent">
+                <span class="hud-label" id="labelTop">Adversaire</span>
+                <div class="captured" id="capturedTop" aria-label="Pièces prises par l'adversaire"></div>
             </div>
             <div class="hud-center">
                 <div class="chrono" id="chrono" aria-label="Temps écoulé">00:00</div>
-                <div class="info" id="info" aria-live="polite">L'Empire réfléchit…</div>
+                <div class="info" id="info" aria-live="polite"></div>
             </div>
-            <div class="hud-side resistance">
-                <span class="hud-label" id="playerName">Résistance</span>
-                <div class="captured" id="capturedByBlack" aria-label="Pièces impériales prises"></div>
+            <div class="hud-side player">
+                <span class="hud-label" id="labelBottom">Vous</span>
+                <div class="captured" id="capturedBottom" aria-label="Pièces que vous avez prises"></div>
             </div>
         </header>
 
@@ -106,10 +123,12 @@
 
     <a class="back-link" href="../projets.html">← Portfolio</a>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.5.4/peerjs.min.js" defer></script>
     <script src="sprites/sprites.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/ai.js"></script>
     <script src="js/themes.js"></script>
+    <script src="js/net.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>

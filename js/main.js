@@ -113,13 +113,13 @@ const projectsData = [
     {
         titre: "Chains & Crowns : Édition 2D (Guadeloupe 1802)",
         tag: "Code",
-        desc: "Recréation web de mon jeu d'échecs : la Résistance guadeloupéenne de 1802 contre l'IA impériale, avec des sprites vectoriels prêts pour l'animation.",
+        desc: "Recréation web de mon jeu d'échecs : la Résistance guadeloupéenne de 1802 contre l'IA impériale ou en duel en ligne, avec des sprites vectoriels prêts pour l'animation.",
         link: "chains-and-crowns/index.html",
         img: "assets/affiche_chains_crowns.webp",
         category: "Projet Perso",
         contexte: "Mai 1802 : face au rétablissement de l'esclavage, Louis Delgrès, Ignace et la Mulâtresse Solitude mènent la résistance. Le joueur dirige la Résistance contre une IA qui incarne l'armée napoléonienne.",
-        demarche: "Moteur de règles complet en JavaScript (vérifié par tests perft), IA negamax alpha-bêta à 3 niveaux, 12 pièces-objets SVG générées par script et découpées en calques animables, notation S à F en fin de partie, packs de skins interchangeables.",
-        outils: ["JavaScript", "SVG", "Animation CSS", "IA de jeu", "Game Design"]
+        demarche: "Moteur de règles complet en JavaScript (vérifié par tests perft), IA negamax alpha-bêta à 3 niveaux, duels en ligne pair-à-pair (WebRTC/PeerJS) avec recherche d'adversaire sans serveur, 12 pièces-objets SVG générées par script et découpées en calques animables, notation S à F en fin de partie, packs de skins interchangeables.",
+        outils: ["JavaScript", "SVG", "Animation CSS", "IA de jeu", "WebRTC", "Game Design"]
     },
     {
         titre: "SAE 2.02 : WARA - Mode Éco-Responsable",
