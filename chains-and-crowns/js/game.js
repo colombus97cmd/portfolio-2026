@@ -18,6 +18,7 @@
     };
 
     let mode, me, them, level, pseudo, opponent, opponentElo, stakeAmount = 0;
+    const AUTOPLAY = new URLSearchParams(location.search).get('demo') === 'auto';
     let state, selected, targets, lastMove, history, startTime, timer, busy, over;
 
     // ---------------- Stockage local (tolérant aux navigateurs qui le bloquent) ----------------
@@ -177,11 +178,11 @@
         if (st === 'fifty') return finish('draw', 'Règle des 50 coups : partie nulle.');
         if (st === 'insufficient') return finish('draw', 'Matériel insuffisant : partie nulle.');
 
-        if (state.turn === me) {
+        if (state.turn === me && !AUTOPLAY) {
             setInfo(st === 'check' ? 'Votre Roi est en échec !' : 'À vous de jouer.', st === 'check');
             return;
         }
-        const label = mode === 'ai' ? 'L\'Empire' : opponent;
+        const label = mode !== 'ai' ? opponent : state.turn === 'w' ? 'L\'Empire' : 'La Résistance';
         setInfo(st === 'check' ? `Échec ! ${label} réfléchit…` : `${label} réfléchit…`, st === 'check');
         if (mode === 'ai') {
             busy = true;
@@ -189,7 +190,7 @@
                 const m = AI.bestMove(state, level);
                 busy = false;
                 if (!over) play(m);
-            }, 380);
+            }, AUTOPLAY ? 1100 : 380);
         }
     }
 
@@ -280,8 +281,9 @@
         const versus = mode === 'ai' ? `niveau ${['', 'Recrue', 'Officier', 'Général'][level]}` : `contre ${opponent}`;
         const n = Math.ceil(history.length / 2);
         $('endDetails').textContent = `${reason} ${n} coup${n > 1 ? 's' : ''} en ${els.chrono.textContent}, ${versus}.`;
-        if (result === 'win') store.set({ pseudo, grade: g, date: new Date().toISOString().slice(0, 10) });
-        const gain = Progress.record({ mode, level, result: result === 'resign' ? 'loss' : result, stake: stakeAmount, moves: n, grade: g, opponentElo });
+        if (result === 'win' && !AUTOPLAY) store.set({ pseudo, grade: g, date: new Date().toISOString().slice(0, 10) });
+        // Une démonstration (IA contre IA) ne compte pas dans la progression du joueur.
+        const gain = AUTOPLAY ? { cauris: 0, elo: 0, badges: [] } : Progress.record({ mode, level, result: result === 'resign' ? 'loss' : result, stake: stakeAmount, moves: n, grade: g, opponentElo });
         const parts = [];
         if (gain.cauris > 0) parts.push(`+${gain.cauris} cauris (mise rendue)`);
         else if (gain.cauris < 0) parts.push(`${gain.cauris} cauris`);
@@ -388,4 +390,11 @@
     if (!Themes.apply(Progress.profile.theme)) Themes.apply('edition-1802');
     showChampion();
     renderProfile(Progress.claimDaily());
+
+    // Mode démonstration (?demo=auto[&niveau=1..3]) : l'IA joue les deux camps, sans mise, pour les vidéos promotionnelles.
+    if (AUTOPLAY) {
+        pseudo = 'Démonstration';
+        level = Math.min(3, Math.max(1, parseInt(new URLSearchParams(location.search).get('niveau'), 10) || 2));
+        setTimeout(() => start('ai', 'b'), 1500);
+    }
 })();
