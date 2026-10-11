@@ -30,7 +30,7 @@ Set-Content -Encoding utf8 -Path (Join-Path $stage 'js\edition.js') -Value @"
 window.CC_EDITION = 'complete';
 "@
 Remove-Item -Force (Join-Path $stage 'js\install.js')
-(Get-Content -Raw -Encoding utf8 (Join-Path $stage 'index.html')).Replace('    <script src="js/install.js"></script>' + "`n", '') |
+(Get-Content -Raw -Encoding utf8 (Join-Path $stage 'index.html')) -replace '[ \t]*<script src="js/install\.js"></script>\r?\n', '' |
     Set-Content -Encoding utf8 -NoNewline (Join-Path $stage 'index.html')
 
 # tar (inclus dans Windows 10 et 11) écrit des chemins avec « / », comme l'exige le vérificateur de BeamUp.
