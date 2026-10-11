@@ -75,12 +75,14 @@ const Net = (() => {
 
     /**
      * Cherche un adversaire. onStatus(texte) informe l'interface.
-     * Résout { color, opponent } : la couleur jouée localement et le pseudo adverse.
+     * Résout { color, opponent, opponentElo } : la couleur jouée localement, le pseudo et le classement adverses.
+     * Le classement est déclaré par chaque joueur : il ne sert qu'au calcul Elo local, sans aucun enjeu.
      */
-    async function findMatch(pseudo, onStatus) {
+    async function findMatch(pseudo, onStatus, elo = 1000) {
         if (typeof Peer === 'undefined') throw new Error('Le module de connexion (PeerJS) n\'a pas pu être chargé.');
         cancelled = false;
-        const hello = { type: 'hello', pseudo, protocol: PROTOCOL };
+        const hello = { type: 'hello', pseudo, elo, protocol: PROTOCOL };
+        const rating = (v) => Math.min(3000, Math.max(100, Number(v) || 1000));
 
         for (let slot = 0; slot < SLOTS && !cancelled; slot++) {
             onStatus(`Recherche d'un adversaire… (salle ${slot + 1}/${SLOTS})`);
@@ -96,15 +98,15 @@ const Net = (() => {
                             if (conn || msg.protocol !== PROTOCOL) { c.send({ type: 'busy' }); setTimeout(() => c.close(), 200); return; }
                             const hostColor = Math.random() < 0.5 ? 'w' : 'b';
                             attach(c);
-                            send({ type: 'welcome', pseudo, guestColor: hostColor === 'w' ? 'b' : 'w' });
-                            resolve({ color: hostColor, opponent: String(msg.pseudo || 'Anonyme').slice(0, 20) });
+                            send({ type: 'welcome', pseudo, elo, guestColor: hostColor === 'w' ? 'b' : 'w' });
+                            resolve({ color: hostColor, opponent: String(msg.pseudo || 'Anonyme').slice(0, 20), opponentElo: rating(msg.elo) });
                         });
                     });
                 });
             }
 
             const reply = await joinSlot(slot, hello);
-            if (reply.type === 'welcome') return { color: reply.guestColor, opponent: String(reply.pseudo || 'Anonyme').slice(0, 20) };
+            if (reply.type === 'welcome') return { color: reply.guestColor, opponent: String(reply.pseudo || 'Anonyme').slice(0, 20), opponentElo: rating(reply.elo) };
         }
         throw new Error(cancelled ? 'Recherche annulée.' : 'Toutes les salles sont occupées, réessayez dans un instant.');
     }

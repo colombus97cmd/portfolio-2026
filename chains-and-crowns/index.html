@@ -9,7 +9,10 @@
     <meta property="og:description" content="Jouez la Résistance de 1802 contre l'IA impériale. Un jeu d'échecs de David Colombo (colombus97).">
     <meta property="og:image" content="https://portfolio-2026-colombod.vercel.app/assets/affiche_chains_crowns.png">
     <meta property="og:type" content="website">
-    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta name="theme-color" content="#0c0806">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/game.css">
@@ -41,9 +44,40 @@
                         <option value="3">Général — difficile</option>
                     </select>
                 </label>
+                <label id="stakeField" class="full">Mise en cauris
+                    <select id="stake">
+                        <option value="0" selected>Sans mise</option>
+                        <option value="10">10 cauris</option>
+                        <option value="25">25 cauris</option>
+                        <option value="50">50 cauris</option>
+                        <option value="100">100 cauris</option>
+                    </select>
+                    <span class="hint" id="stakeHint"></span>
+                </label>
                 <button type="submit" class="btn">Entrer dans la bataille</button>
             </form>
             <p class="champion" id="championLine"></p>
+
+            <section class="profile" aria-labelledby="profileTitle">
+                <h2 id="profileTitle">Votre campagne</h2>
+                <div class="stats">
+                    <div><span class="stat" id="statCauris">0</span><span class="stat-label">cauris</span></div>
+                    <div><span class="stat" id="statElo">1000</span><span class="stat-label">classement Elo</span></div>
+                    <div><span class="stat" id="statRecord">0 / 0 / 0</span><span class="stat-label">victoires / nulles / défaites</span></div>
+                </div>
+                <p class="gift" id="giftLine" aria-live="polite"></p>
+                <h3>Badges</h3>
+                <ul class="badges" id="badges"></ul>
+                <h3>Plateaux</h3>
+                <div class="themes" id="themes"></div>
+                <p class="note legal">Les cauris sont gratuits : on en reçoit au départ et chaque jour. Ils ne s'achètent pas, ne s'échangent pas entre joueurs et ne se convertissent ni en argent, ni en crypto, ni en NFT. Aucune partie ne se joue en argent réel. Votre progression reste enregistrée sur cet appareil.</p>
+            </section>
+
+            <button class="btn ghost hidden" id="btnInstall">Installer le jeu</button>
+            <p class="edition-line hidden" id="editionLine">
+                Version démo : niveau Recrue et plateau Édition 1802. L'<strong>édition complète</strong> (Officier, Général et tous les plateaux) est disponible sur
+                <a href="https://beamup.beautifull-earthcorp.tech/jeux" target="_blank" rel="noopener">BeamUp</a>.
+            </p>
             <details class="history">
                 <summary>Repères historiques</summary>
                 <ul>
@@ -114,6 +148,7 @@
             <div class="grade" id="endGrade">S</div>
             <p class="grade-label" id="endGradeLabel"></p>
             <p id="endDetails"></p>
+            <p class="rewards" id="endRewards"></p>
             <div class="side-actions">
                 <button class="btn" id="btnReplay">Rejouer</button>
                 <button class="btn ghost" id="btnEndMenu">Menu</button>
@@ -127,8 +162,11 @@
     <script src="sprites/sprites.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/ai.js"></script>
+    <script src="js/edition.js"></script>
+    <script src="js/progress.js"></script>
     <script src="js/themes.js"></script>
     <script src="js/net.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/install.js"></script>
 </body>
 </html>

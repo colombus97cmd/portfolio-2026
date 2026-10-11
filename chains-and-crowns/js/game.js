@@ -1,7 +1,8 @@
 /* CHAINS & CROWNS — Déroulement de la partie
    Deux modes :
    - « ai »     : le joueur mène la Résistance (noirs) ; l'IA impériale (blancs) ouvre la partie.
-   - « online » : duel entre deux joueurs, camps tirés au sort (voir js/net.js). */
+   - « online » : duel entre deux joueurs, camps tirés au sort (voir js/net.js).
+   Les mises se font uniquement en cauris, monnaie gratuite et sans valeur (voir js/progress.js). */
 
 (() => {
     const NAMES = { P: 'Pion', N: 'Cavalier', B: 'Fou', R: 'Tour', Q: 'Dame', K: 'Roi' };
@@ -16,7 +17,7 @@
         promo: $('promoModal'), promoChoices: $('promoChoices'), end: $('endModal'), searchStatus: $('searchStatus'),
     };
 
-    let mode, me, them, level, pseudo, opponent;
+    let mode, me, them, level, pseudo, opponent, opponentElo, stakeAmount = 0;
     let state, selected, targets, lastMove, history, startTime, timer, busy, over;
 
     // ---------------- Stockage local (tolérant aux navigateurs qui le bloquent) ----------------
@@ -28,6 +29,50 @@
     function showChampion() {
         const c = store.get();
         $('championLine').textContent = c ? `Dernier champion : ${c.pseudo} — note ${c.grade} (${GRADES[c.grade]})` : '';
+    }
+
+    // ---------------- Profil : cauris, Elo, badges, plateaux ----------------
+    function stakeHint() {
+        const amount = parseInt($('stake').value, 10);
+        const lvl = parseInt($('level').value, 10);
+        $('stakeHint').textContent = amount
+            ? `Victoire : mise rendue + ${Math.round(amount * Progress.AI_PAYOUT[lvl])} cauris. Nulle : mise rendue. Défaite : mise perdue.`
+            : 'Partie libre, sans cauris en jeu.';
+    }
+
+    function renderProfile(gift = 0) {
+        const p = Progress.profile;
+        $('statCauris').textContent = p.cauris;
+        $('statElo').textContent = p.elo;
+        $('statRecord').textContent = `${p.wins} / ${p.draws} / ${p.losses}`;
+        $('giftLine').textContent = gift ? `+${gift} cauris offerts aujourd'hui.` : '';
+        [...$('stake').options].forEach((o) => { o.disabled = parseInt(o.value, 10) > p.cauris; });
+        if ($('stake').selectedOptions[0].disabled) $('stake').value = '0';
+        stakeHint();
+
+        $('badges').innerHTML = Object.entries(Progress.BADGES).map(([id, b]) =>
+            `<li class="${p.badges.includes(id) ? 'earned' : ''}" title="${b.text}"><strong>${b.name}</strong><span>${b.text}</span></li>`).join('');
+
+        const box = $('themes');
+        box.innerHTML = '';
+        Themes.list().forEach((t) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'theme' + (Themes.current.id === t.id ? ' active' : '');
+            btn.style.setProperty('--tl', t.board.light);
+            btn.style.setProperty('--td', t.board.dark);
+            const owned = Themes.owned(t.id);
+            const demoLocked = !Themes.full && t.price > 0;
+            btn.innerHTML = `<span class="swatch" aria-hidden="true"></span><span>${t.name}</span><small>${Themes.current.id === t.id ? 'Actif' : owned ? 'Choisir' : demoLocked ? 'Édition complète' : t.price + ' cauris'}</small>`;
+            btn.disabled = demoLocked || (!owned && t.price > p.cauris);
+            btn.addEventListener('click', () => {
+                if (!owned && !Progress.unlockTheme(t.id, t.price)) return;
+                Themes.apply(t.id);
+                Progress.setTheme(t.id);
+                renderProfile();
+            });
+            box.appendChild(btn);
+        });
     }
 
     function showScreen(name) {
@@ -197,8 +242,9 @@
         showScreen('search');
         els.searchStatus.textContent = 'Connexion au service de mise en relation…';
         try {
-            const match = await Net.findMatch(pseudo, (t) => { els.searchStatus.textContent = t; });
+            const match = await Net.findMatch(pseudo, (t) => { els.searchStatus.textContent = t; }, Progress.profile.elo);
             opponent = match.opponent;
+            opponentElo = match.opponentElo;
             start('online', match.color);
         } catch (err) {
             Net.close();
@@ -235,6 +281,15 @@
         const n = Math.ceil(history.length / 2);
         $('endDetails').textContent = `${reason} ${n} coup${n > 1 ? 's' : ''} en ${els.chrono.textContent}, ${versus}.`;
         if (result === 'win') store.set({ pseudo, grade: g, date: new Date().toISOString().slice(0, 10) });
+        const gain = Progress.record({ mode, level, result: result === 'resign' ? 'loss' : result, stake: stakeAmount, moves: n, grade: g, opponentElo });
+        const parts = [];
+        if (gain.cauris > 0) parts.push(`+${gain.cauris} cauris (mise rendue)`);
+        else if (gain.cauris < 0) parts.push(`${gain.cauris} cauris`);
+        else if (stakeAmount && result === 'draw') parts.push('Mise rendue');
+        parts.push(`Elo ${gain.elo >= 0 ? '+' : ''}${gain.elo} (${Progress.profile.elo})`);
+        gain.badges.forEach((b) => parts.push(`Badge « ${b.name} »`));
+        $('endRewards').textContent = parts.join(' · ');
+        stakeAmount = 0;
         setInfo(reason, result !== 'win');
         render(false);
         $('btnReplay').textContent = mode === 'online' ? 'Nouvel adversaire' : 'Rejouer';
@@ -268,23 +323,40 @@
         afterMove();
     }
 
+    /** Partie contre l'IA : la mise en cauris est engagée au lancement. */
+    function startAI() {
+        const amount = parseInt($('stake').value, 10) || 0;
+        if (!Progress.stake(amount)) { toMenu(); return; }
+        stakeAmount = amount;
+        start('ai', 'b');
+    }
+
     function toMenu() {
         if (mode === 'online' && !over) Net.send({ type: 'resign' });
+        if (state && !over) Progress.record({ mode, level, result: 'loss', stake: stakeAmount, moves: Math.ceil(history.length / 2), opponentElo });
+        stakeAmount = 0;
         over = true;
         clearInterval(timer);
         Net.close();
         els.end.classList.add('hidden');
         showScreen('intro');
         showChampion();
+        renderProfile();
     }
 
-    $('mode').addEventListener('change', () => { $('levelField').classList.toggle('hidden', $('mode').value !== 'ai'); });
+    $('mode').addEventListener('change', () => {
+        const ai = $('mode').value === 'ai';
+        $('levelField').classList.toggle('hidden', !ai);
+        $('stakeField').classList.toggle('hidden', !ai);
+    });
+    $('level').addEventListener('change', stakeHint);
+    $('stake').addEventListener('change', stakeHint);
     $('introForm').addEventListener('submit', (e) => {
         e.preventDefault();
         pseudo = $('pseudo').value.trim().slice(0, 20) || 'Combattant anonyme';
         level = parseInt($('level').value, 10);
         if ($('mode').value === 'online') searchOpponent();
-        else start('ai', 'b');
+        else startAI();
     });
     els.board.addEventListener('click', (e) => {
         const sq = e.target.closest('.square');
@@ -298,10 +370,22 @@
     });
     $('btnMenu').addEventListener('click', toMenu);
     $('btnEndMenu').addEventListener('click', toMenu);
-    $('btnReplay').addEventListener('click', () => (mode === 'online' ? searchOpponent() : start('ai', 'b')));
+    $('btnReplay').addEventListener('click', () => (mode === 'online' ? searchOpponent() : startAI()));
     window.addEventListener('resize', () => { if (!els.game.classList.contains('hidden')) render(false); });
     window.addEventListener('beforeunload', () => { if (mode === 'online' && !over) Net.send({ type: 'resign' }); });
 
-    Themes.apply('edition-1802');
+    // Démo : niveaux Officier et Général réservés à l'édition complète (BeamUp).
+    if (!Themes.full) {
+        [...$('level').options].forEach((o) => {
+            if (o.value !== '1') { o.disabled = true; o.textContent += ' (édition complète)'; }
+        });
+        $('level').value = '1';
+        $('editionLine').classList.remove('hidden');
+    } else {
+        document.querySelector('.back-link')?.remove();
+    }
+
+    if (!Themes.apply(Progress.profile.theme)) Themes.apply('edition-1802');
     showChampion();
+    renderProfile(Progress.claimDaily());
 })();
