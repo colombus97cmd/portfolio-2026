@@ -54,8 +54,17 @@
                     </select>
                     <span class="hint" id="stakeHint"></span>
                 </label>
+                <label class="full check-line"><input type="checkbox" id="mentor" checked> Mentor : conseils pendant les parties contre l'IA (pièces en prise, indice)</label>
                 <button type="submit" class="btn">Entrer dans la bataille</button>
             </form>
+            <div class="intro-links">
+                <button class="btn ghost" id="btnSchool" type="button">École de la Résistance</button>
+                <button class="btn ghost" id="btnArena" type="button">Tournoi contre l'IA</button>
+            </div>
+            <div class="rank-box">
+                <p class="rank-line" data-rank-line></p>
+                <div class="rank-track"><div class="rank-bar" id="rankBar"></div></div>
+            </div>
             <p class="champion" id="championLine"></p>
 
             <section class="profile" aria-labelledby="profileTitle">
@@ -101,6 +110,61 @@
         </div>
     </section>
 
+    <!-- École de la Résistance (js/school.js, programme dans js/lessons.js) -->
+    <section class="screen hidden" id="schoolScreen">
+        <div class="intro school-page">
+            <p class="kicker">Apprendre les échecs</p>
+            <h1 class="title small">École de la Résistance</h1>
+            <div class="rank-box">
+                <p class="rank-line" data-rank-line></p>
+                <div class="rank-track"><div class="rank-bar"></div></div>
+            </div>
+            <div id="schoolMap" class="school-map"></div>
+            <div id="schoolLesson" class="school-lesson hidden">
+                <h2 id="lessonTitle"></h2>
+                <div id="lessonText" class="lesson-text"></div>
+                <p class="ex-count" id="exCount"></p>
+                <p class="ex-task" id="exTask"></p>
+                <div class="board-wrap school-board-wrap"><div class="board" id="schoolBoard" role="grid" aria-label="Plateau d'exercice"></div></div>
+                <p class="ex-feedback" id="exFeedback" aria-live="polite"></p>
+                <div class="side-actions center">
+                    <button class="btn ghost" id="btnExHint" type="button">Indice</button>
+                    <button class="btn ghost" id="btnExSolution" type="button">Voir la solution</button>
+                    <button class="btn ghost" id="btnExReset" type="button">Recommencer</button>
+                    <button class="btn hidden" id="btnExNext" type="button">Exercice suivant</button>
+                </div>
+                <button class="btn ghost" id="btnLessonBack" type="button">Toutes les leçons</button>
+            </div>
+            <button class="btn ghost" id="btnSchoolMenu" type="button">Menu du jeu</button>
+        </div>
+    </section>
+
+    <!-- Tournoi hors ligne contre l'IA (js/arena.js) -->
+    <section class="screen hidden" id="arenaScreen">
+        <div class="intro arena-page">
+            <p class="kicker">Hors ligne · sans mise</p>
+            <h1 class="title small">Tournoi contre l'IA</h1>
+            <p class="intro-text">Quatre rondes en système suisse face à sept adversaires. Chaque partie rapporte de l'expérience pour l'École ; le vainqueur gagne un titre.</p>
+            <div class="rank-box">
+                <p class="rank-line" data-rank-line></p>
+            </div>
+            <p class="arena-titles" id="arenaTitles"></p>
+            <div id="arenaTiers" class="tiers"></div>
+            <div id="arenaCurrent" class="hidden">
+                <h2 id="arenaName"></h2>
+                <p class="t-round" id="arenaRound"></p>
+                <p class="arena-note" id="arenaNote"></p>
+                <p class="t-status" id="arenaNext"></p>
+                <div class="side-actions center">
+                    <button class="btn" id="btnArenaPlay" type="button">Jouer la ronde</button>
+                    <button class="btn ghost" id="btnArenaQuit" type="button">Abandonner le tournoi</button>
+                </div>
+                <table class="standings" id="arenaTable"></table>
+            </div>
+            <button class="btn ghost" id="btnArenaMenu" type="button">Menu du jeu</button>
+        </div>
+    </section>
+
     <!-- Tournoi (lien personnel ?tournoi=…, voir js/tournament.js) -->
     <section class="screen hidden" id="tournamentScreen">
         <div class="intro tournament">
@@ -130,6 +194,7 @@
             <div class="hud-center">
                 <div class="chrono" id="chrono" aria-label="Temps écoulé">00:00</div>
                 <div class="info" id="info" aria-live="polite"></div>
+                <div class="mentor-tip hidden" id="mentorTip" aria-live="polite"></div>
             </div>
             <div class="hud-side player">
                 <span class="hud-label" id="labelBottom">Vous</span>
@@ -145,6 +210,7 @@
                 <h2>Coups joués</h2>
                 <ol class="moves" id="moves"></ol>
                 <div class="side-actions">
+                    <button class="btn ghost hidden" id="btnHint">Indice</button>
                     <button class="btn ghost" id="btnResign">Abandonner</button>
                     <button class="btn ghost" id="btnMenu">Menu</button>
                 </div>
@@ -186,6 +252,10 @@
     <script src="js/themes.js"></script>
     <script src="js/net.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/lessons.js"></script>
+    <script src="js/school-rules.js"></script>
+    <script src="js/school.js"></script>
+    <script src="js/arena.js"></script>
     <script src="js/tournament.js"></script>
     <script src="js/install.js"></script>
 </body>

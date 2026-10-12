@@ -23,6 +23,11 @@
     let state, selected, targets, lastMove, history, startTime, timer, busy, over;
     // Partie de tournoi : { clock: { w, b } (ms restantes), turnAt, onEnd(result, reason, moves), back() } ; null sinon.
     let tour = null;
+    // Partie du tournoi hors ligne (js/arena.js) : { opponent, onEnd(result), back() } ; null sinon.
+    let aiCtx = null;
+    // Mentor : conseils pendant les parties contre l'IA (pièces en prise, indice).
+    const MENTOR_KEY = 'chainsAndCrowns.mentor';
+    let mentor = (() => { try { return localStorage.getItem(MENTOR_KEY) !== '0'; } catch { return true; } })();
     const fmtClock = (ms) => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; };
     const clockLeft = (c) => tour.clock[c] - (state.turn === c && !over ? Date.now() - tour.turnAt : 0);
 
@@ -82,10 +87,8 @@
     }
 
     function showScreen(name) {
-        $('tournamentScreen')?.classList.toggle('hidden', name !== 'tournament');
-        els.intro.classList.toggle('hidden', name !== 'intro');
-        els.search.classList.toggle('hidden', name !== 'search');
-        els.game.classList.toggle('hidden', name !== 'game');
+        document.querySelectorAll('.screen').forEach((el) => el.classList.toggle('hidden', el.id !== name + 'Screen'));
+        window.scrollTo(0, 0);
     }
 
     // ---------------- Affichage ----------------
@@ -173,6 +176,7 @@
             addHistory(prev, m, state);
             render(true);
             afterMove();
+            mentorTip(m);
         };
         const victimSq = m.enPassant ? m.to + (m.piece[0] === 'w' ? 8 : -8) : m.to;
         const victim = m.captured && els.board.querySelector(`[data-sq="${victimSq}"] .piece-svg`);
@@ -180,6 +184,33 @@
             victim.classList.add('captured-out');
             setTimeout(doMove, 180);
         } else doMove();
+    }
+
+    // ---------------- Mentor ----------------
+    /** Pièces de `color` attaquées et non protégées (hors roi), la pièce `first` en tête. */
+    function hanging(st, color, first) {
+        const list = [];
+        st.board.forEach((p, sq) => {
+            if (!p || p[0] !== color || p[1] === 'K') return;
+            if (Engine.isAttacked(st.board, sq, Engine.other(color)) && !Engine.isAttacked(st.board, sq, color)) list.push(sq);
+        });
+        return list.sort((a, b) => (b === first) - (a === first) || AI.VALUE[st.board[b][1]] - AI.VALUE[st.board[a][1]]);
+    }
+
+    function mentorTip(m) {
+        const box = $('mentorTip');
+        if (!box) return;
+        const show = (text) => { box.textContent = text; box.classList.toggle('hidden', !text); };
+        if (!mentor || mode !== 'ai' || over || AUTOPLAY) return show('');
+        const label = (sq) => `${NAMES[state.board[sq][1]].toLowerCase()} en ${Engine.name(sq)}`;
+        if (m.piece[0] === me) {
+            const mine = hanging(state, me, m.to);
+            return show(mine.length ? `Mentor : votre ${label(mine[0])} n'est pas protégé, l'adversaire peut le prendre.` : '');
+        }
+        const theirs = hanging(state, them);
+        if (theirs.length) return show(`Mentor : la pièce adverse (${label(theirs[0])}) n'est pas protégée. Pouvez-vous la prendre ?`);
+        const mine = hanging(state, me);
+        show(mine.length ? `Mentor : attention, votre ${label(mine[0])} est attaqué et sans protection.` : '');
     }
 
     function afterMove() {
@@ -194,7 +225,7 @@
             setInfo(st === 'check' ? 'Votre Roi est en échec !' : 'À vous de jouer.', st === 'check');
             return;
         }
-        const label = mode !== 'ai' ? opponent : state.turn === 'w' ? 'L\'Empire' : 'La Résistance';
+        const label = mode !== 'ai' ? opponent : aiCtx ? aiCtx.opponent : state.turn === 'w' ? 'L\'Empire' : 'La Résistance';
         setInfo(st === 'check' ? `Échec ! ${label} réfléchit…` : `${label} réfléchit…`, st === 'check');
         if (mode === 'ai') {
             busy = true;
@@ -291,7 +322,7 @@
                 : `Victoire ${winnerFaction === 'Empire' ? 'de l\'Empire' : 'de la Résistance'}`;
         $('endGrade').textContent = g;
         $('endGradeLabel').textContent = GRADES[g];
-        const versus = mode === 'ai' ? `niveau ${['', 'Recrue', 'Officier', 'Général'][level]}` : `contre ${opponent}`;
+        const versus = aiCtx ? `contre ${aiCtx.opponent}` : mode === 'ai' ? `niveau ${['', 'Recrue', 'Officier', 'Général'][level]}` : `contre ${opponent}`;
         const n = Math.ceil(history.length / 2);
         $('endDetails').textContent = `${reason} ${n} coup${n > 1 ? 's' : ''} en ${tour ? fmtClock(Date.now() - startTime) : els.chrono.textContent}, ${versus}.`;
         if (result === 'win' && !AUTOPLAY) store.set({ pseudo, grade: g, date: new Date().toISOString().slice(0, 10) });
@@ -314,6 +345,16 @@
         if (tour) {
             $('btnReplay').textContent = 'Retour au tournoi';
             tour.onEnd(result === 'resign' ? 'loss' : result, reason, history.slice());
+        }
+        $('mentorTip')?.classList.add('hidden');
+        if (aiCtx) {
+            $('btnReplay').textContent = 'Retour au tournoi';
+            aiCtx.onEnd(result === 'resign' ? 'loss' : result);
+        } else if (mode === 'ai' && result === 'win' && !AUTOPLAY && window.School) {
+            // Victoire contre l'IA hors tournoi : expérience pour l'École.
+            const xp = [0, 10, 20, 30][level];
+            const promoted = School.addXp(xp);
+            $('endRewards').textContent += ` · +${xp} XP${promoted ? ` — Nouveau rang : ${promoted.name} !` : ''}`;
         }
     }
 
@@ -341,11 +382,13 @@
         els.chrono.setAttribute('aria-label', tour ? 'Votre temps · temps de l’adversaire' : 'Temps écoulé');
         els.chrono.textContent = tour ? `${fmtClock(tour.clock[me])} · ${fmtClock(tour.clock[them])}` : '00:00';
         els.moves.innerHTML = '';
-        const themName = mode === 'ai' ? 'IA' : opponent;
+        const themName = mode === 'ai' ? (aiCtx ? aiCtx.opponent : 'IA') : opponent;
         els.labelTop.textContent = `${FACTION[them]} — ${themName}`;
         els.labelBottom.textContent = `${FACTION[me]} — ${pseudo}`;
         els.end.classList.add('hidden');
         showScreen('game');
+        $('btnHint')?.classList.toggle('hidden', mode !== 'ai' || !mentor || AUTOPLAY);
+        $('mentorTip')?.classList.add('hidden');
         render(false);
         if (mode === 'online') setInfo(me === 'w' ? `Vous menez l'Empire contre ${opponent}. À vous d'ouvrir !` : `Vous menez la Résistance contre ${opponent}.`);
         afterMove();
@@ -360,6 +403,16 @@
     }
 
     function toMenu() {
+        if (aiCtx) {
+            if (!over && !confirm('Quitter la partie compte comme une défaite dans le tournoi. Continuer ?')) return;
+            if (!over) finish('resign', 'Vous avez abandonné.');
+            const back = aiCtx.back;
+            aiCtx = null;
+            clearInterval(timer);
+            els.end.classList.add('hidden');
+            back();
+            return;
+        }
         if (tour) {
             if (!over && !confirm('Quitter la partie compte comme un abandon. Continuer ?')) return;
             if (!over) { Net.send({ type: 'resign' }); finish('resign', 'Vous avez abandonné.'); }
@@ -409,7 +462,18 @@
     });
     $('btnMenu').addEventListener('click', toMenu);
     $('btnEndMenu').addEventListener('click', toMenu);
-    $('btnReplay').addEventListener('click', () => (tour ? toMenu() : mode === 'online' ? searchOpponent() : startAI()));
+    $('btnReplay').addEventListener('click', () => (tour || aiCtx ? toMenu() : mode === 'online' ? searchOpponent() : startAI()));
+    // Indice du mentor : le coup que jouerait l'IA Générale, surligné sur le plateau.
+    $('btnHint')?.addEventListener('click', () => {
+        if (over || mode !== 'ai' || state.turn !== me) return;
+        const m = AI.bestMove(state, 3);
+        if (!m) return;
+        render(false);
+        els.board.querySelectorAll(`[data-sq="${m.from}"], [data-sq="${m.to}"]`).forEach((b) => b.classList.add('suggest'));
+        setInfo(`Indice : ${NAMES[m.piece[1]].toLowerCase()} de ${Engine.name(m.from)} vers ${Engine.name(m.to)}.`);
+    });
+    $('mentor')?.addEventListener('change', (e) => { mentor = e.target.checked; try { localStorage.setItem(MENTOR_KEY, mentor ? '1' : '0'); } catch { /* ignoré */ } });
+    if ($('mentor')) $('mentor').checked = mentor;
     window.addEventListener('resize', () => { if (!els.game.classList.contains('hidden')) render(false); });
     window.addEventListener('beforeunload', () => { if (mode === 'online' && !over) Net.send({ type: 'resign' }); });
 
@@ -431,6 +495,14 @@
     // Interface pour le mode tournoi (js/tournament.js).
     window.CCGame = {
         showScreen,
+        /** Partie du tournoi hors ligne contre une IA : opts = { level, color, opponent, onEnd, back }. */
+        startAIGame(opts) {
+            pseudo = $('pseudo').value.trim().slice(0, 20) || 'Combattant anonyme';
+            level = opts.level;
+            stakeAmount = 0;
+            aiCtx = { opponent: opts.opponent, onEnd: opts.onEnd, back: opts.back };
+            start('ai', opts.color);
+        },
         /** Lance une partie de tournoi déjà connectée : opts = { color, opponent, pseudo, minutes, onEnd, back }. */
         startTournamentGame(opts) {
             pseudo = opts.pseudo;

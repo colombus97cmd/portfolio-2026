@@ -185,5 +185,17 @@ const Engine = (() => {
         return type + capture + name(m.to) + (m.promo ? '=' + m.promo : '');
     }
 
-    return { initial, legalMoves, makeMove, status, inCheck, kingSquare, notation, name, row, col, other };
+    /** Position d'exercice : { e1: 'wK', ... }, camp au trait, droits de roque et case de prise en passant éventuels. */
+    function fromLayout(layout, turn = 'w', options = {}) {
+        const board = new Array(64).fill(null);
+        for (const [sq, p] of Object.entries(layout)) board[(8 - Number(sq[1])) * 8 + FILES.indexOf(sq[0])] = p;
+        const castling = { wK: false, wQ: false, bK: false, bQ: false, ...(options.castling || {}) };
+        const ep = options.ep ? (8 - Number(options.ep[1])) * 8 + FILES.indexOf(options.ep[0]) : null;
+        return { board, turn, castling, ep, halfmove: 0, fullmove: 1 };
+    }
+
+    /** Case « e4 » → index. */
+    const square = (n) => (8 - Number(n[1])) * 8 + FILES.indexOf(n[0]);
+
+    return { initial, legalMoves, makeMove, status, inCheck, kingSquare, notation, name, row, col, other, isAttacked, fromLayout, square };
 })();

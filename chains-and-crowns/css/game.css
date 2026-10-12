@@ -203,3 +203,48 @@ body {
 .standings th:nth-child(n+3), .standings td:nth-child(n+3) { text-align: right; }
 .standings tr.me td { color: var(--gold); font-weight: 700; }
 .standings tr.out td { opacity: 0.5; }
+
+/* École de la Résistance, tournoi hors ligne, mentor */
+#schoolScreen, #arenaScreen { display: grid; place-items: start center; }
+#schoolScreen.hidden, #arenaScreen.hidden { display: none !important; }
+.school-page, .arena-page { display: grid; justify-items: center; gap: 16px; width: 100%; max-width: 760px; }
+.intro-links { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px; }
+.check-line { display: flex !important; flex-direction: row; align-items: center; gap: 8px; }
+.rank-box { width: 100%; max-width: 420px; margin: 14px auto 0; }
+.rank-line { color: var(--gold); font-size: 13px; letter-spacing: 1px; }
+.rank-track { height: 6px; border-radius: 3px; background: var(--line); margin-top: 6px; overflow: hidden; }
+.rank-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--ember), var(--gold)); transition: width .4s ease; }
+.school-map { display: grid; gap: 14px; width: 100%; text-align: left; }
+.chapter { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 16px; }
+.chapter h3 { color: var(--ember); font-size: 16px; display: flex; justify-content: space-between; gap: 8px; }
+.chapter h3 small { color: var(--muted); font-weight: 400; }
+.chapter > p { color: var(--muted); font-size: 14px; line-height: 1.6; margin: 6px 0 10px; }
+.chapter.locked { opacity: .55; }
+.lock-note { color: var(--gold) !important; font-size: 12px !important; margin: 8px 0 0 !important; }
+.lesson-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.lesson-btn { border: 1px solid var(--line); background: transparent; color: var(--text); border-radius: 999px; padding: 8px 14px; font: 600 13px "Space Grotesk", sans-serif; cursor: pointer; }
+.lesson-btn:hover:not(:disabled) { border-color: var(--ember); }
+.lesson-btn.done { border-color: var(--gold); color: var(--gold); }
+.lesson-btn:disabled { cursor: default; }
+.school-lesson { display: grid; justify-items: center; gap: 12px; width: 100%; }
+.school-lesson h2 { color: var(--ember); }
+.lesson-text { color: var(--muted); line-height: 1.7; text-align: left; max-width: 620px; }
+.lesson-text p + p { margin-top: 8px; }
+.ex-count { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+.ex-task { font-size: 18px; font-weight: 700; }
+.school-board-wrap { width: min(100%, 460px); }
+.ex-feedback { min-height: 1.5em; color: var(--muted); }
+.ex-feedback.good { color: #7fd17f; font-weight: 700; }
+.ex-feedback.bad { color: var(--danger); }
+.square.suggest::before { content: ""; position: absolute; inset: 0; background: rgba(95, 200, 255, 0.4); }
+.mentor-tip { margin-top: 6px; color: var(--gold); font-size: 13px; max-width: 360px; line-height: 1.4; }
+.tiers { display: grid; gap: 12px; width: 100%; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.tier { border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); padding: 16px; display: grid; gap: 10px; text-align: left; }
+.tier h3 { color: var(--ember); font-size: 16px; }
+.tier p { color: var(--muted); font-size: 13px; line-height: 1.5; }
+.tier.locked { opacity: .55; }
+.arena-titles { color: var(--gold); font-size: 13px; }
+.arena-note { color: var(--muted); white-space: pre-line; }
+#arenaCurrent { display: grid; justify-items: center; gap: 10px; width: 100%; }
+#arenaCurrent.hidden { display: none; }
+.standings td small { color: var(--muted); font-size: 11px; }
