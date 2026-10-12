@@ -2,7 +2,8 @@
    Ouvert avec le lien personnel reçu à l'inscription sur BeamUp : index.html?tournoi=<jeton>.
    BeamUp organise le tournoi (système suisse) : il donne à chaque ronde l'adversaire, la couleur et une salle privée.
    La partie se joue en pair-à-pair (js/net.js) avec une pendule par joueur ; le jeu déclare ensuite le résultat à BeamUp.
-   Inscription gratuite et ouverte à tous : aucun achat, aucune mise, aucun cauris en jeu. */
+   Tournois réservés aux possesseurs de l’édition complète (achat vérifié par BeamUp à l’inscription), inscription gratuite :
+   aucune mise, aucun cauris en jeu. */
 
 (() => {
     const token = new URLSearchParams(location.search).get('tournoi');

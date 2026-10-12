@@ -6,7 +6,7 @@
 
 ## Principes non négociables
 
-1. **Inscription gratuite.** Aucun frais de participation, en euros, en crypto ou en NFT.
+1. **Inscription gratuite, réservée aux possesseurs de l'édition complète** (ou d'un pass saison). Aucun frais de participation, en euros, en crypto ou en NFT. Le prix d'acquisition du jeu n'est pas un « sacrifice financier » pour une compétition en ligne (régime des compétitions de jeux vidéo) : à faire confirmer par l'avocat.
 2. **Lots financés par des partenaires.** Les lots ne proviennent jamais des joueurs. Leur valeur ne dépend pas du nombre d'inscrits.
 3. **Aucune commission** prélevée par l'organisateur sur les lots.
 4. **Les cauris restent hors tournoi.** Ils ne servent ni à s'inscrire ni de lot, et ne s'échangent pas contre un lot.
@@ -18,9 +18,9 @@ Plateforme : BeamUp, page « Jeux ».
 
 ## Article 2 — Participation
 
-- Ouvert à toute personne physique disposant d'un pseudo.
+- Ouvert à toute personne physique possédant l'édition complète de Chains & Crowns ou un pass saison sur BeamUp (achat vérifié par la signature du wallet utilisé pour l'achat).
 - Mineurs : participation soumise à l'autorisation écrite d'un représentant légal. Vérifier l'âge minimal fixé par la réglementation pour les compétitions dotées de lots.
-- Un seul compte par personne.
+- Un seul wallet par personne.
 
 ## Article 3 — Format
 
