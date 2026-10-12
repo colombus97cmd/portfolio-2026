@@ -111,5 +111,61 @@ const Net = (() => {
         throw new Error(cancelled ? 'Recherche annulée.' : 'Toutes les salles sont occupées, réessayez dans un instant.');
     }
 
-    return { findMatch, send, on, close };
+    /**
+     * Tournoi : rejoint la salle privée de sa table (identifiant secret donné par BeamUp aux deux joueurs).
+     * Les Blancs ouvrent la salle, les Noirs s'y connectent ; chacun réessaie tant que l'autre n'est pas là.
+     * Résout { opponent } : le pseudo annoncé par l'adversaire.
+     */
+    function joinRoom(room, color, pseudo, onStatus) {
+        if (typeof Peer === 'undefined') return Promise.reject(new Error('Le module de connexion (PeerJS) n\'a pas pu être chargé.'));
+        cancelled = false;
+        const id = 'chains-and-crowns-1802-t-' + room;
+        const name = (msg) => String(msg.pseudo || 'Adversaire').slice(0, 20);
+        return new Promise((resolve, reject) => {
+            if (color === 'w') {
+                const host = () => {
+                    if (cancelled) return;
+                    const p = new Peer(id, { debug: 0 });
+                    peer = p;
+                    p.on('open', () => onStatus('Salle ouverte : en attente de votre adversaire…'));
+                    p.on('error', (err) => {
+                        if (conn || cancelled) return;
+                        p.destroy();
+                        onStatus(err.type === 'unavailable-id' ? 'Salle encore occupée par une session précédente, nouvel essai…' : 'Connexion interrompue, nouvel essai…');
+                        setTimeout(host, 5000);
+                    });
+                    p.on('connection', (c) => {
+                        c.on('data', (msg) => {
+                            if (!msg || msg.type !== 'hello') return;
+                            if (conn || msg.protocol !== PROTOCOL) { c.send({ type: 'busy' }); return; }
+                            attach(c);
+                            send({ type: 'welcome', pseudo });
+                            resolve({ opponent: name(msg) });
+                        });
+                    });
+                };
+                host();
+            } else {
+                const p = new Peer({ debug: 0 });
+                peer = p;
+                const attempt = () => {
+                    if (cancelled || conn) return;
+                    const c = p.connect(id, { reliable: true });
+                    c.on('open', () => c.send({ type: 'hello', pseudo, protocol: PROTOCOL }));
+                    c.on('data', (msg) => {
+                        if (msg?.type === 'welcome' && !conn) { attach(c); resolve({ opponent: name(msg) }); }
+                        if (msg?.type === 'busy') reject(new Error('Cette table est déjà occupée.'));
+                    });
+                };
+                p.on('open', () => { onStatus('Connexion à votre adversaire…'); attempt(); });
+                p.on('error', (err) => {
+                    if (conn || cancelled) return;
+                    if (err.type === 'peer-unavailable') { onStatus('Votre adversaire n\'a pas encore ouvert la partie. Nouvel essai…'); setTimeout(attempt, 4000); }
+                    else reject(new Error('Connexion impossible au service de mise en relation.'));
+                });
+            }
+        });
+    }
+
+    return { findMatch, joinRoom, send, on, close };
 })();

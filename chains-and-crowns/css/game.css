@@ -187,3 +187,19 @@ body {
 /* ---------- Édition (démo du portfolio / édition complète BeamUp) ---------- */
 .edition-line { margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .edition-line a { color: var(--gold); }
+
+/* Tournoi */
+#tournamentScreen { display: grid; place-items: center; }
+#tournamentScreen.hidden { display: none !important; }
+.tournament { display: grid; justify-items: center; gap: 14px; width: 100%; }
+.title.small { font-size: clamp(32px, 7vw, 56px); margin: 4px 0 0; }
+.t-round { color: var(--gold); font-size: 14px; letter-spacing: 1px; }
+.t-status { font-size: 20px; font-weight: 700; line-height: 1.4; }
+.tournament .intro-text { margin-bottom: 0; }
+.side-actions.center { justify-content: center; }
+.standings { width: 100%; max-width: 520px; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.standings th { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; text-align: left; padding: 6px 8px; }
+.standings td { border-top: 1px solid var(--line); padding: 6px 8px; text-align: left; }
+.standings th:nth-child(n+3), .standings td:nth-child(n+3) { text-align: right; }
+.standings tr.me td { color: var(--gold); font-weight: 700; }
+.standings tr.out td { opacity: 0.5; }

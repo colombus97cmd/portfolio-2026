@@ -1,10 +1,10 @@
 /* CHAINS & CROWNS — Service worker : le jeu contre l'IA fonctionne hors ligne une fois installé.
    Le duel en ligne a toujours besoin du réseau. Changer VERSION à chaque mise en ligne. */
 
-const VERSION = 'cc-v2';
+const VERSION = 'cc-v3';
 const SHELL = [
     './', 'index.html', 'manifest.webmanifest', 'css/game.css',
-    'sprites/sprites.js', 'js/edition.js', 'js/engine.js', 'js/ai.js', 'js/progress.js', 'js/themes.js', 'js/net.js', 'js/game.js', 'js/install.js',
+    'sprites/sprites.js', 'js/edition.js', 'js/engine.js', 'js/ai.js', 'js/progress.js', 'js/themes.js', 'js/net.js', 'js/game.js', 'js/tournament.js', 'js/install.js',
     'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 

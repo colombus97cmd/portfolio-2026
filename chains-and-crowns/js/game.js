@@ -2,6 +2,7 @@
    Deux modes :
    - « ai »     : le joueur mène la Résistance (noirs) ; l'IA impériale (blancs) ouvre la partie.
    - « online » : duel entre deux joueurs, camps tirés au sort (voir js/net.js).
+   En tournoi (js/tournament.js), le duel se joue dans une salle privée, avec une pendule par joueur.
    Les mises se font uniquement en cauris, monnaie gratuite et sans valeur (voir js/progress.js). */
 
 (() => {
@@ -20,6 +21,10 @@
     let mode, me, them, level, pseudo, opponent, opponentElo, stakeAmount = 0;
     const AUTOPLAY = new URLSearchParams(location.search).get('demo') === 'auto';
     let state, selected, targets, lastMove, history, startTime, timer, busy, over;
+    // Partie de tournoi : { clock: { w, b } (ms restantes), turnAt, onEnd(result, reason, moves), back() } ; null sinon.
+    let tour = null;
+    const fmtClock = (ms) => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; };
+    const clockLeft = (c) => tour.clock[c] - (state.turn === c && !over ? Date.now() - tour.turnAt : 0);
 
     // ---------------- Stockage local (tolérant aux navigateurs qui le bloquent) ----------------
     const store = {
@@ -77,6 +82,7 @@
     }
 
     function showScreen(name) {
+        $('tournamentScreen')?.classList.toggle('hidden', name !== 'tournament');
         els.intro.classList.toggle('hidden', name !== 'intro');
         els.search.classList.toggle('hidden', name !== 'search');
         els.game.classList.toggle('hidden', name !== 'game');
@@ -150,8 +156,14 @@
     }
 
     // ---------------- Coups ----------------
-    function play(m, fromRemote = false) {
-        if (mode === 'online' && !fromRemote) Net.send({ type: 'move', from: m.from, to: m.to, promo: m.promo || null });
+    function play(m, fromRemote = false, remoteClock = null) {
+        if (tour) {
+            // Pendule : le joueur qui vient de jouer s'arrête ; l'adversaire transmet son temps restant avec son coup.
+            if (fromRemote) tour.clock[them] = Math.max(0, Number(remoteClock) || clockLeft(them));
+            else tour.clock[me] = clockLeft(me);
+            tour.turnAt = Date.now();
+        }
+        if (mode === 'online' && !fromRemote) Net.send({ type: 'move', from: m.from, to: m.to, promo: m.promo || null, clock: tour ? tour.clock[me] : undefined });
         const doMove = () => {
             const prev = state;
             state = Engine.makeMove(state, m);
@@ -234,8 +246,9 @@
         if (mode !== 'online' || over || state.turn !== them) return;
         const m = Engine.legalMoves(state).find((x) => x.from === msg.from && x.to === msg.to && (x.promo || null) === (msg.promo || null));
         if (!m) return finish('win', 'L\'adversaire a envoyé un coup illégal : partie interrompue.');
-        play(m, true);
+        play(m, true, msg.clock);
     });
+    Net.on('flag', () => { if (mode === 'online' && !over) finish('win', `Temps écoulé pour ${opponent}.`); });
     Net.on('resign', () => { if (mode === 'online' && !over) finish('win', `${opponent} a abandonné.`); });
     Net.on('disconnect', () => { if (mode === 'online' && !over) finish('win', `${opponent} s'est déconnecté.`); });
 
@@ -280,7 +293,7 @@
         $('endGradeLabel').textContent = GRADES[g];
         const versus = mode === 'ai' ? `niveau ${['', 'Recrue', 'Officier', 'Général'][level]}` : `contre ${opponent}`;
         const n = Math.ceil(history.length / 2);
-        $('endDetails').textContent = `${reason} ${n} coup${n > 1 ? 's' : ''} en ${els.chrono.textContent}, ${versus}.`;
+        $('endDetails').textContent = `${reason} ${n} coup${n > 1 ? 's' : ''} en ${tour ? fmtClock(Date.now() - startTime) : els.chrono.textContent}, ${versus}.`;
         if (result === 'win' && !AUTOPLAY) store.set({ pseudo, grade: g, date: new Date().toISOString().slice(0, 10) });
         // Une démonstration (IA contre IA) ne compte pas dans la progression du joueur.
         const gain = AUTOPLAY ? { cauris: 0, elo: 0, badges: [] } : Progress.record({ mode, level, result: result === 'resign' ? 'loss' : result, stake: stakeAmount, moves: n, grade: g, opponentElo });
@@ -298,6 +311,10 @@
         els.end.classList.remove('hidden');
         $('btnReplay').focus();
         if (mode === 'online') setTimeout(() => Net.close(), 1500);
+        if (tour) {
+            $('btnReplay').textContent = 'Retour au tournoi';
+            tour.onEnd(result === 'resign' ? 'loss' : result, reason, history.slice());
+        }
     }
 
     // ---------------- Cycle de vie ----------------
@@ -310,10 +327,19 @@
         startTime = Date.now();
         clearInterval(timer);
         timer = setInterval(() => {
+            if (tour) {
+                els.chrono.textContent = `${fmtClock(clockLeft(me))} · ${fmtClock(clockLeft(them))}`;
+                if (over) return;
+                if (state.turn === me && clockLeft(me) <= 0) { Net.send({ type: 'flag' }); finish('loss', 'Temps écoulé.'); }
+                else if (state.turn === them && clockLeft(them) <= -5000) finish('win', `Temps écoulé pour ${opponent}.`);
+                return;
+            }
             const s = Math.floor((Date.now() - startTime) / 1000);
             els.chrono.textContent = `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
         }, 500);
-        els.chrono.textContent = '00:00';
+        if (tour) tour.turnAt = Date.now();
+        els.chrono.setAttribute('aria-label', tour ? 'Votre temps · temps de l’adversaire' : 'Temps écoulé');
+        els.chrono.textContent = tour ? `${fmtClock(tour.clock[me])} · ${fmtClock(tour.clock[them])}` : '00:00';
         els.moves.innerHTML = '';
         const themName = mode === 'ai' ? 'IA' : opponent;
         els.labelTop.textContent = `${FACTION[them]} — ${themName}`;
@@ -334,6 +360,17 @@
     }
 
     function toMenu() {
+        if (tour) {
+            if (!over && !confirm('Quitter la partie compte comme un abandon. Continuer ?')) return;
+            if (!over) { Net.send({ type: 'resign' }); finish('resign', 'Vous avez abandonné.'); }
+            const back = tour.back;
+            tour = null;
+            clearInterval(timer);
+            Net.close();
+            els.end.classList.add('hidden');
+            back();
+            return;
+        }
         if (mode === 'online' && !over) Net.send({ type: 'resign' });
         if (state && !over) Progress.record({ mode, level, result: 'loss', stake: stakeAmount, moves: Math.ceil(history.length / 2), opponentElo });
         stakeAmount = 0;
@@ -372,7 +409,7 @@
     });
     $('btnMenu').addEventListener('click', toMenu);
     $('btnEndMenu').addEventListener('click', toMenu);
-    $('btnReplay').addEventListener('click', () => (mode === 'online' ? searchOpponent() : startAI()));
+    $('btnReplay').addEventListener('click', () => (tour ? toMenu() : mode === 'online' ? searchOpponent() : startAI()));
     window.addEventListener('resize', () => { if (!els.game.classList.contains('hidden')) render(false); });
     window.addEventListener('beforeunload', () => { if (mode === 'online' && !over) Net.send({ type: 'resign' }); });
 
@@ -390,6 +427,20 @@
     if (!Themes.apply(Progress.profile.theme)) Themes.apply('edition-1802');
     showChampion();
     renderProfile(Progress.claimDaily());
+
+    // Interface pour le mode tournoi (js/tournament.js).
+    window.CCGame = {
+        showScreen,
+        /** Lance une partie de tournoi déjà connectée : opts = { color, opponent, pseudo, minutes, onEnd, back }. */
+        startTournamentGame(opts) {
+            pseudo = opts.pseudo;
+            opponent = opts.opponent;
+            opponentElo = 1000;
+            stakeAmount = 0;
+            tour = { clock: { w: opts.minutes * 60000, b: opts.minutes * 60000 }, turnAt: Date.now(), onEnd: opts.onEnd, back: opts.back };
+            start('online', opts.color);
+        },
+    };
 
     // Mode démonstration (?demo=auto[&niveau=1..3]) : l'IA joue les deux camps, sans mise, pour les vidéos promotionnelles.
     if (AUTOPLAY) {

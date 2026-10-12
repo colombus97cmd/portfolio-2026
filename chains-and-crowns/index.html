@@ -101,6 +101,24 @@
         </div>
     </section>
 
+    <!-- Tournoi (lien personnel ?tournoi=…, voir js/tournament.js) -->
+    <section class="screen hidden" id="tournamentScreen">
+        <div class="intro tournament">
+            <p class="kicker">Tournoi BeamUp</p>
+            <h1 class="title small" id="tTitle">Tournoi</h1>
+            <p class="t-round" id="tRound"></p>
+            <p class="t-status" id="tStatus" aria-live="polite"></p>
+            <p class="intro-text" id="tDetail" aria-live="polite"></p>
+            <div class="side-actions center">
+                <button class="btn hidden" id="btnTPlay">Jouer ma partie</button>
+                <button class="btn ghost hidden" id="btnTCancel">Annuler la connexion</button>
+                <button class="btn ghost hidden" id="btnTForfeit">Réclamer la victoire par forfait</button>
+            </div>
+            <table class="standings" id="tStandings"></table>
+            <p class="note">Inscription gratuite et ouverte à tous : aucune mise, aucun achat, aucun cauris en jeu. Jeu loyal : aucune aide d'un moteur d'échecs ni d'une autre personne. Les deux navigateurs se connectent directement (WebRTC) ; votre adversaire voit votre pseudo. Le résultat est déclaré automatiquement à BeamUp à la fin de la partie.</p>
+        </div>
+    </section>
+
     <!-- Écran de jeu -->
     <main class="screen hidden" id="gameScreen">
         <header class="hud">
@@ -167,6 +185,7 @@
     <script src="js/themes.js"></script>
     <script src="js/net.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/tournament.js"></script>
     <script src="js/install.js"></script>
 </body>
 </html>
