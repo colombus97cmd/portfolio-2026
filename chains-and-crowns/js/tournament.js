@@ -174,6 +174,12 @@
     }
 
     el.play.addEventListener('click', playGame);
+    // Menu du jeu : parties libres hors tournoi (le lien de tournoi reste valable, il suffit de rouvrir la page).
+    $('btnTMenu').addEventListener('click', () => {
+        if (connecting) { connecting = false; Net.close(); }
+        clearInterval(pollTimer);
+        CCGame.showScreen('intro');
+    });
     el.cancel.addEventListener('click', () => { connecting = false; Net.close(); schedule(); refresh(); });
     el.forfeit.addEventListener('click', async () => {
         if (!confirm('Réclamer la victoire par forfait ? Votre adversaire ne pourra plus jouer cette partie.')) return;
